@@ -8,5 +8,9 @@ public class NouvelleClasse {
         this.testString = testString;
     }
 
+    public int getTestInt() {
+        return testInt;
+    }
+
 
 }
