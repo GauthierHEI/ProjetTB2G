@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "ArchivoRegular";
+    src: url("../fonts/Archivo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "ArchivoMedium";
+    src: url("../fonts/Archivo-Medium.ttf") format("truetype");
+}
+
+/*BODY*/
+
+body{
+    margin:0;
+    font-family: ArchivoRegular;
+}
+
+h1{
+    font-family: ArchivoMedium;
+}
+
+img{
+    width: 100%;
+}
+
+/*HEADER*/
+
+header.header-navigation {
+    display: flex;
+    background-color: #004d66;
+    width: 100%;
+}
+
+div.header-logo {
+    text-align: center;
+    width: 20%;
+}
+
+div.header-logo a{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding-left: 10%;
+    color: white;
+    font-size: 1.5em;
+}
+
+div.header-logo i{
+    color: white;
+    font-size: 1.5em;
+    vertical-align: baseline;
+}
+
+div.header-menu{
+    display: flex;
+    align-items: center;
+    width: 65%;
+}
+
+div.header-menu div {
+    font-size: 1.5em;
+    color: white;
+    padding: 2%;
+    text-align: center;
+}
+
+div.header-utilisateur {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5%;
+
+}
+
+div.header-utilisateur i{
+    color: white;
+    font-size: 3em;
+    padding:10%;
+}

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;
-			 charset=UTF-8">
-    <title>Ma première webapp</title>
+    <title>Projet</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
-<h1>Bienvenue dans cette webapp !</h1>
-<a href="connexion">Accéder à la page de connexion</a>
+
+    <header th:replace="~{fragments :: header}"></header>
 </body>
 </html>
