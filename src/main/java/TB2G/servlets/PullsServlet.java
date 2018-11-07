@@ -11,23 +11,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/Tshirts")
-public class TshirtsServlet extends AbstractWebServlet {
+@WebServlet("/Pulls")
+public class PullsServlet extends AbstractWebServlet {
 
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
 
-        List<produit> ListOfTshirts = new ArrayList<>();
+        List<produit> ListOfPulls = new ArrayList<>();
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
-        ListOfTshirts = ProduitStore.getInstance().listTshirt();
-        context.setVariable("tshirt", ListOfTshirts);
+        ListOfPulls = ProduitStore.getInstance().listPull();
+        context.setVariable("pull", ListOfPulls);
 
         //process method
-        String finalDocument = engine.process("Tshirts", context);
+        String finalDocument = engine.process("Pulls", context);
         rsp.getWriter().write(finalDocument);
     }
 }

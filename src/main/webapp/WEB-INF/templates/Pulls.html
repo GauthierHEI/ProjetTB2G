@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <Title>T-Shirts</Title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<script>
+    function Achat(ProductId){
+        var Id = ProductId;
+        document.getElementById("form"+Id).style.visibility="visible";
+    }
+
+</script>
+
+<div class="page">
+    <header th:replace="~{fragments :: header}"></header>
+
+    <div class="corps">
+
+        <div th:each=" Pull : ${pull}" class="produit-informations">
+
+            <img src="images/MannequinTshirt.jpg">
+            <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
+            <div  class="produit-prix-couleur">
+                <div>
+                    <span th:id="'span'+ ${Pull.getId()}"> &nbsp; </span>
+                    <label th:text="${Pull.getCouleur()}" class="produit-couleur"></label>
+                </div>
+                <div th:text="${Pull.getPrix()}+ '$'"> </div>
+            </div>
+            <form th:id="'form'+ ${Pull.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Pull.getId()}+'\');'">
+                <input type="submit" name="achat" value="acheter"/>
+            </form>
+        </div>
+
+    </div>
+
+    <footer th:replace="~{fragments :: Footer}"></footer>
+</div>
+
+</body>
+</html>

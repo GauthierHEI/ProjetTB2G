@@ -98,6 +98,68 @@ public class ProduitDaoImpl implements ProduitDao {
         return tshirt;
     }
 
+    private produit mapPull(ResultSet resultSetRow) throws SQLException {
+        return new produit(
+                resultSetRow.getInt("produit_id"),
+                resultSetRow.getString("produit"),
+                resultSetRow.getInt("dispoS"),
+                resultSetRow.getInt("dispoM"),
+                resultSetRow.getInt("dispoL"),
+                resultSetRow.getFloat("prix"),
+                resultSetRow.getInt("cat"),
+                resultSetRow.getString("couleur")
+        );
+    }
+
+    @Override
+    public List<produit> listPull() {
+        String sqlQuery = "SELECT * FROM produit WHERE cat =2";
+        List<produit> pull = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                    while (resultSet.next()) {
+                        pull.add(mapPull(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pull;
+    }
+
+    private produit mapChemise(ResultSet resultSetRow) throws SQLException {
+        return new produit(
+                resultSetRow.getInt("produit_id"),
+                resultSetRow.getString("produit"),
+                resultSetRow.getInt("dispoS"),
+                resultSetRow.getInt("dispoM"),
+                resultSetRow.getInt("dispoL"),
+                resultSetRow.getFloat("prix"),
+                resultSetRow.getInt("cat"),
+                resultSetRow.getString("couleur")
+        );
+    }
+
+    @Override
+    public List<produit> listChemise() {
+        String sqlQuery = "SELECT * FROM produit WHERE cat =3";
+        List<produit> chemise = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                    while (resultSet.next()) {
+                        chemise.add(mapChemise(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return chemise;
+    }
+
 
 }
 
