@@ -30,6 +30,10 @@ public class ProduitStore  {
       return produitdao.listTshirt();
     }
 
+    public List<produit> listPull() { return produitdao.listPull(); }
+
+    public List<produit> listChemise() { return produitdao.listChemise();}
+
 
 
 
