@@ -105,3 +105,38 @@ div.header-utilisateur i:hover{
 
     transition: all 0.5s;
 }
+
+
+/*FOOTER*/
+
+footer {
+    border-top: solid #A7D4E0 2em;
+    background-color: #c6d7ef;
+    display: flex;
+    justify-content: space-around;
+    bottom: 0;
+}
+
+footer h1{
+    font-size: 1.1em;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0.7em 0;
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 0.4em 0;
+}
+
+.facebook {
+    color: #3b5998;
+    font-family: ArchivoRegular;
+}
+
+.instagram {
+    color: #8a3ab9;
+    font-family: ArchivoRegular;
+}
