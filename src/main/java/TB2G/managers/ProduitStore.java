@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProduitStore  {
 
-    public static class ProduitStoreHolder {
+    private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
     }
 
@@ -19,18 +19,20 @@ public class ProduitStore  {
         return ProduitStoreHolder.instance;
     }
 
-    private ProduitStore() {
-
-    }
 
     private ProduitDao produitdao = new ProduitDaoImpl();
-    private UtilisateurDao utilisateurdao =  new UtilisateurDaoImpl();
+
+    private ProduitStore() {
+    }
 
     public List<produit> listTshirt() {
       return produitdao.listTshirt();
     }
 
+    public List<produit> listProduit() {return produitdao.listProduit(); }
 
-
+    public produit addProduit(produit produit) {
+        return produitdao.addProduit(produit);
+    }
 
 }

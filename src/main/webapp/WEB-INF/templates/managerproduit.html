@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit Manager</title>
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+
+<main>
+    <form method="post">
+        <h1>Manager de Produit</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>#ID</th>
+                <th>Nom du produit</th>
+                <th>Dispo en S</th>
+                <th>Dispo en M</th>
+                <th>Dispo en L</th>
+                <th>Prix</th>
+                <th>Cat</th>
+                <th>Couleur</th>
+                <th>Image</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <th>AUTOINC</th>
+                <th><input type="text" name="produit" id="produit"></th>
+                <th><input type="text" name="dispoS" id="dispoS"></th>
+                <th><input type="text" name="dispoM" id="dispoM"></th>
+                <th><input type="text" name="dispoL" id="dispoL"></th>
+                <th><input type="text" name="prix" id="prixL"></th>
+                <th><input type="text" name="cat" id="cat"></th>
+                <th><input type="text" name="couleur" id="couleur"></th>
+                <th><input type="text" name="adresse" id="adresse"></th>
+                <th><input type="submit" value="Ajouter"></th>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+
+        <h2>Index des produits</h2>
+
+        <table>
+
+            <tr th:each=" Produit : ${produit}">
+                <td th:text="${Produit.getId()}"></td>
+                <td th:text="${Produit.getNameproduit()}"></td>
+                <td th:text="${Produit.getDispoS()}"></td>
+                <td th:text="${Produit.getDispoM()}"></td>
+                <td th:text="${Produit.getDispoL()}"></td>
+                <td th:text="${Produit.getPrix()}"></td>
+                <td th:text="${Produit.getCat()}"></td>
+                <td th:text="${Produit.getCouleur()}"></td>
+                <td th:text="${Produit.getImage()}"></td>
+            </tr>
+
+        </table>
+
+</main>
+
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

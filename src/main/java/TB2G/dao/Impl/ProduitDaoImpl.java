@@ -15,18 +15,17 @@ public class ProduitDaoImpl implements ProduitDao {
     @Override
     public produit addProduit(produit produit) {
         try (Connection connection = getDataSource().getConnection()) {
-            String sqlQuery = "insert into produit(id, nameproduit, dispoS, dispoM, dispoL, \n" +
-                    "prix, cat, couleur, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlQuery = "insert into produit(nameproduit, dispoS, dispoM, dispoL, \n" +
+                    "prix, cat, couleur, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-                statement.setInt(1, produit.getId());
-                statement.setString(2, produit.getNameproduit());
-                statement.setInt(3, produit.getDispoS());
-                statement.setInt(4, produit.getDispoM());
-                statement.setInt(5, produit.getDispoL());
-                statement.setFloat(6, produit.getPrix());
-                statement.setInt(7, produit.getCat());
-                statement.setString(8, produit.getCouleur());
-                statement.setString(9, produit.getImage());
+                statement.setString(1, produit.getNameproduit());
+                statement.setInt(2, produit.getDispoS());
+                statement.setInt(3, produit.getDispoM());
+                statement.setInt(4, produit.getDispoL());
+                statement.setFloat(5, produit.getPrix());
+                statement.setInt(6, produit.getCat());
+                statement.setString(7, produit.getCouleur());
+                statement.setString(8, produit.getImage());
             }
         } catch (SQLException e) {
             // Manage Exception
@@ -44,13 +43,14 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("image")
         );
     }
 
     @Override
     public List<produit> listProduit() {
-        String sqlQuery = "SELECT * FROM produit ORDER BY nameproduit";
+        String sqlQuery = "SELECT * FROM produit";
         List<produit> produits = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
@@ -76,7 +76,8 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("image")
         );
     }
 
