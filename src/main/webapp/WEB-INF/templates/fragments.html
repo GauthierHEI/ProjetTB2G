@@ -5,29 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
 
-<header th:fragment="Header" class="header-navigation" >
+        <header th:fragment="Header" class="header-navigation" >
 
-    <div class="header-logo">
-        <a href=""><i class="fas fa-tshirt"></i><h1>B2G</h1></a>
+            <div class="header-logo">
+                <a href=""><i class="fas fa-tshirt"></i><h1>B2G</h1></a>
+            </div>
+
+            <div class="header-menu">
+                <div> <a href="">Tshirts</a> </div>
+                <div> <a href="">Pulls</a> </div>
+                <div> <a href="">Chemises</a> </div>
+            </div>
+
+            <div class="header-utilisateur">
+                <i class="fas fa-shopping-cart"> </i>
+                <i class="fas fa-user"> </i>
+            </div>
+        </header>
+
+<footer th:fragment="Footer" class="footer-information">
+
+    <div class="footer-reseaux">
+        <a title="Facebook" href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+        <a title="Instagram" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
     </div>
-
-    <div class="header-menu">
-        <div> Tshirts </div>
-        <div> Pulls </div>
-        <div> Chemises </div>
-    </div>
-
-    <div class="header-utilisateur">
-        <i class="fas fa-shopping-cart"></i>
-        <i class="fas fa-user"></i>
-    </div>
-
-</header>
-
-
+</footer>
 </body>
 </html>
