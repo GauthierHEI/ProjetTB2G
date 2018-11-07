@@ -9,25 +9,28 @@
 
 <body>
 
-<header th:fragment="Header" class="header-navigation" >
+    <div class="page">
+        <header th:fragment="Header" class="header-navigation" >
 
-    <div class="header-logo">
-        <a href=""><i class="fas fa-tshirt"></i><h1>B2G</h1></a>
+            <div class="header-logo">
+                <a href=""><i class="fas fa-tshirt"></i><h1>B2G</h1></a>
+            </div>
+
+            <div class="header-menu">
+                <div> <a href="">Tshirts</a> </div>
+                <div> <a href="">Pulls</a> </div>
+                <div> <a href="">Chemises</a> </div>
+            </div>
+
+            <div class="header-utilisateur">
+                <i class="fas fa-shopping-cart"><a href=""></a> </i>
+                <i class="fas fa-user"><a href=""></a></i>
+            </div>
+
+        </header>
+
+        <img src="../images/MannequinLong.jpg">
     </div>
-
-    <div class="header-menu">
-        <div> Tshirts </div>
-        <div> Pulls </div>
-        <div> Chemises </div>
-    </div>
-
-    <div class="header-utilisateur">
-        <i class="fas fa-shopping-cart"></i>
-        <i class="fas fa-user"></i>
-    </div>
-
-</header>
-
 
 </body>
 </html>
