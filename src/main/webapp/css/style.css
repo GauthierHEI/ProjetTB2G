@@ -118,7 +118,7 @@ footer {
 }
 
 footer h1{
-    font-size: 1.1vw;
+    font-size: 1.5vw;
     font-weight: bolder;
     margin: 0;
     padding: 2% 0;
@@ -133,10 +133,16 @@ footer a {
 
 .facebook {
     color: #3b5998;
+    font-size: 1.5vw;
     font-family: ArchivoRegular;
 }
 
 .instagram {
     color: #8a3ab9;
+    font-size: 1.5vw;
     font-family: ArchivoRegular;
+}
+
+div.footer-contact a{
+    font-size: 1.5vw;
 }
