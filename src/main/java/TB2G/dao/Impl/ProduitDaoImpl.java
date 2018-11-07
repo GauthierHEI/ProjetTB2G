@@ -19,7 +19,7 @@ public class ProduitDaoImpl implements ProduitDao {
                     "prix, cat, couleur, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
                 statement.setInt(1, produit.getId());
-                statement.setString(2,produit.getNameproduit());
+                statement.setString(2, produit.getNameproduit());
                 statement.setInt(3, produit.getDispoS());
                 statement.setInt(4, produit.getDispoM());
                 statement.setInt(5, produit.getDispoL());
@@ -28,7 +28,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setString(8, produit.getCouleur());
                 statement.setString(9, produit.getImage());
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
         }
@@ -51,20 +51,53 @@ public class ProduitDaoImpl implements ProduitDao {
     @Override
     public List<produit> listProduit() {
         String sqlQuery = "SELECT * FROM produit ORDER BY nameproduit";
-        List<produit> films = new ArrayList<>();
+        List<produit> produits = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
                     while (resultSet.next()) {
-                        films.add(mapProduit(resultSet));
+                        produits.add(mapProduit(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return films;
+        return produits;
     }
+
+
+    private produit mapTshirt(ResultSet resultSetRow) throws SQLException {
+        return new produit(
+                resultSetRow.getInt("produit_id"),
+                resultSetRow.getString("produit"),
+                resultSetRow.getInt("dispoS"),
+                resultSetRow.getInt("dispoM"),
+                resultSetRow.getInt("dispoL"),
+                resultSetRow.getFloat("prix"),
+                resultSetRow.getInt("cat"),
+                resultSetRow.getString("couleur")
+        );
+    }
+
+    @Override
+    public List<produit> listTshirt() {
+        String sqlQuery = "SELECT * FROM produit WHERE cat =1";
+        List<produit> tshirt = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                    while (resultSet.next()) {
+                        tshirt.add(mapTshirt(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tshirt;
+    }
+
 
 }
 

@@ -10,4 +10,6 @@ public interface ProduitDao {
 
     List<produit> listProduit();
 
+    List<produit> listTshirt();
+
 }
