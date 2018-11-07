@@ -12,7 +12,7 @@ public class produit {
     private String couleur;
     private String image;
 
-    public produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur, String image) {
+    public produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur) {
         this.id = id;
         this.nameproduit = nameproduit;
         this.dispoS = dispoS;
@@ -21,7 +21,6 @@ public class produit {
         this.prix = prix;
         this.cat = cat;
         this.couleur = couleur;
-        this.image = image;
     }
 
     public Integer getId() {

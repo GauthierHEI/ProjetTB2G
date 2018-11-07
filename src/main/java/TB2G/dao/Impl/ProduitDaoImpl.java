@@ -43,8 +43,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur"),
-                resultSetRow.getString("image")
+                resultSetRow.getString("couleur")
         );
     }
 
@@ -76,8 +75,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur"),
-                resultSetRow.getString("image")
+                resultSetRow.getString("couleur")
         );
     }
 
