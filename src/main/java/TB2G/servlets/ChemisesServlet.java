@@ -23,7 +23,7 @@ public class ChemisesServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
-        ListOfChemises = ProduitStore.getInstance().listPull();
+        ListOfChemises = ProduitStore.getInstance().listChemise();
         context.setVariable("chemise", ListOfChemises);
 
         //process method
