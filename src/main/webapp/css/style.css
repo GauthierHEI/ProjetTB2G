@@ -1,17 +1,18 @@
 @font-face {
     font-family: "ArchivoRegular";
-    src: url("../fonts/Archivo-Regular.ttf") format("truetype");
+    src: url("/fonts/Archivo-Regular.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "ArchivoMedium";
-    src: url("../fonts/Archivo-Medium.ttf") format("truetype");
+    src: url("/fonts/Archivo-Medium.ttf") format("truetype");
 }
 
 /*BODY*/
 
-body{
+html, body{
     margin:0;
+    height: 100%;
     font-family: ArchivoRegular;
 }
 
@@ -23,6 +24,11 @@ img{
     width: 100%;
 }
 
+div.page  {
+    position :relative;
+    min-height: 100%;
+    background-color: #004d66;
+}
 /*HEADER*/
 
 header.header-navigation {
@@ -42,12 +48,12 @@ div.header-logo a{
     align-items: center;
     padding-left: 10%;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5vw;
 }
 
 div.header-logo i{
     color: white;
-    font-size: 1.5em;
+    font-size: 2.5vw;
     vertical-align: baseline;
 }
 
@@ -57,11 +63,24 @@ div.header-menu{
     width: 65%;
 }
 
+div.header-menu a{
+    text-decoration: none;
+    color: inherit;
+}
+
 div.header-menu div {
-    font-size: 1.5em;
+    font-size: 1.5vw;
     color: white;
     padding: 2%;
     text-align: center;
+}
+
+div.header-menu div:hover {
+    color: black;
+    background-color: white;
+    border-radius: 1.5em;
+
+    transition: all 0.5s;
 }
 
 div.header-utilisateur {
@@ -75,6 +94,14 @@ div.header-utilisateur {
 
 div.header-utilisateur i{
     color: white;
-    font-size: 3em;
+    font-size: 3vw;
     padding:10%;
+}
+
+div.header-utilisateur i:hover{
+    color: black;
+    background-color: white;
+    border-radius: 1em;
+
+    transition: all 0.5s;
 }
