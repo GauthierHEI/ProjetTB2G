@@ -23,7 +23,7 @@
 
         <div class="corps">
 
-                <div th:each=" Tshirt : ${tshirt}" class="produit-informations">
+                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|">
 
                     <img src="images/MannequinTshirt.jpg">
                     <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div th:text="${Tshirt.getPrix()}+ '$'"> </div>
                     </div>
-                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Tshirt.getId()}+'\');'">
+                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat">
                         <input type="submit" name="achat" value="acheter"/>
                     </form>
                 </div>
