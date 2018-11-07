@@ -15,6 +15,15 @@
 
         <div class="corps">
 
+            <table>
+
+                <tr th:each=" Tshirt : ${tshirt}">
+                    <td th:text="${Tshirt.getNameproduit()}"></td>
+                    <td th:text="${Tshirt.getCouleur()}"></td>
+                    <td th:text="${Tshirt.getPrix()}"></td>
+                </tr>
+            </table>
+
         </div>
 
         <footer th:replace="~{fragments :: Footer}"></footer>
