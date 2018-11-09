@@ -2,7 +2,7 @@ package TB2G.entities;
 
 import java.time.LocalDate;
 
-public class utilisateur {
+public class Utilisateur {
 
     private Integer id;
     private String email;
@@ -14,7 +14,7 @@ public class utilisateur {
     private String adressefac;
     private Boolean admin;
 
-    public utilisateur(Integer id, String email, String prenom, String nom, LocalDate naissance,
+    public Utilisateur(Integer id, String email, String prenom, String nom, LocalDate naissance,
                        String motdepasse, String adresseliv, String adressefac, Boolean admin) {
         this.id = id;
         this.email = email;

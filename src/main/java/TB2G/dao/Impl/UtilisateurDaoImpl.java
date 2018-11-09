@@ -1,7 +1,7 @@
 package TB2G.dao.Impl;
 
 import TB2G.dao.UtilisateurDao;
-import TB2G.entities.utilisateur;
+import TB2G.entities.Utilisateur;
 
 import java.sql.*;
 
@@ -11,7 +11,7 @@ import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
 public class UtilisateurDaoImpl implements UtilisateurDao {
 
     @Override
-    public utilisateur addUtilisateur(utilisateur utilisateur) {
+    public Utilisateur addUtilisateur(Utilisateur utilisateur) {
         try (Connection connection = getDataSource().getConnection()) {
             String sqlQuery = "insert into utilisateur(id, email, prenom, nom, naissance, \n" +
                     "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -1,7 +1,7 @@
 package TB2G.dao.Impl;
 
 import TB2G.dao.ProduitDao;
-import TB2G.entities.produit;
+import TB2G.entities.Produit;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,11 +13,10 @@ public class ProduitDaoImpl implements ProduitDao {
 
 
     @Override
-    public produit addProduit(produit produit) {
+    public Produit addProduit(Produit produit) {
+        String sqlQuery = "insert into produit(nameproduit, dispoS, dispoM, dispoL, prix, cat, couleur) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = getDataSource().getConnection()) {
-            String sqlQuery = "insert into produit(nameproduit, dispoS, dispoM, dispoL, \n" +
-                    "prix, cat, couleur, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, produit.getNameproduit());
                 statement.setInt(2, produit.getDispoS());
                 statement.setInt(3, produit.getDispoM());
@@ -25,8 +24,16 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setFloat(5, produit.getPrix());
                 statement.setInt(6, produit.getCat());
                 statement.setString(7, produit.getCouleur());
-                statement.setString(8, produit.getImage());
+                statement.executeUpdate();
+
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        produit.setId(generatedKeys.getInt(1));
+                        return produit;
+                    }
+                }
             }
+
         } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
@@ -34,8 +41,8 @@ public class ProduitDaoImpl implements ProduitDao {
         return null;
     }
 
-    private produit mapProduit(ResultSet resultSetRow) throws SQLException {
-        return new produit(
+    private Produit mapProduit(ResultSet resultSetRow) throws SQLException {
+        return new Produit(
                 resultSetRow.getInt("produit_id"),
                 resultSetRow.getString("produit"),
                 resultSetRow.getInt("dispoS"),
@@ -48,9 +55,9 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
     @Override
-    public List<produit> listProduit() {
+    public List<Produit> listProduit() {
         String sqlQuery = "SELECT * FROM produit";
-        List<produit> produits = new ArrayList<>();
+        List<Produit> produits = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
@@ -66,8 +73,8 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
 
-    private produit mapTshirt(ResultSet resultSetRow) throws SQLException {
-        return new produit(
+    private Produit mapTshirt(ResultSet resultSetRow) throws SQLException {
+        return new Produit(
                 resultSetRow.getInt("produit_id"),
                 resultSetRow.getString("produit"),
                 resultSetRow.getInt("dispoS"),
@@ -80,9 +87,9 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
     @Override
-    public List<produit> listTshirt() {
+    public List<Produit> listTshirt() {
         String sqlQuery = "SELECT * FROM produit WHERE cat =1";
-        List<produit> tshirt = new ArrayList<>();
+        List<Produit> tshirt = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
@@ -97,8 +104,8 @@ public class ProduitDaoImpl implements ProduitDao {
         return tshirt;
     }
 
-    private produit mapPull(ResultSet resultSetRow) throws SQLException {
-        return new produit(
+    private Produit mapPull(ResultSet resultSetRow) throws SQLException {
+        return new Produit(
                 resultSetRow.getInt("produit_id"),
                 resultSetRow.getString("produit"),
                 resultSetRow.getInt("dispoS"),
@@ -111,9 +118,9 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
     @Override
-    public List<produit> listPull() {
+    public List<Produit> listPull() {
         String sqlQuery = "SELECT * FROM produit WHERE cat =2";
-        List<produit> pull = new ArrayList<>();
+        List<Produit> pull = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
@@ -128,8 +135,8 @@ public class ProduitDaoImpl implements ProduitDao {
         return pull;
     }
 
-    private produit mapChemise(ResultSet resultSetRow) throws SQLException {
-        return new produit(
+    private Produit mapChemise(ResultSet resultSetRow) throws SQLException {
+        return new Produit(
                 resultSetRow.getInt("produit_id"),
                 resultSetRow.getString("produit"),
                 resultSetRow.getInt("dispoS"),
@@ -142,9 +149,9 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
     @Override
-    public List<produit> listChemise() {
+    public List<Produit> listChemise() {
         String sqlQuery = "SELECT * FROM produit WHERE cat =3";
-        List<produit> chemise = new ArrayList<>();
+        List<Produit> chemise = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {

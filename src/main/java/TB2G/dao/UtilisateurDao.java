@@ -1,9 +1,9 @@
 package TB2G.dao;
 
-import TB2G.entities.utilisateur;
+import TB2G.entities.Utilisateur;
 
 public interface UtilisateurDao {
 
-    utilisateur addUtilisateur(utilisateur utilisateur);
+    Utilisateur addUtilisateur(Utilisateur utilisateur);
 
 }

@@ -1,6 +1,6 @@
 package TB2G.servlets;
 
-import TB2G.entities.produit;
+import TB2G.entities.Produit;
 import TB2G.managers.ProduitStore;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -17,7 +17,7 @@ public class TshirtsServlet extends AbstractWebServlet {
 
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
 
-        List<produit> ListOfTshirts = new ArrayList<>();
+        List<Produit> ListOfTshirts = new ArrayList<>();
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());

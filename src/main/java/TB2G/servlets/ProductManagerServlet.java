@@ -1,6 +1,6 @@
 package TB2G.servlets;
 
-import TB2G.entities.produit;
+import TB2G.entities.Produit;
 import TB2G.managers.ProduitStore;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -26,7 +26,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
-        List<produit> ListOfProduits = new ArrayList<>();
+        List<Produit> ListOfProduits = new ArrayList<>();
         ListOfProduits = ProduitStore.getInstance().listProduit();
         context.setVariable("produit", ListOfProduits);
 
@@ -66,16 +66,14 @@ public class ProductManagerServlet extends AbstractWebServlet {
         }
         String couleur = req.getParameter("couleur");
 
-        String image = req.getParameter("adresse");
-
         // CREATE PRODUIT
-        produit newProduit = new produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, image);
+        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur);
         try {
 
-            produit createdProduit = ProduitStore.getInstance().addProduit(newProduit);
+            Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
 
             // REDIRECT TO DETAIL PRODUIT
-            resp.sendRedirect(String.format("produit?id=%d", createdProduit.getId()));
+            resp.sendRedirect(String.format("produit?id=%d", createProd.getId()));
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("film-error-message", e.getMessage());
             resp.sendRedirect("newProduit");

@@ -2,8 +2,8 @@ package TB2G.managers;
 
 import TB2G.dao.ProduitDao;
 import TB2G.dao.UtilisateurDao;
-import TB2G.entities.produit;
-import TB2G.entities.utilisateur;
+import TB2G.entities.Produit;
+import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 
@@ -24,17 +24,17 @@ public class ProduitStore  {
     private ProduitStore() {
     }
 
-    public List<produit> listTshirt() {
+    public List<Produit> listTshirt() {
       return produitdao.listTshirt();
     }
 
-    public List<produit> listPull() { return produitdao.listPull(); }
+    public List<Produit> listPull() { return produitdao.listPull(); }
 
-    public List<produit> listChemise() { return produitdao.listChemise();}
+    public List<Produit> listChemise() { return produitdao.listChemise();}
 
-    public List<produit> listProduit() {return produitdao.listProduit(); }
+    public List<Produit> listProduit() {return produitdao.listProduit(); }
 
-    public produit addProduit(produit produit) {
+    public Produit addProduit(Produit produit) {
         return produitdao.addProduit(produit);
     }
 
