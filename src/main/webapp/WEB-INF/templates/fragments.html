@@ -9,6 +9,18 @@
 
     <body>
 
+        <script th:fragment="Script">
+            function Achat(ProductId){
+                var Id = ProductId;
+                document.getElementById("form"+Id).style.visibility="visible";
+            }
+
+            function Cache(ProductId){
+                var Id = ProductId;
+                document.getElementById("form"+Id).style.visibility="hidden";
+            }
+        </script>
+
         <header th:fragment="Header" class="header-navigation" >
 
             <div class="header-logo">

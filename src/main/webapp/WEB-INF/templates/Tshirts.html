@@ -10,20 +10,15 @@
 </head>
 <body>
 
-    <script>
-        function Achat(ProductId){
-            var Id = ProductId;
-            document.getElementById("form"+Id).style.visibility="visible";
-        }
-
-    </script>
+    <script th:replace="~{fragments :: Script}"> </script>
 
     <div class="page">
         <header th:replace="~{fragments :: header}"></header>
 
         <div class="corps">
 
-                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|">
+                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|"
+                th:onmouseout="|Cache('${Tshirt.getId()}')|">
 
                     <img src="images/MannequinTshirt.jpg">
                     <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
