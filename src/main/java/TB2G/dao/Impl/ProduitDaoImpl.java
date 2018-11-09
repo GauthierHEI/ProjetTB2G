@@ -14,8 +14,8 @@ public class ProduitDaoImpl implements ProduitDao {
 
     @Override
     public Produit addProduit(Produit produit) {
-        String sqlQuery = "insert into produit(nameproduit, dispoS, dispoM, dispoL, prix, cat, couleur) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = getDataSource().getConnection()) {
+        String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, produit.getNameproduit());
                 statement.setInt(2, produit.getDispoS());
