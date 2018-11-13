@@ -232,3 +232,11 @@ div.footer-contact a{
 div.footer-contact a{
     font-size: 1.5vw;
 }
+
+/* AUTHENTIFICATION */
+
+#mainauthentification{
+    display: flex;
+    flex-direction: row-reverse;
+
+}
