@@ -158,7 +158,6 @@ div.produit-nom{
 }
 
 .produit-prix-couleur span {
-    background-color: grey;
     height: 1vw;
     width: 1vw;
 }
@@ -254,10 +253,23 @@ div.footer-contact a{
     font-size: 1.5vw;
 }
 
-/* AUTHENTIFICATION */
 
-#mainauthentification{
-    display: flex;
-    flex-direction: row-reverse;
+/*PANIER */
+.soon{
+    padding: 3vw;
+    margin: 3vw;
+    text-align: center;
+    align-items: center;
+    background-color: #18cd66;
+    color: white;
+}
 
+/* MANAGER PRODUIT */
+
+.modification-produit {
+    visibility: hidden;
+}
+
+table.index-produit {
+    background-color: ;
 }

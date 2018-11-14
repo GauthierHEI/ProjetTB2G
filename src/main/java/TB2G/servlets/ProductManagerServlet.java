@@ -65,9 +65,10 @@ public class ProductManagerServlet extends AbstractWebServlet {
         } catch (NumberFormatException ignored) {
         }
         String couleur = req.getParameter("couleur");
+        String hexcouleur = req.getParameter("hexcouleur");
 
         // CREATE PRODUIT
-        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur);
+        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, hexcouleur);
         try {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);

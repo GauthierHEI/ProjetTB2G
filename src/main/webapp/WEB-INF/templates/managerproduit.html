@@ -9,12 +9,26 @@
     <title>Produit Manager</title>
 </head>
 <body>
+
+<script>
+    function Modif (ProductId){
+        var Id = ProductId;
+        document.getElementById("tr"+Id).style.visibility="visible";
+    }
+
+    function Cache(ProductId){
+        var Id = ProductId;
+        document.getElementById("tr"+Id).style.visibility="hidden";
+    }
+
+</script>
+
 <header th:replace="~{fragments :: header}"></header>
 
 <main>
     <form method="post">
         <h1>Manager de Produit</h1>
-        <table>
+        <table border="1px solid black">
             <thead>
             <tr>
                 <th>#ID</th>
@@ -25,6 +39,7 @@
                 <th>Prix</th>
                 <th>Cat</th>
                 <th>Couleur</th>
+                <th>HexColor</th>
                 <th>Image</th>
             </tr>
             </thead>
@@ -39,19 +54,22 @@
                 <th><input type="text" name="prix" id="prixL"></th>
                 <th><input type="text" name="cat" id="cat"></th>
                 <th><input type="text" name="couleur" id="couleur"></th>
-                <th><input type="text" name="adresse" id="adresse"></th>
-                <th><input type="submit" value="Ajouter"></th>
+                <th><input type="color" name="hexcouleur" id="hexcouleur"></th>
+                <th><input type="file" name="image" id="image"></th>
             </tr>
 
             </tbody>
         </table>
+
+        <input type="submit" value="Ajouter" class="soon">
+
     </form>
 
         <h2>Index des produits</h2>
 
-        <table>
+        <table th:each=" Produit : ${produit}" class="index-produit">
 
-            <tr th:each=" Produit : ${produit}">
+            <tr  th:onclick="|Modif('${Produit.getId()}')|">
                 <td th:text="${Produit.getId()}"></td>
                 <td th:text="${Produit.getNameproduit()}"></td>
                 <td th:text="${Produit.getDispoS()}"></td>
@@ -60,7 +78,22 @@
                 <td th:text="${Produit.getPrix()}"></td>
                 <td th:text="${Produit.getCat()}"></td>
                 <td th:text="${Produit.getCouleur()}"></td>
+                <td th:text="${Produit.getHexcouleur()}"></td>
                 <td th:text="${Produit.getImage()}"></td>
+            </tr>
+
+            <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+
             </tr>
 
         </table>
