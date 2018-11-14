@@ -13,14 +13,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 
+import static TB2G.utils.MotDePasseUtils.genererMotDePasse;
+
 @WebServlet("/authentification")
 public class ConnexionServlet extends AbstractWebServlet {
 
     @Override
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
-
-        String utilisateurConnecte =(String) rsq.getSession().getAttribute("Connecte");
-        System.out.println(utilisateurConnecte);
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
@@ -62,11 +61,13 @@ public class ConnexionServlet extends AbstractWebServlet {
 
             String mail = rsq.getParameter("mail");
 
-            String adresse = rsq.getParameter("numeroderue") + rsq.getParameter("adresse")
-                    + rsq.getParameter("codepostal") + rsq.getParameter("ville");
+            String motDePasseHash = genererMotDePasse(password);
+
+            String adresse = rsq.getParameter("numeroderue") +" "+ rsq.getParameter("adresse")
+                    +" "+ rsq.getParameter("codepostal") +" "+ rsq.getParameter("ville");
 
             Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
-                    birthDate, password, adresse, adresse, false);
+                    birthDate, motDePasseHash, adresse, adresse, false);
 
             //Create task
             UtilisateurSource.getInstance().addUtilisateur(utilisateur);
@@ -75,6 +76,7 @@ public class ConnexionServlet extends AbstractWebServlet {
         }
         else {
 
+            rsq.getSession().setAttribute("utilisateurConnecte", utilisateur);
         }
 
     }

@@ -15,18 +15,17 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public Utilisateur addUtilisateur(Utilisateur utilisateur) {
         try (Connection connection = getDataSource().getConnection()) {
-            String sqlQuery = "insert into utilisateur(id, email, prenom, nom, naissance, \n" +
-                    "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlQuery = "insert into utilisateur( email, prenom, nom, datenaissance," +
+                    "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-                statement.setInt(1, utilisateur.getId());
-                statement.setString(2,utilisateur.getEmail());
-                statement.setString(3, utilisateur.getPrenom());
-                statement.setString(4, utilisateur.getNom());
-                statement.setDate(5, Date.valueOf(utilisateur.getNaissance()));
-                statement.setString(6, utilisateur.getMotdepasse());
-                statement.setString(7, utilisateur.getAdresseliv());
-                statement.setString(8, utilisateur.getAdressefac());
-                statement.setBoolean(9, false);
+                statement.setString(1,utilisateur.getEmail());
+                statement.setString(2, utilisateur.getPrenom());
+                statement.setString(3, utilisateur.getNom());
+                statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
+                statement.setString(5, utilisateur.getMotdepasse());
+                statement.setString(6, utilisateur.getAdresseliv());
+                statement.setString(7, utilisateur.getAdressefac());
+                statement.setBoolean(8, false);
                 statement.executeUpdate();
             }
         }catch (SQLException e) {
@@ -42,7 +41,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 resultSetRow.getString("email"),
                 resultSetRow.getString("prenom"),
                 resultSetRow.getString("nom"),
-                resultSetRow.getDate("naissance").toLocalDate(),
+                resultSetRow.getDate("datenaissance").toLocalDate(),
                 resultSetRow.getString("motdepasse"),
                 resultSetRow.getString("adresseliv"),
                 resultSetRow.getString("adressefac"),
@@ -66,5 +65,25 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
         }
         return utilisateurs;
+    }
+
+    @Override
+    public Utilisateur getUtilisateur(String mail) {
+
+        String sqlQuery = "SELECT * FROM utilisateur WHERE email=?";
+        Utilisateur utilisateur = null;
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, mail);
+                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                    while (resultSet.next()) {
+                        utilisateur = mapUtilisateur(resultSet);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utilisateur;
     }
 }
