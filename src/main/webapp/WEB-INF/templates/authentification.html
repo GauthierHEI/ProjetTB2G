@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -11,68 +11,81 @@
 
 <body>
 
-    <div class="page">
-        <header th:replace="~{fragments :: header}"></header>
+<div class="page">
+    <header th:replace="~{fragments :: header}"></header>
+    <div class="corps">
+        <main id="mainauthentification">
+            <form method="post" action="newuser">
+                <h1>Créer votre compte</h1>
+                <p>
+                    <label for="username">Username/Nom du compte</label>
+                    <input type="text" name="username" id="username">
+                </p>
+                <p>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password">
+                </p>
+                <p>
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" name="prenom" id="prenom">
+                </p>
+                <p>
+                    <label for="birth">Date de naissance</label>
+                    <input type="date" id="birth" name="birth"
+                           value="aaaa-mm-dd"
+                           min="1935-01-01" max="2018-12-31" />
+                </p>
+                <p>
+                    <label for="mail">Adresse mail</label>
+                    <input type="text" name="mail" id="mail">
+                </p>
+                <p>
+                    <label for="ville">Ville</label>
+                    <input type="text" name="ville" id="ville">
+                </p>
+                <p>
+                    <label for="adresse">Adresse</label>
+                    <input type="text" name="adresse" id="adresse">
+                    <label for="numeroderue">N° de rue</label>
+                    <input type="text" name="numeroderue" id="numeroderue">
+                </p>
+                <p>
+                    <label for="codepostal">Code postal</label>
+                    <input type="text" name="codepostal" id="codepostal">
+                </p>
+                <p>
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="text" name="phone" id="phone">
+                </p>
+                <p>
+                    <input type="submit" value="Créer" name="choix">
+                </p>
+            </form>
 
-            <div class="corps">
+            <form method="post" action="connexion">
+                <h1>Connexion</h1>
+                <p>
+                    <label for="username">Username/Nom du compte</label>
+                    <input type="text" name="username" id="username">
+                </p>
+                <p>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password">
+                </p>
+                <p>
+                    <input type="submit" value="Connexion" name="choix">
+                </p>
+            </form>
 
-
-                <form method="post" action="connexion" class="authentification-contenu">
-                    <h1>Connexion</h1>
-                    <p>
-                        <label for="email">Email</label>
-                        <input type="text" name="username" id="email">
-                    </p>
-                    <p>
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password">
-                    </p>
-                    <p>
-                        <input type="submit" value="Connexion">
-                    </p>
-                </form>
-
-                <form method="post" action="newuser" class="authentification-contenu">
-                    <h1>Créer votre compte</h1>
-                    <p>
-                        <label for="email">Email</label>
-                        <input type="text" name="username" id="mail">
-                    </p>
-                    <p>
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="pasword">
-                    </p>
-                    <p>
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="nom">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" name="prenom" id="prenom">
-                    </p>
-                    <p>
-                        <label for="naissance">Date de naissance</label>
-                        <input type="date" name="naissance" id="naissance">
-                    </p>
-                    <p>
-                        <label for="ville">Ville</label>
-                        <input type="text" name="ville" id="ville">
-                        <label for="adresse">Adresse</label>
-                        <input type="text" name="adresse" id="adresse">
-                        <label for="numeroderue">N° de rue</label>
-                        <input type="text" name="numeroderue" id="numeroderue">
-                        <label for="codepostal">Code postal</label>
-                        <input type="text" name="codepostal" id="codepostal">
-                    </p>
-                    <p>
-                        <input type="submit" value="Créer">
-                    </p>
-                </form>
-
-            </div>
-
-        <footer th:replace="~{fragments :: Footer}"></footer>
-
+        </main>
     </div>
+    <footer th:replace="~{fragments :: Footer}"></footer>
+</div>
 </body>
 
 
 </html>
+
+
