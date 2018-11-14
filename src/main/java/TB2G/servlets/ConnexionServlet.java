@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,6 +27,8 @@ public class ConnexionServlet extends AbstractWebServlet {
 
         String errMDP = (String) session.getAttribute("errMDP");
         session.removeAttribute("errMDP");
+        String errEmail = (String) session.getAttribute("errEmail");
+        session.removeAttribute("errEmail");
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
@@ -33,16 +36,16 @@ public class ConnexionServlet extends AbstractWebServlet {
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
 
         //process method
-        String utilisateurConnecte = (String) session.getAttribute("utilisateurConnecte");
+        Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
 
-        if( utilisateurConnecte == null || "".equals(utilisateurConnecte)) {
+        if( utilisateurConnecte == null || "".equals(utilisateurConnecte.getNom())) {
             context.setVariable("errMDP", errMDP);
+            context.setVariable("errEmail", errEmail);
             String finalDocument = engine.process("authentification", context);
             rsp.getWriter().write(finalDocument);
         }
         else {
-            String finalDocument = engine.process("profil", context);
-            rsp.getWriter().write(finalDocument);
+            rsp.sendRedirect("managerproduit");
         }
     }
 
@@ -82,16 +85,26 @@ public class ConnexionServlet extends AbstractWebServlet {
         }
         else {
             String mail = rsq.getParameter("mail");
-            Utilisateur utilisateur = UtilisateurSource.getInstance().getUtilisateurByMail(mail);
-            String password = rsq.getParameter("password");
-            String realPassword = utilisateur.getMotdepasse();
-            if (validerMotDePasse(password, realPassword)) {
-                session.setAttribute("utilisateurConnecte", utilisateur);
-            }
-            else {
-                session.setAttribute("errMDP", "Mot de passe incorrect");
+            Utilisateur utilisateur;
+            utilisateur = UtilisateurSource.getInstance().getUtilisateurByMail(mail);
+            if (utilisateur==null) {
+                session.setAttribute("errEmail", "Email n'existe pas");
                 rsp.sendRedirect("authentification");
             }
+            else {
+                String password = rsq.getParameter("password");
+                String realPassword = utilisateur.getMotdepasse();
+
+                if (validerMotDePasse(password, realPassword)) {
+                    session.setAttribute("utilisateurConnecte", utilisateur);
+                    rsp.sendRedirect("managerproduit");
+                }
+                else {
+                    session.setAttribute("errMDP", "Mot de passe incorrect");
+                    rsp.sendRedirect("authentification");
+                }
+            }
+
         }
 
     }

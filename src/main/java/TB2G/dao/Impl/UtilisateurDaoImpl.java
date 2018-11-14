@@ -85,6 +85,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            utilisateur = null;
         }
         return utilisateur;
     }
