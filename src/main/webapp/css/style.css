@@ -13,11 +13,11 @@
 html, body{
     margin:0;
     height: 100%;
-    font-family: ArchivoRegular;
+    font-family: "ArchivoRegular";
 }
 
 h1{
-    font-family: ArchivoMedium;
+    font-family: "ArchivoMedium";
 }
 
 img{
@@ -35,6 +35,7 @@ header.header-navigation {
     display: flex;
     background-color: #004d66;
     width: 100%;
+    border-bottom: 0.3vw solid white;
 }
 
 div.header-logo {
@@ -106,43 +107,136 @@ div.header-utilisateur i:hover{
     transition: all 0.5s;
 }
 
+/* PRODUIT */
+
+div.produit-nom{
+    font-family: "ArchivoMedium";
+}
+
+div.corps{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #f2f2f2;
+    padding-left:3%;
+    padding-right:3%;
+}
+
+div.produit-informations{
+    background-color: white;
+    padding: 1%;
+    margin: 5% 0;
+    text-align: center;
+    font-size: 1vw;
+    text-decoration-color: black;
+}
+
+div.produit-informations img{
+    width: 15vw;
+    height: auto;
+}
+
+div.produit-prix-couleur{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 4%;
+}
+
+div.produit-prix-couleur div{
+    display: flex;
+}
+
+label.produit-couleur{
+    padding-left:0.6vw;
+}
+
+div.produit-prix-couleur span {
+    background-color: grey;
+    height: 1vw;
+    width: 1vw;
+}
+
+form.produit-achat {
+    visibility: hidden;
+    background-color:#18cd66;
+    font-size: 1vw;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+form.produit-achat input {
+    background-color: #18cd66;
+    color: white;
+    font-size: 1vw;
+    font-family: "ArchivoMedium";
+    width: 100%;
+    border: none;
+    padding: 0.5vw;
+}
+
+form.produit-achat input:hover {
+    cursor: pointer;
+}
 
 /*FOOTER*/
 
 footer {
-    border-top: solid #A7D4E0 2vw;
-    background-color: #c6d7ef;
+    border-top: 0.3vw solid white;
+    background-color: #004d66;
     display: flex;
     justify-content: space-around;
     bottom: 0;
 }
 
 footer h1{
+    color: white;
     font-size: 1.5vw;
-    font-weight: bolder;
+    font-family: "ArchivoMedium";
     margin: 0;
     padding: 2% 0;
 }
 
 footer a {
-    color: black;
+    color: white;
     text-decoration: none;
     display: block;
     padding: 2% 0;
 }
 
+div.footer-reseaux-logo {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .facebook {
     color: #3b5998;
-    font-size: 1.5vw;
-    font-family: ArchivoRegular;
+    font-size: 3vw;
 }
 
 .instagram {
     color: #8a3ab9;
-    font-size: 1.5vw;
-    font-family: ArchivoRegular;
+    font-size: 3vw;
+}
+
+.twitter{
+    font-size: 3vw;
+    color: #00aced;
 }
 
 div.footer-contact a{
     font-size: 1.5vw;
+}
+
+
+div.footer-contact a{
+    font-size: 1.5vw;
+}
+
+/* AUTHENTIFICATION */
+
+#mainauthentification{
+    display: flex;
+    flex-direction: row-reverse;
+
 }

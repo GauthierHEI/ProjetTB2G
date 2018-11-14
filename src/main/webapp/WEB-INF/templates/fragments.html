@@ -2,14 +2,24 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Fragments</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fragments</title>
+    </head>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-</head>
+    <body>
 
-<body>
+        <script th:fragment="Script">
+            function Achat(ProductId){
+                var Id = ProductId;
+                document.getElementById("form"+Id).style.visibility="visible";
+            }
+
+            function Cache(ProductId){
+                var Id = ProductId;
+                document.getElementById("form"+Id).style.visibility="hidden";
+            }
+        </script>
 
         <header th:fragment="Header" class="header-navigation" >
 
@@ -19,29 +29,34 @@
 
             <div class="header-menu">
                 <div> <a href="Tshirts">Tshirts</a> </div>
-                <div> <a href="">Pulls</a> </div>
-                <div> <a href="">Chemises</a> </div>
+                <div> <a href="Pulls">Pulls</a> </div>
+                <div> <a href="Chemises">Chemises</a> </div>
             </div>
 
             <div class="header-utilisateur">
-                <i class="fas fa-shopping-cart"> </i>
+                <a href="panier"><i class="fas fa-shopping-cart"> </i></a>
                 <a href="authentification"><i class="fas fa-user"> </i></a>
             </div>
         </header>
 
 <footer th:fragment="Footer" class="footer-information">
 
-    <div class="footer-reseaux">
-        <h1>Retrouvez-nous sur les r&eacute;seaux</h1>
-        <a title="Facebook" href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-square"></i> Facebook</a>
-        <a title="Instagram" href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"> Instagram</i></a>
-    </div>
-    <div class="footer-contact">
-        <h1>&Agrave; propos de TB2G</h1>
-        <a title="A-propos" href="index.html">&Agrave; propos de TB2G</a>
-        <a title="responsabilite" href="index.html">Responsabilit&eacute;</a>
-    </div>
+            <div class="footer-reseaux">
+                <h1>Retrouvez-nous sur les r&eacute;seaux</h1>
+                    <div class="footer-reseaux-logo">
+                        <a title="Facebook" href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-square"></i></a>
+                        <a title="Instagram" href="https://www.instagram.com/" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a title="Twitter" href="https://www.twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+            </div>
+            <div class="footer-contact">
+                <h1>Informations</h1>
+                    <a title="A-propos" href="index.html">&Agrave; propos de TB2G</a>
+                    <a title="responsabilite" href="index.html">Responsabilit&eacute;</a>
+            </div>
 
-</footer>
-</body>
+        </footer>
+
+    </body>
+
 </html>

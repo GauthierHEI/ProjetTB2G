@@ -1,6 +1,6 @@
 package TB2G.entities;
 
-public class produit {
+public class Produit {
 
     private Integer id;
     private String nameproduit;
@@ -12,7 +12,7 @@ public class produit {
     private String couleur;
     private String image;
 
-    public produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur) {
+    public Produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur) {
         this.id = id;
         this.nameproduit = nameproduit;
         this.dispoS = dispoS;

@@ -1,15 +1,19 @@
 package TB2G.dao;
 
-import TB2G.entities.produit;
+import TB2G.entities.Produit;
 
 import java.util.List;
 
 public interface ProduitDao {
 
-    produit addProduit(produit produit);
+    Produit addProduit(Produit produit);
 
-    List<produit> listProduit();
+    List<Produit> listProduit();
 
-    List<produit> listTshirt();
+    List<Produit> listTshirt();
+
+    List<Produit> listPull();
+
+    List<Produit> listChemise();
 
 }

@@ -10,19 +10,29 @@
 </head>
 <body>
 
+    <script th:replace="~{fragments :: Script}"> </script>
+
     <div class="page">
         <header th:replace="~{fragments :: header}"></header>
 
         <div class="corps">
 
-            <table>
+                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|"
+                th:onmouseout="|Cache('${Tshirt.getId()}')|">
 
-                <tr th:each=" Tshirt : ${tshirt}">
-                    <td th:text="${Tshirt.getNameproduit()}"></td>
-                    <td th:text="${Tshirt.getCouleur()}"></td>
-                    <td th:text="${Tshirt.getPrix()}"></td>
-                </tr>
-            </table>
+                    <img src="images/MannequinTshirt.jpg">
+                    <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
+                    <div  class="produit-prix-couleur">
+                        <div>
+                            <span th:id="'span'+ ${Tshirt.getId()}"> &nbsp; </span>
+                            <label th:text="${Tshirt.getCouleur()}" class="produit-couleur"></label>
+                        </div>
+                        <div th:text="${Tshirt.getPrix()}+ '$'"> </div>
+                    </div>
+                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat">
+                        <input type="submit" name="achat" value="acheter"/>
+                    </form>
+                </div>
 
         </div>
 

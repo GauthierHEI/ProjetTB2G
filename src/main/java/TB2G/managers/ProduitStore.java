@@ -2,7 +2,8 @@ package TB2G.managers;
 
 import TB2G.dao.ProduitDao;
 import TB2G.dao.UtilisateurDao;
-import TB2G.entities.produit;
+import TB2G.entities.Produit;
+import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class ProduitStore  {
 
-    public static class ProduitStoreHolder {
+    private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
     }
 
@@ -18,18 +19,23 @@ public class ProduitStore  {
         return ProduitStoreHolder.instance;
     }
 
-    private ProduitStore() {
+    private ProduitDao produitdao = new ProduitDaoImpl();
 
+    private ProduitStore() {
     }
 
-    private ProduitDao produitdao = new ProduitDaoImpl();
-    private UtilisateurDao utilisateurdao =  new UtilisateurDaoImpl();
-
-    public List<produit> listTshirt() {
+    public List<Produit> listTshirt() {
       return produitdao.listTshirt();
     }
 
+    public List<Produit> listPull() { return produitdao.listPull(); }
 
+    public List<Produit> listChemise() { return produitdao.listChemise();}
 
+    public List<Produit> listProduit() {return produitdao.listProduit(); }
+
+    public Produit addProduit(Produit produit) {
+        return produitdao.addProduit(produit);
+    }
 
 }
