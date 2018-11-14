@@ -11,8 +11,9 @@ public class Produit {
     private Integer cat;
     private String couleur;
     private String image;
+    private String hexcouleur;
 
-    public Produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur) {
+    public Produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur, String hexcouleur) {
         this.id = id;
         this.nameproduit = nameproduit;
         this.dispoS = dispoS;
@@ -21,6 +22,7 @@ public class Produit {
         this.prix = prix;
         this.cat = cat;
         this.couleur = couleur;
+        this.hexcouleur = hexcouleur;
     }
 
     public Integer getId() {
@@ -94,4 +96,8 @@ public class Produit {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getHexcouleur() { return hexcouleur; }
+
+    public void setHexcouleur(String hexcouleur) { this.hexcouleur = hexcouleur;}
 }
