@@ -27,6 +27,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(7, utilisateur.getAdresseliv());
                 statement.setString(8, utilisateur.getAdressefac());
                 statement.setBoolean(9, false);
+                statement.executeUpdate();
             }
         }catch (SQLException e) {
             // Manage Exception
@@ -41,10 +42,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 resultSetRow.getString("email"),
                 resultSetRow.getString("prenom"),
                 resultSetRow.getString("nom"),
-                resultSetRow.getDate("naissance"),
+                resultSetRow.getDate("naissance").toLocalDate(),
                 resultSetRow.getString("motdepasse"),
                 resultSetRow.getString("adresseliv"),
-                resultSetRow.getString("adressefac")
+                resultSetRow.getString("adressefac"),
+                resultSetRow.getBoolean("admin")
         );
     }
 

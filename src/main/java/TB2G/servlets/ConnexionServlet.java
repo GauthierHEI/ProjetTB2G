@@ -1,6 +1,7 @@
 package TB2G.servlets;
 
 import TB2G.entities.Utilisateur;
+import TB2G.managers.UtilisateurSource;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.annotation.WebServlet;
@@ -42,8 +43,10 @@ public class ConnexionServlet extends AbstractWebServlet {
 
         String username = rsq.getParameter("username");
         String password = rsq.getParameter("password");
-        if(("Créer").equals(rsq.getParameter("choix"))){
+        String choix = rsq.getParameter("choix");
+        if(("creer").equals(rsq.getParameter("choix"))){
             String nom = rsq.getParameter("nom");
+
             String prenom = rsq.getParameter("prenom");
 
             String birthDateAsString = rsq.getParameter("birth");
@@ -55,10 +58,16 @@ public class ConnexionServlet extends AbstractWebServlet {
             } catch (DateTimeParseException ignored) { }
 
             String mail = rsq.getParameter("mail");
+
             String adresse = rsq.getParameter("numeroderue") + rsq.getParameter("adresse")
                     + rsq.getParameter("codepostal") + rsq.getParameter("ville");
+
             Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                     birthDate, password, adresse, adresse, false);
+
+            //Create task
+            UtilisateurSource.getInstance().addUtilisateur(utilisateur);
+            rsp.sendRedirect("home");
 
         }
         else {
