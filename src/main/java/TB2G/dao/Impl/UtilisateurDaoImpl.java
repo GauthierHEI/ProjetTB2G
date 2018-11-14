@@ -1,9 +1,11 @@
 package TB2G.dao.Impl;
 
 import TB2G.dao.UtilisateurDao;
-import TB2G.entities.utilisateur;
+import TB2G.entities.Utilisateur;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
@@ -11,7 +13,7 @@ import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
 public class UtilisateurDaoImpl implements UtilisateurDao {
 
     @Override
-    public utilisateur addUtilisateur(utilisateur utilisateur) {
+    public Utilisateur addUtilisateur(Utilisateur utilisateur) {
         try (Connection connection = getDataSource().getConnection()) {
             String sqlQuery = "insert into utilisateur(id, email, prenom, nom, naissance, \n" +
                     "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,5 +33,36 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Utilisateur mapUtilisateur(ResultSet resultSetRow) throws SQLException {
+        return new Utilisateur(
+                resultSetRow.getInt("utilisateur_id"),
+                resultSetRow.getString("email"),
+                resultSetRow.getString("prenom"),
+                resultSetRow.getString("nom"),
+                resultSetRow.getDate("naissance"),
+                resultSetRow.getString("motdepasse"),
+                resultSetRow.getString("adresseliv"),
+                resultSetRow.getString("adressefac")
+        );
+    }
+
+    @Override
+    public List<Utilisateur> listUtilisateur() {
+        String sqlQuery = "SELECT * FROM utilisateur";
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                    while (resultSet.next()) {
+                        utilisateurs.add(mapUtilisateur(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utilisateurs;
     }
 }

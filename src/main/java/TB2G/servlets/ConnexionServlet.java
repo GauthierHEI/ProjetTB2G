@@ -1,6 +1,6 @@
 package TB2G.servlets;
 
-import TB2G.entities.utilisateur;
+import TB2G.entities.Utilisateur;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.annotation.WebServlet;
@@ -57,7 +57,7 @@ public class ConnexionServlet extends AbstractWebServlet {
             String mail = rsq.getParameter("mail");
             String adresse = rsq.getParameter("numeroderue") + rsq.getParameter("adresse")
                     + rsq.getParameter("codepostal") + rsq.getParameter("ville");
-            utilisateur utilisateur = new utilisateur(null, mail, prenom, nom,
+            Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                     birthDate, password, adresse, adresse, false);
 
         }
