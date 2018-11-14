@@ -2,7 +2,6 @@ package TB2G.managers;
 
 import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Utilisateur;
-import TB2G.entities.produit;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 
 import java.util.List;
