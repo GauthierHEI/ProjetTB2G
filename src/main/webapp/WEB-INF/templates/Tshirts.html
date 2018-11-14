@@ -24,13 +24,13 @@
                     <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
                     <div  class="produit-prix-couleur">
                         <div>
-                            <span th:id="'span'+ ${Tshirt.getId()}"> &nbsp; </span>
+                            <span th:id="'span'+ ${Tshirt.getId()}" th:style="'background-color :'+ ${Tshirt.getHexcouleur()}"> &nbsp; </span>
                             <label th:text="${Tshirt.getCouleur()}" class="produit-couleur"></label>
                         </div>
                         <div th:text="${Tshirt.getPrix()}+ '$'"> </div>
                     </div>
                     <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat">
-                        <input type="submit" name="achat" value="acheter"/>
+                        <input type="submit" name="achat" value="bientot disponible"/>
                     </form>
                 </div>
 
