@@ -19,6 +19,9 @@ public class ConnexionServlet extends AbstractWebServlet {
     @Override
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
 
+        String utilisateurConnecte =(String) rsq.getSession().getAttribute("Connecte");
+        System.out.println(utilisateurConnecte);
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 

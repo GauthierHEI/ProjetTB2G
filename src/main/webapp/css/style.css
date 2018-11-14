@@ -22,6 +22,13 @@ h1{
 
 img{
     width: 100%;
+    margin: 0;
+}
+
+div.img-index{
+    width: 100%;
+    background-color: white;
+    padding: 0;
 }
 
 div.page  {
@@ -93,24 +100,18 @@ div.header-utilisateur {
 
 }
 
-div.header-utilisateur i{
+div.header-utilisateur a{
     color: white;
     font-size: 3vw;
     padding:10%;
 }
 
-div.header-utilisateur i:hover{
+div.header-utilisateur a:hover{
     color: black;
     background-color: white;
     border-radius: 1em;
 
     transition: all 0.5s;
-}
-
-/* PRODUIT */
-
-div.produit-nom{
-    font-family: "ArchivoMedium";
 }
 
 div.corps{
@@ -122,7 +123,13 @@ div.corps{
     padding-right:3%;
 }
 
-div.produit-informations{
+/* PRODUIT */
+
+div.produit-nom{
+    font-family: "ArchivoMedium";
+}
+
+.produit-informations{
     background-color: white;
     padding: 1%;
     margin: 5% 0;
@@ -131,26 +138,26 @@ div.produit-informations{
     text-decoration-color: black;
 }
 
-div.produit-informations img{
+.produit-informations img{
     width: 15vw;
     height: auto;
 }
 
-div.produit-prix-couleur{
+.produit-prix-couleur{
     display: flex;
     justify-content: space-evenly;
     padding-top: 4%;
 }
 
-div.produit-prix-couleur div{
+.produit-prix-couleur div{
     display: flex;
 }
 
-label.produit-couleur{
+.produit-couleur{
     padding-left:0.6vw;
 }
 
-div.produit-prix-couleur span {
+.produit-prix-couleur span {
     background-color: grey;
     height: 1vw;
     width: 1vw;
@@ -178,6 +185,20 @@ form.produit-achat input {
 form.produit-achat input:hover {
     cursor: pointer;
 }
+
+/*AUTHENTIFICATION */
+
+.authentification-contenu {
+    width: 40%;
+    background-color: white;
+    padding: 1%;
+    margin: 5% 0;
+    text-align: center;
+    font-size: 1vw;
+    text-decoration-color: black;
+}
+
+
 
 /*FOOTER*/
 

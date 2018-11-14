@@ -10,39 +10,35 @@
 </head>
 <body>
 
-<script>
-    function Achat(ProductId){
-        var Id = ProductId;
-        document.getElementById("form"+Id).style.visibility="visible";
-    }
+    <script th:replace="~{fragments :: Script}"> </script>
 
-</script>
+    <div class="page">
+        <header th:replace="~{fragments :: header}"></header>
 
-<div class="page">
-    <header th:replace="~{fragments :: header}"></header>
+        <div class="corps">
 
-    <div class="corps">
+            <div th:each=" Chemise : ${chemise}" class="produit-informations" th:onmouseover="|Achat('${Chemise.getId()}')|"
+                 th:onmouseout="|Cache('${Chemise.getId()}')|">
 
-        <div th:each=" Chemise : ${chemise}" class="produit-informations">
+                <img src="images/MannequinChemise.jpg">
 
-            <img src="images/MannequinChemise.jpg">
-            <div th:text="${Chemise.getNameproduit()}" class="produit-nom"> </div>
-            <div  class="produit-prix-couleur">
-                <div>
-                    <span th:id="'span'+ ${Chemise.getId()}"> &nbsp; </span>
-                    <label th:text="${Chemise.getCouleur()}" class="produit-couleur"></label>
+                <div th:text="${Chemise.getNameproduit()}" class="produit-nom"> </div>
+                <div  class="produit-prix-couleur">
+                    <div>
+                        <span th:id="'span'+ ${Chemise.getId()}"> &nbsp; </span>
+                        <label th:text="${Chemise.getCouleur()}" class="produit-couleur"></label>
+                    </div>
+                    <div th:text="${Chemise.getPrix()}+ '$'"> </div>
                 </div>
-                <div th:text="${Chemise.getPrix()}+ '$'"> </div>
+                <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Chemise.getId()}+'\');'">
+                    <input type="submit" name="achat" value="bientot disponible"/>
+                </form>
             </div>
-            <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Chemise.getId()}+'\');'">
-                <input type="submit" name="achat" value="acheter"/>
-            </form>
+
         </div>
 
+        <footer th:replace="~{fragments :: Footer}"></footer>
     </div>
-
-    <footer th:replace="~{fragments :: Footer}"></footer>
-</div>
 
 </body>
 </html>

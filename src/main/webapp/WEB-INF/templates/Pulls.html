@@ -10,39 +10,34 @@
 </head>
 <body>
 
-<script>
-    function Achat(ProductId){
-        var Id = ProductId;
-        document.getElementById("form"+Id).style.visibility="visible";
-    }
+    <script th:replace="~{fragments :: Script}"> </script>
 
-</script>
+    <div class="page">
+        <header th:replace="~{fragments :: header}"></header>
 
-<div class="page">
-    <header th:replace="~{fragments :: header}"></header>
+        <div class="corps">
 
-    <div class="corps">
+            <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|"
+                 th:onmouseout="|Cache('${Pull.getId()}')|">
 
-        <div th:each=" Pull : ${pull}" class="produit-informations">
-
-            <img src="images/MannequinPull.jpg">
-            <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
-            <div  class="produit-prix-couleur">
-                <div>
-                    <span th:id="'span'+ ${Pull.getId()}"> &nbsp; </span>
-                    <label th:text="${Pull.getCouleur()}" class="produit-couleur"></label>
+                <img src="images/MannequinPull.jpg">
+                <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
+                <div  class="produit-prix-couleur">
+                    <div>
+                        <span th:id="'span'+ ${Pull.getId()}"> &nbsp; </span>
+                        <label th:text="${Pull.getCouleur()}" class="produit-couleur"></label>
+                    </div>
+                    <div th:text="${Pull.getPrix()}+ '$'"> </div>
                 </div>
-                <div th:text="${Pull.getPrix()}+ '$'"> </div>
+                <form th:id="'form'+ ${Pull.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Pull.getId()}+'\');'">
+                    <input type="submit" name="achat" value="bientot disponible"/>
+                </form>
             </div>
-            <form th:id="'form'+ ${Pull.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Pull.getId()}+'\');'">
-                <input type="submit" name="achat" value="acheter"/>
-            </form>
+
         </div>
 
+        <footer th:replace="~{fragments :: Footer}"></footer>
     </div>
-
-    <footer th:replace="~{fragments :: Footer}"></footer>
-</div>
 
 </body>
 </html>
