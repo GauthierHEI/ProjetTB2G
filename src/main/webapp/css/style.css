@@ -123,6 +123,14 @@ div.corps{
     padding-right:3%;
 }
 
+.active {
+    display: block;
+}
+
+.inactive {
+    display: none;
+}
+
 /* PRODUIT */
 
 div.produit-nom{
@@ -195,6 +203,12 @@ form.produit-achat input:hover {
     text-align: center;
     font-size: 1vw;
     text-decoration-color: black;
+}
+
+.error {
+    color: darkred;
+    background-color: #f2f2f2;
+    padding: 0.1em;
 }
 
 .authentification-contenu input{

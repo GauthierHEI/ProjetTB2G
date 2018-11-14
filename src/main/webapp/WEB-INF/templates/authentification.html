@@ -6,13 +6,14 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
     <title>Création et authentification d'un compte</title>
 </head>
 
 <body>
 
     <div class="page">
-        <header th:replace="~{fragments :: header}"></header>
+        <header th:replace="~{fragments :: header(${connecte})}"></header>
 
         <div class="corps">
 
@@ -20,7 +21,7 @@
                 <h1>Connexion</h1>
                 <p>
                     <label for="mail">Email</label>
-                    <input type="text" name="username" id="mail">
+                    <input type="text" name="mail" id="mail">
                 </p>
                 <p>
                     <label for="password">Mot de passe</label>
@@ -29,18 +30,16 @@
                 <p>
                     <input type="submit" value="Connexion">
                 </p>
+                <p class="error" th:text="${errMDP}"></p>
+                <p class="error" th:text="${errEmail}"></p>
                 <p>
                     <input type="hidden"  value="connexion" name="choix">
                 </p>
             </form>
 
             <form method="post" action="authentification" class="authentification-contenu">
-                <h1>Créer votre compte</h1>
+                <h1>Cr&eacute;er votre compte</h1>
 
-                    <p>
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password">
-                    </p>
                     <p>
                         <label for="nom">Nom</label>
                         <input type="text" name="nom" id="nom">
@@ -56,6 +55,10 @@
                     <p>
                         <label for="mail">Adresse mail</label>
                         <input type="text" name="mail" id="mail">
+                    </p>
+                    <p>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password">
                     </p>
                     <p>
                         <label for="ville">Ville</label>

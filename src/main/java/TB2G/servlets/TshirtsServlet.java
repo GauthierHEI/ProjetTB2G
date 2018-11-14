@@ -19,6 +19,8 @@ public class TshirtsServlet extends AbstractWebServlet {
 
         List<Produit> ListOfTshirts = new ArrayList<>();
 
+        int connecte = VariableSessionConnecte(rsq);
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
@@ -26,6 +28,7 @@ public class TshirtsServlet extends AbstractWebServlet {
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
         ListOfTshirts = ProduitStore.getInstance().listTshirt();
         context.setVariable("tshirt", ListOfTshirts);
+        context.setVariable("connecte",connecte);
 
         //process method
         String finalDocument = engine.process("Tshirts", context);

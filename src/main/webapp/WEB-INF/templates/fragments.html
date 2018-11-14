@@ -21,7 +21,7 @@
             }
         </script>
 
-        <header th:fragment="Header" class="header-navigation" >
+        <header th:fragment="Header(connecte)" class="header-navigation" >
 
             <div class="header-logo">
                 <a href="home"><i class="fas fa-tshirt"></i><h1>B2G</h1></a>
@@ -31,11 +31,13 @@
                 <div> <a href="Tshirts">Tshirts</a> </div>
                 <div> <a href="Pulls">Pulls</a> </div>
                 <div> <a href="Chemises">Chemises</a> </div>
+                <div> <a href="managerproduit" th:class="${connecte == 2} ? 'active' : 'inactive'">Management Produits</a> </div>
             </div>
 
             <div class="header-utilisateur">
                 <a href="panier"><i class="fas fa-shopping-cart"> </i></a>
                 <a href="authentification"><i class="fas fa-user"> </i></a>
+                <a href="deconnexion" th:class="${connecte == 1 || connecte == 2} ?'active':'inactive'"><i class="fas fa-power-off"> </i></a>
             </div>
         </header>
 

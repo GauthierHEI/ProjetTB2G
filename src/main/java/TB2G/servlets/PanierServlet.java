@@ -12,11 +12,14 @@ public class PanierServlet extends AbstractWebServlet {
 
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
 
+        int connecte = VariableSessionConnecte(rsq);
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
+        context.setVariable("connecte",connecte);
 
         //process method
         String finalDocument = engine.process("panier", context);

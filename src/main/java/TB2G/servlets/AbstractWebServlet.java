@@ -6,6 +6,8 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 public  abstract class AbstractWebServlet extends HttpServlet {
@@ -24,5 +26,24 @@ public  abstract class AbstractWebServlet extends HttpServlet {
         engine.addDialect(new Java8TimeDialect());
 
         return engine;
+    }
+
+    protected int VariableSessionConnecte(HttpServletRequest rsq) {
+
+        HttpSession session = rsq.getSession();
+
+        int connecte;
+
+        if(session.getAttribute("connecte")==null) {
+            session.setAttribute("connecte", 0);
+            connecte = (int) session.getAttribute("connecte");
+            return connecte;
+        }
+        else {
+            connecte = (int) session.getAttribute("connecte");
+            return connecte;
+        }
+
+
     }
 }
