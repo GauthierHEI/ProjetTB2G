@@ -197,7 +197,15 @@ form.produit-achat input:hover {
     text-decoration-color: black;
 }
 
+.authentification-contenu input{
+    width: 10vw;
+    height: 1.5vw;
+}
 
+input.authentification-validation{
+
+
+}
 
 /*FOOTER*/
 
@@ -267,9 +275,36 @@ div.footer-contact a{
 /* MANAGER PRODUIT */
 
 .modification-produit {
-    visibility: hidden;
+    visibility: visible;
 }
 
-table.index-produit {
-    background-color: ;
+.container-produitmanager {
+    font-size: 1vw;
+    width: 100%;
+    padding: 0.5vw;
+    background-color:white;
+    text-align: center;
+    border-radius: 1em;
+    margin: 0.5vw;
 }
+
+.container-produitmanager table{
+    margin-bottom: 1vw;
+}
+
+.container-produitmanager td{
+    width: 1vw;
+}
+
+.produitmanager-ajout {
+
+    background-color: #18cd66;
+    color: white;
+    text-align: center;
+    padding: 0.3vw;
+    margin:0.3vw;
+    border: none;
+    font-size: 1vw;
+
+}
+
