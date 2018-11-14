@@ -18,12 +18,15 @@ public class ChemisesServlet extends AbstractWebServlet {
 
         List<Produit> ListOfChemises = new ArrayList<>();
 
+        int connecte = VariableSessionConnecte(rsq);
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
         ListOfChemises = ProduitStore.getInstance().listChemise();
+        context.setVariable("connecte", connecte);
         context.setVariable("chemise", ListOfChemises);
 
         //process method

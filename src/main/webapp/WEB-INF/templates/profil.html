@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -9,9 +9,19 @@
 </head>
 <body>
 
-<p>
-    Vous êtes connecté.
-</p>
+    <div class="page">
+
+        <header th:replace="~{fragments :: header(${connecte})}"></header>
+
+        <div id="corps">
+
+            <h1>Vous êtes connect&eacute;</h1>
+
+        </div>
+
+    </div>
+
+    <footer th:replace="~{fragments :: Footer}"></footer>
 
 </body>
 </html>

@@ -17,6 +17,8 @@ public class PullsServlet extends AbstractWebServlet {
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
 
         List<Produit> ListOfPulls = new ArrayList<>();
+        int connecte = VariableSessionConnecte(rsq);
+
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
@@ -25,6 +27,7 @@ public class PullsServlet extends AbstractWebServlet {
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
         ListOfPulls = ProduitStore.getInstance().listPull();
         context.setVariable("pull", ListOfPulls);
+        context.setVariable("connecte",connecte);
 
         //process method
         String finalDocument = engine.process("Pulls", context);

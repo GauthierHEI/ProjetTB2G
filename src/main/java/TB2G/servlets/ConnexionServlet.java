@@ -25,6 +25,7 @@ public class ConnexionServlet extends AbstractWebServlet {
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
         HttpSession session = rsq.getSession();
 
+
         String errMDP = (String) session.getAttribute("errMDP");
         session.removeAttribute("errMDP");
         String errEmail = (String) session.getAttribute("errEmail");
@@ -37,15 +38,20 @@ public class ConnexionServlet extends AbstractWebServlet {
 
         //process method
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
-
         if( utilisateurConnecte == null || "".equals(utilisateurConnecte.getNom())) {
             context.setVariable("errMDP", errMDP);
             context.setVariable("errEmail", errEmail);
+            session.setAttribute("connecte", 0);
             String finalDocument = engine.process("authentification", context);
             rsp.getWriter().write(finalDocument);
         }
-        else {
+        else if (utilisateurConnecte.getAdmin()){
+            session.setAttribute("connecte", 2);
             rsp.sendRedirect("managerproduit");
+        }
+        else {
+            session.setAttribute("connecte", 1);
+            rsp.sendRedirect("home");
         }
     }
 
@@ -97,7 +103,7 @@ public class ConnexionServlet extends AbstractWebServlet {
 
                 if (validerMotDePasse(password, realPassword)) {
                     session.setAttribute("utilisateurConnecte", utilisateur);
-                    rsp.sendRedirect("managerproduit");
+                    rsp.sendRedirect("authentification");
                 }
                 else {
                     session.setAttribute("errMDP", "Mot de passe incorrect");

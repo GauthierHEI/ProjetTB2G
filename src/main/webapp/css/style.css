@@ -123,6 +123,14 @@ div.corps{
     padding-right:3%;
 }
 
+.active {
+    display: block;
+}
+
+.inactive {
+    display: none;
+}
+
 /* PRODUIT */
 
 div.produit-nom{
