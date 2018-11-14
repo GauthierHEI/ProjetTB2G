@@ -27,4 +27,8 @@ public class UtilisateurSource {
         return utilisateurDao.addUtilisateur(utilisateur);
     }
 
+    public Utilisateur getUtilisateurByMail(String mail) {
+        return utilisateurDao.getUtilisateurByMail(mail);
+    }
+
 }

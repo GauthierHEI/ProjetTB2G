@@ -2,6 +2,7 @@ package TB2G.dao.Impl;
 
 import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Utilisateur;
+import TB2G.managers.UtilisateurSource;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,14 +69,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     }
 
     @Override
-    public Utilisateur getUtilisateur(String mail) {
+    public Utilisateur getUtilisateurByMail(String mail) {
 
-        String sqlQuery = "SELECT * FROM utilisateur WHERE email=?";
+        String sqlQuery = "SELECT * FROM utilisateur WHERE email =?";
         Utilisateur utilisateur = null;
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
                 statement.setString(1, mail);
-                try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
                         utilisateur = mapUtilisateur(resultSet);
                     }
@@ -86,4 +88,5 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }
         return utilisateur;
     }
+
 }

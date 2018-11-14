@@ -10,6 +10,6 @@ public interface UtilisateurDao {
 
     List<Utilisateur> listUtilisateur();
 
-    Utilisateur getUtilisateur(String mail);
+    Utilisateur getUtilisateurByMail(String mail);
 
 }
