@@ -71,19 +71,16 @@ div.header-menu{
     width: 65%;
 }
 
-div.header-menu a{
-    text-decoration: none;
-    color: inherit;
-}
 
-div.header-menu div {
+div.header-menu a {
     font-size: 1.5vw;
     color: white;
     padding: 2%;
+    text-decoration: none;
     text-align: center;
 }
 
-div.header-menu div:hover {
+div.header-menu a:hover {
     color: black;
     background-color: white;
     border-radius: 1.5em;
@@ -200,15 +197,20 @@ form.produit-achat input:hover {
     background-color: white;
     padding: 1%;
     margin: 5% 0;
-    text-align: center;
     font-size: 1vw;
     text-decoration-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-authentification{
+    text-align: center;
 }
 
 .error {
     color: darkred;
     background-color: #f2f2f2;
-    padding: 0.1em;
 }
 
 .authentification-contenu input{
@@ -216,9 +218,22 @@ form.produit-achat input:hover {
     height: 1.5vw;
 }
 
-input.authentification-validation{
+.login{
+    border: 0;
+    border-bottom: 1px solid #004d66;
+}
 
+.login-submit{
+    border: 1px solid #004d66;
+    border-radius: 1.5em;
+    color: #004d66;
+    background-color: white;
+}
 
+.login-submit:hover{
+    color: white;
+    background-color: #004d66;
+    cursor: pointer;
 }
 
 /*FOOTER*/
