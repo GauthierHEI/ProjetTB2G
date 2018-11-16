@@ -18,7 +18,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         try (Connection connection = getDataSource().getConnection()) {
             String sqlQuery = "insert into utilisateur( email, prenom, nom, datenaissance," +
                     "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1,utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
@@ -28,6 +28,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(7, utilisateur.getAdressefac());
                 statement.setBoolean(8, false);
                 statement.executeUpdate();
+
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        utilisateur.setId(generatedKeys.getInt(1));
+                        return utilisateur;
+                    }
+                }
             }
         }catch (SQLException e) {
             // Manage Exception
