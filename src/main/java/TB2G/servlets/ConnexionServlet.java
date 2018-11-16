@@ -25,11 +25,11 @@ public class ConnexionServlet extends AbstractWebServlet {
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
         HttpSession session = rsq.getSession();
 
-
         String errMDP = (String) session.getAttribute("errMDP");
         session.removeAttribute("errMDP");
         String errEmail = (String) session.getAttribute("errEmail");
         session.removeAttribute("errEmail");
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 

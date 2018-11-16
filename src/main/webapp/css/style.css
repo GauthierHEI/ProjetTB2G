@@ -166,7 +166,6 @@ div.produit-nom{
 }
 
 .produit-prix-couleur span {
-    background-color: grey;
     height: 1vw;
     width: 1vw;
 }
@@ -212,6 +211,15 @@ form.produit-achat input:hover {
     padding: 0.1em;
 }
 
+.authentification-contenu input{
+    width: 10vw;
+    height: 1.5vw;
+}
+
+input.authentification-validation{
+
+
+}
 
 /*FOOTER*/
 
@@ -267,10 +275,50 @@ div.footer-contact a{
     font-size: 1.5vw;
 }
 
-/* AUTHENTIFICATION */
 
-#mainauthentification{
-    display: flex;
-    flex-direction: row-reverse;
+/*PANIER */
+.soon{
+    padding: 3vw;
+    margin: 3vw;
+    text-align: center;
+    align-items: center;
+    background-color: #18cd66;
+    color: white;
+}
+
+/* MANAGER PRODUIT */
+
+.modification-produit {
+    visibility: visible;
+}
+
+.container-produitmanager {
+    font-size: 1vw;
+    width: 100%;
+    padding: 0.5vw;
+    background-color:white;
+    text-align: center;
+    border-radius: 1em;
+    margin: 0.5vw;
+}
+
+.container-produitmanager table{
+    margin-bottom: 1vw;
+}
+
+.container-produitmanager td{
+    width: 1vw;
+}
+
+.produitmanager-ajout {
+
+    background-color: #18cd66;
+    color: white;
+    text-align: center;
+    padding: 0.3vw;
+    margin:0.3vw;
+    border: none;
+    font-size: 1vw;
 
 }
+

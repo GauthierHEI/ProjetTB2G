@@ -14,7 +14,7 @@ public class ProduitDaoImpl implements ProduitDao {
 
     @Override
     public Produit addProduit(Produit produit) {
-        String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur,hexcouleur) VALUES(?, ?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, produit.getNameproduit());
@@ -24,6 +24,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setFloat(5, produit.getPrix());
                 statement.setInt(6, produit.getCat());
                 statement.setString(7, produit.getCouleur());
+                statement.setString(8,produit.getHexcouleur());
                 statement.executeUpdate();
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -50,7 +51,8 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("hexcouleur")
         );
     }
 
@@ -82,7 +84,8 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("hexcouleur")
         );
     }
 
@@ -113,7 +116,8 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("hexcouleur")
         );
     }
 
@@ -144,7 +148,8 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getInt("dispoL"),
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
-                resultSetRow.getString("couleur")
+                resultSetRow.getString("couleur"),
+                resultSetRow.getString("hexcouleur")
         );
     }
 
