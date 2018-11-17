@@ -24,7 +24,7 @@
                 <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
                 <div  class="produit-prix-couleur">
                     <div>
-                        <span th:id="'span'+ ${Pull.getId()}"> &nbsp; </span>
+                        <span th:id="'span'+ ${Pull.getId()}" th:style="'background-color :'+ ${Pull.getHexcouleur()}"> &nbsp; </span>
                         <label th:text="${Pull.getCouleur()}" class="produit-couleur"></label>
                     </div>
                     <div th:text="${Pull.getPrix()}+ '$'"> </div>

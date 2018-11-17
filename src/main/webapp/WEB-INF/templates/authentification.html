@@ -18,68 +18,66 @@
         <div class="corps">
 
             <form method="post" action="authentification" class="authentification-contenu">
-                <h1>Connexion</h1>
-                <p>
-                    <label for="mail">Email</label>
-                    <input type="text" name="mail" id="mail">
-                </p>
-                <p>
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password">
-                </p>
-                <p>
-                    <input type="submit" value="Connexion">
-                </p>
-                <p class="error" th:text="${errMDP}"></p>
-                <p class="error" th:text="${errEmail}"></p>
-                <p>
+                <div>
+                    <h1>Connexion</h1>
+                    <p>
+                        <i class="far fa-envelope"></i>
+                        <input type="text" name="mail" class="login" placeholder="Email">
+                    </p>
+                    <p>
+                        <i class="fas fa-unlock-alt"></i>
+                        <input type="password" name="password" class="login" placeholder="Password">
+                    </p>
+                    <input type="submit" value="Connexion" class="login-submit">
+                    <div class="error" th:text="${errMDP}"></div>
+                    <div class="error" th:text="${errEmail}"></div>
                     <input type="hidden"  value="connexion" name="choix">
-                </p>
+                </div>
+
             </form>
 
             <form method="post" action="authentification" class="authentification-contenu">
-                <h1>Cr&eacute;er votre compte</h1>
+                <div class="container-authentification">
+                    <h1>Cr&eacute;er votre compte</h1>
 
                     <p>
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="nom">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" name="prenom" id="prenom">
+                        <i class="far fa-envelope"></i>
+                        <input type="text" name="mail" class="login" placeholder="Email">
+                    </p>
+
+                    <p>
+                        <i class="far fa-user"></i>
+                        <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login">
                     </p>
                     <p>
-                        <label for="birth">Date de naissance</label>
-                        <input type="date" id="birth" name="birth"
-                               value="aaaa-mm-dd"
-                               min="1900-01-01" max="2018-12-31" />
+                        <i class="far fa-user"></i>
+                        <input type="text" name="nom"  placeholder="Nom" class="login">
+                    <p>
+                        <i class="far fa-calendar-alt"></i>
+                        <input type="date"  name="birth" value="aaaa-mm-dd" max="" placeholder="Date de naissance" class="login"/>
                     </p>
                     <p>
-                        <label for="mail">Adresse mail</label>
-                        <input type="text" name="mail" id="mail">
+                        <i class="fas fa-unlock-alt"></i>
+                        <input type="password" name="password" id="password" placeholder="Mot de passe" class="login">
                     </p>
                     <p>
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password">
+                        <i class="fas fa-home"></i>
+                        <input type="text" name="ville" id="ville" placeholder="Ville" class="login">
                     </p>
                     <p>
-                        <label for="ville">Ville</label>
-                        <input type="text" name="ville" id="ville">
+                        <i class="fas fa-home"></i>
+                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" class="login">
                     </p>
                     <p>
-                        <label for="adresse">Adresse</label>
-                        <input type="text" name="adresse" id="adresse">
-                        <label for="numeroderue">N° de rue</label>
-                        <input type="text" name="numeroderue" id="numeroderue">
+                        <i class="fas fa-home"></i>
+                        <input type="text" name="codepostal" id="codepostal" placeholder="Code Postal" class="login">
                     </p>
-                    <p>
-                        <label for="codepostal">Code postal</label>
-                        <input type="text" name="codepostal" id="codepostal">
-                    </p>
-                    <p>
-                        <input type="submit" value="Créer">
-                    </p>
-                    <p>
-                        <input type="hidden" value="creer" name="choix">
-                    </p>
+
+                    <input type="submit" value="Créer" class="login-submit">
+
+                    <input type="hidden" value="creer" name="choix">
+
+                </div>
                 </form>
         </div>
 

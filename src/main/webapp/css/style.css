@@ -71,19 +71,16 @@ div.header-menu{
     width: 65%;
 }
 
-div.header-menu a{
-    text-decoration: none;
-    color: inherit;
-}
 
-div.header-menu div {
+div.header-menu a {
     font-size: 1.5vw;
     color: white;
     padding: 2%;
+    text-decoration: none;
     text-align: center;
 }
 
-div.header-menu div:hover {
+div.header-menu a:hover {
     color: black;
     background-color: white;
     border-radius: 1.5em;
@@ -200,25 +197,43 @@ form.produit-achat input:hover {
     background-color: white;
     padding: 1%;
     margin: 5% 0;
-    text-align: center;
     font-size: 1vw;
     text-decoration-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-authentification{
+    text-align: center;
 }
 
 .error {
     color: darkred;
     background-color: #f2f2f2;
-    padding: 0.1em;
 }
 
 .authentification-contenu input{
-    width: 10vw;
-    height: 1.5vw;
+     width: 10vw;
+     height: 1.5vw;
+ }
+
+.login{
+    border: 0;
+    border-bottom: 1px solid #004d66;
 }
 
-input.authentification-validation{
+.login-submit{
+    border: 1px solid #004d66;
+    border-radius: 1.5em;
+    color: #004d66;
+    background-color: white;
+}
 
-
+.login-submit:hover{
+    color: white;
+    background-color: #004d66;
+    cursor: pointer;
 }
 
 /*FOOTER*/
@@ -287,9 +302,26 @@ div.footer-contact a{
 }
 
 /* MANAGER PRODUIT */
+.input-file{
+    color: black;
+    cursor: pointer;
+}
+
+.input-file i{
+    font-size: 1.5vw;
+}
 
 .modification-produit {
-    visibility: visible;
+    display: none;
+}
+
+.modification-produit td{
+    width: 7vw;
+    height: 1vw;
+}
+
+.modification-produit i{
+    font-size: 1vw;
 }
 
 .container-produitmanager {
@@ -303,22 +335,40 @@ div.footer-contact a{
 }
 
 .container-produitmanager table{
-    margin-bottom: 1vw;
+    margin: auto;
+    border: 1px solid black;
+    width: 95%;
+}
+
+.ajout-produit input{
+    width: 9vw;
+    height: 1.5vw;
+    margin-top: 1vw;
 }
 
 .container-produitmanager td{
-    width: 1vw;
+    border-bottom: 1px dotted darkgray;
+    border-right: 1px dotted darkgray;
 }
 
-.produitmanager-ajout {
 
+.produitmanager-ajout {
     background-color: #18cd66;
     color: white;
     text-align: center;
     padding: 0.3vw;
-    margin:0.3vw;
     border: none;
     font-size: 1vw;
+    cursor: pointer;
 
+}
+ 
+.td-fleche-modif{
+    cursor: pointer;
+    text-align: right;;
+}
+
+#ajout{
+    margin: 0.3vw;
 }
 
