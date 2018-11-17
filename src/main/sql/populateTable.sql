@@ -15,3 +15,4 @@ INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleu
 INSERT INTO `utilisateur` (`email`,`prenom`,`nom`,`datenaissance`,`motdepasse`,`adresseliv`,`adressefac`,`admin`) VALUES ('gauthier.hacout@hei.yncrea.fr','Gauthier','Hacout','1997-10-21','projet','10 rue Adolphe','10 rue Adolphe',false);
 INSERT INTO `utilisateur` (`email`,`prenom`,`nom`,`datenaissance`,`motdepasse`,`adresseliv`,`adressefac`,`admin`) VALUES ('gustavo.brancaglione@hei.yncrea.fr','Gustavo','Brancaglione','1996-03-27','projet','10 rue Adolphe','10 rue Adolphe',false);
 INSERT INTO `utilisateur` (`email`,`prenom`,`nom`,`datenaissance`,`motdepasse`,`adresseliv`,`adressefac`,`admin`) VALUES ('admin@hei.yncrea.fr','Admin','Istrateur','1978-05-24','admin','13 rue de Toul','13 rue de Toul',true);
+

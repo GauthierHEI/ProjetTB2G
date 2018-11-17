@@ -27,6 +27,24 @@ CREATE TABLE `produit` (
    PRIMARY KEY (`produit_id`)
 );
 
+CREATE TABLE `panier` (
+  `element_id` int(11) NOT NULL AUTO_INCREMENT,
+  `commmande_id` int(11) NOT NULL,
+  `utilisateur_id` int(11) NOT NULL,
+  `produit_id` int(11) NOT NULL,
+  `taille` enum('S','M','L') NOT NULL,
 
+  PRIMARY KEY (`element_id`)
+);
+
+ALTER TABLE `panier`
+ADD FOREIGN KEY (`utilisateur_id`)
+REFERENCES `utilisateur`(`utilisateur_id`)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `panier`
+ADD FOREIGN KEY (`produit_id`)
+REFERENCES `produit`(`produit_id`)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
