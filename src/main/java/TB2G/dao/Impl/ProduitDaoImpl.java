@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProduitDaoImpl implements ProduitDao {
 
+    static final Logger LOG = LoggerFactory.getLogger(ProduitDaoImpl.class);
 
     @Override
     public Produit addProduit(Produit produit) {
@@ -26,6 +29,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setString(7, produit.getCouleur());
                 statement.setString(8,produit.getHexcouleur());
                 statement.executeUpdate();
+                LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
