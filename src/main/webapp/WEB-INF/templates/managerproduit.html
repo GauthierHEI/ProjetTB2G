@@ -6,28 +6,13 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/javascript.js" type="application/javascript"></script>
     <title>Produit Manager</title>
 </head>
 <body>
 
-    <script>
-        function Modif (ProductId){
-            var Id = ProductId;
-            document.getElementById("tr"+Id).style.display="table-row";
-            document.getElementById("i"+Id).className="far fa-arrow-alt-circle-up";
-            document.getElementById("td"+Id).onclick = function (ev) { Cache(Id) };
 
-        }
-
-        function Cache(ProductId){
-            var Id = ProductId;
-            document.getElementById("tr"+Id).style.display="none";
-            document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
-            document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
-
-        }
-
-    </script>
 
     <div class="page">
 
@@ -116,15 +101,15 @@
 
                         <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
                             <td></td>
-                            <td><input  type="text" name="produit" id="produit"></td>
-                            <td><input  type="text" name="dispoS" id="dispoS"></td>
-                            <td><input  type="text" name="dispoM" id="dispoM"></td>
-                            <td><input  type="text" name="dispoL" id="dispoL"></td>
-                            <td><input  type="text" name="prix" id="prixL"></td>
-                            <td><input  type="text" name="cat" id="cat"></td>
-                            <td><input  type="text" name="couleur" id="couleur"></td>
-                            <td><label for="hexcouleur" class="input-file"><i class="fas fa-palette"></i></label><input type="color" name="hexcouleur" id="hexcouleur"class="inactive"></td>
-                            <td><label for="image" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image" id="image" class="inactive"></td>
+                            <td><input  type="text" name="produit" id="produit1"></td>
+                            <td><input  type="text" name="dispoS" id="dispoS1"></td>
+                            <td><input  type="text" name="dispoM" id="dispoM1"></td>
+                            <td><input  type="text" name="dispoL" id="dispoL1"></td>
+                            <td><input  type="text" name="prix" id="prixL1"></td>
+                            <td><input  type="text" name="cat" id="cat1"></td>
+                            <td><input  type="text" name="couleur" id="couleur1"></td>
+                            <td><label for="hexcouleur" class="input-file"><i class="fas fa-palette"></i></label><input type="color" name="hexcouleur" id="hexcouleur1"class="inactive"></td>
+                            <td><label for="image" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image" id="image1" class="inactive"></td>
                             <td><input class="produitmanager-ajout" type="submit" value="Modifier"></td>
 
                         </tr>
