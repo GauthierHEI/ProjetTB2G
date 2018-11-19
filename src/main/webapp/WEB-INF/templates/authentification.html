@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    <script src="js/javascript.js" type="application/javascript"></script>
     <title>Création et authentification d'un compte</title>
 </head>
 
@@ -21,11 +22,11 @@
                     <h1>Connexion</h1>
                     <p>
                         <i class="far fa-envelope"></i>
-                        <input type="text" name="mail" class="login" placeholder="Email">
+                        <input type="text" name="mail" class="login" placeholder="Email" id="mail-login" onblur="verificationEmail('mail-login')">
                     </p>
                     <p>
                         <i class="fas fa-unlock-alt"></i>
-                        <input type="password" name="password" class="login" placeholder="Password">
+                        <input type="password" name="password" class="login" placeholder="Password" required>
                     </p>
                     <input type="submit" value="Connexion" class="login-submit">
                     <div class="error" th:text="${errMDP}"></div>
@@ -41,40 +42,43 @@
 
                     <p>
                         <i class="far fa-envelope"></i>
-                        <input type="text" name="mail" class="login" placeholder="Email" >
+                        <input type="text" name="mail" class="login" placeholder="Email" id="mail-crea" onblur="verificationEmail('mail-crea')">
+                        <span class="error" th:text="${errEmailExist}"></span>
                     </p>
 
                     <p>
                         <i class="far fa-user"></i>
-                        <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login">
+                        <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login" required>
                     </p>
                     <p>
                         <i class="far fa-user"></i>
-                        <input type="text" name="nom"  placeholder="Nom" class="login">
+                        <input type="text" name="nom"  placeholder="Nom" class="login" required>
                     <p>
                         <i class="far fa-calendar-alt"></i>
-                        <input type="date"  name="birth" value="aaaa-mm-dd" max="" placeholder="Date de naissance" class="login"/>
+                        <input type="date"  name="birth" value="aaaa-mm-dd" max="" placeholder="Date de naissance" class="login" required/>
                     </p>
                     <p>
                         <i class="fas fa-unlock-alt"></i>
-                        <input type="password" name="password" id="password" placeholder="Mot de passe" class="login">
+                        <input type="password" name="password" id="password" placeholder="Mot de passe" class="login" required>
                     </p>
                     <p>
                         <i class="fas fa-home"></i>
-                        <input type="text" name="ville" id="ville" placeholder="Ville" class="login">
+                        <input type="text" name="ville" id="ville" placeholder="Ville" class="login" required>
                     </p>
                     <p>
                         <i class="fas fa-home"></i>
-                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" class="login">
+                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" class="login"required>
                     </p>
                     <p>
                         <i class="fas fa-home"></i>
-                        <input type="text" name="codepostal" id="codepostal" placeholder="Code Postal" class="login">
+                        <input type="number" name="codepostal" id="codepostal" placeholder="Code Postal" class="login" required>
                     </p>
 
-                    <input type="submit" value="Créer" class="login-submit">
+                    <input type="submit" value="Cr&eacute;er" class="login-submit">
 
                     <input type="hidden" value="creer" name="choix">
+                    <div class="error" th:text="${errChamp}"></div>
+
 
                 </div>
                 </form>

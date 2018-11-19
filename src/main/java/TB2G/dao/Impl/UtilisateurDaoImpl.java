@@ -22,7 +22,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(1,utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
-                statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
+                if (utilisateur.getNaissance() != null) {
+                    statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
+                }
                 statement.setString(5, utilisateur.getMotdepasse());
                 statement.setString(6, utilisateur.getAdresseliv());
                 statement.setString(7, utilisateur.getAdressefac());
@@ -39,6 +41,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
+            return new Utilisateur(null,null,null,null,null,null,
+                    null,null, null);
         }
         return null;
     }
