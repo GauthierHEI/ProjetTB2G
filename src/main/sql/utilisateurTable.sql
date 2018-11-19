@@ -23,6 +23,7 @@ CREATE TABLE `produit` (
   `cat` int (5) NOT NULL,
   `couleur` varchar (30) NOT NULL,
   `image` varchar (50),
+  `Hexcouleur` varchar (7) NOT NULL,
 
    PRIMARY KEY (`produit_id`)
 );
