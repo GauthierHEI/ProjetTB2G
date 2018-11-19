@@ -89,12 +89,11 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
 
-            resp.sendRedirect("managerproduit");
             // REDIRECT TO DETAIL PRODUIT
-            //resp.sendRedirect(String.format("produit?id=%d", createProd.getId()));
+            resp.sendRedirect("managerproduit");
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("film-error-message", e.getMessage());
-            resp.sendRedirect("newProduit");
+            resp.sendRedirect("managerproduit");
         }
 
     }

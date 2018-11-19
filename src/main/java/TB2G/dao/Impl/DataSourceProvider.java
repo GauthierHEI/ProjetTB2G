@@ -13,10 +13,10 @@ import org.mariadb.jdbc.MariaDbDataSource;
             if (dataSource == null) {
                 dataSource = new MariaDbDataSource();
                 dataSource.setServerName("localhost");
-                dataSource.setPort(8889);
+                dataSource.setPort(3306);
                 dataSource.setDatabaseName("tb2g");
                 dataSource.setUser("root");
-                dataSource.setPassword("root");
+                dataSource.setPassword("");
             }
             return dataSource;
         }
