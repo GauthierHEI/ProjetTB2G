@@ -6,10 +6,15 @@ import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class ProduitStore  {
+
+    static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
+
 
     private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
@@ -61,7 +66,9 @@ public class ProduitStore  {
         }
         if (produit.getHexcouleur() == null )
             throw new IllegalArgumentException("Hexcouleur can not be null.");
+        LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
+
     }
 
 }
