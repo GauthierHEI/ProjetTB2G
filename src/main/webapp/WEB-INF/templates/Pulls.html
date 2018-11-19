@@ -7,10 +7,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/javascript.js" type="application/javascript"></script>
 </head>
-<body>
 
-    <script th:replace="~{fragments :: Script}"> </script>
+<body>
 
     <div class="page">
         <header th:replace="~{fragments :: header(${connecte})}"></header>
@@ -24,7 +24,7 @@
                 <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
                 <div  class="produit-prix-couleur">
                     <div>
-                        <span th:id="'span'+ ${Pull.getId()}"> &nbsp; </span>
+                        <span th:id="'span'+ ${Pull.getId()}" th:style="'background-color :'+ ${Pull.getHexcouleur()}"> &nbsp; </span>
                         <label th:text="${Pull.getCouleur()}" class="produit-couleur"></label>
                     </div>
                     <div th:text="${Pull.getPrix()}+ '$'"> </div>

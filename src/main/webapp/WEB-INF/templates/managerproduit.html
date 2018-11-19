@@ -6,22 +6,13 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/javascript.js" type="application/javascript"></script>
     <title>Produit Manager</title>
 </head>
 <body>
 
-    <script>
-        function Modif (ProductId){
-            var Id = ProductId;
-            document.getElementById("tr"+Id).style.visibility="visible";
-        }
 
-        function Cache(ProductId){
-            var Id = ProductId;
-            document.getElementById("tr"+Id).style.visibility="hidden";
-        }
-
-    </script>
 
     <div class="page">
 
@@ -32,7 +23,7 @@
             <div class="container-produitmanager">
             <form method="post">
                 <h1>Ajout d'un produit</h1>
-                <table border="1px solid black" width="inherit">
+                <table>
                     <thead>
                     <tr>
                         <th>#ID</th>
@@ -49,7 +40,7 @@
                     </thead>
 
                     <tbody>
-                    <tr>
+                    <tr class="ajout-produit">
                         <th>AUTOINC</th>
                         <th><input type="text" name="produit" id="produit"></th>
                         <th><input type="text" name="dispoS" id="dispoS"></th>
@@ -58,14 +49,14 @@
                         <th><input type="text" name="prix" id="prixL"></th>
                         <th><input type="text" name="cat" id="cat"></th>
                         <th><input type="text" name="couleur" id="couleur"></th>
-                        <th><input type="color" name="hexcouleur" id="hexcouleur"></th>
-                        <th><input type="file" name="image" id="image"></th>
+                        <th><label for="hexcouleur" class="input-file"><i class="fas fa-palette"></i></label><input type="color" name="hexcouleur" id="hexcouleur"class="inactive"></th>
+                        <th><label for="image" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image" id="image" class="inactive"></th>
                     </tr>
 
                     </tbody>
                 </table>
 
-                <input type="submit" value="Ajouter" class="produitmanager-ajout">
+                <input type="submit" value="Ajouter" class="produitmanager-ajout" id="ajout">
 
             </form>
             </div>
@@ -75,34 +66,54 @@
 
                 <h1>Index des produits</h1>
 
-                <table th:each=" Produit : ${produit}" border="1px solid black" width="inherit" margin-bottom="0.5vw">
+                <table>
 
-                    <tr  th:onclick="|Modif('${Produit.getId()}')|">
-                        <td th:text="${Produit.getId()}"></td>
-                        <td th:text="${Produit.getNameproduit()}"></td>
-                        <td th:text="${Produit.getDispoS()}"></td>
-                        <td th:text="${Produit.getDispoM()}"></td>
-                        <td th:text="${Produit.getDispoL()}"></td>
-                        <td th:text="${Produit.getPrix()}"></td>
-                        <td th:text="${Produit.getCat()}"></td>
-                        <td th:text="${Produit.getCouleur()}"></td>
-                        <td th:text="${Produit.getHexcouleur()}"></td>
-                        <td th:text="${Produit.getImage()}"></td>
+                    <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Nom du produit</th>
+                        <th>Dispo en S</th>
+                        <th>Dispo en M</th>
+                        <th>Dispo en L</th>
+                        <th>Prix</th>
+                        <th>Cat</th>
+                        <th>Couleur</th>
+                        <th>HexColor</th>
+                        <th>Image</th>
                     </tr>
+                    </thead>
 
-                    <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
-                        <td>AUTOINC</td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td rowspan="2"><input type="submit" value="Modifier" class="produitmanager-ajout"> </td>
+                    <th:block  th:each=" Produit : ${produit}">
 
-                    </tr>
+                        <tr>
+                            <td th:text="${Produit.getId()}"></td>
+                            <td th:text="${Produit.getNameproduit()}"></td>
+                            <td th:text="${Produit.getDispoS()}"></td>
+                            <td th:text="${Produit.getDispoM()}"></td>
+                            <td th:text="${Produit.getDispoL()}"></td>
+                            <td th:text="${Produit.getPrix()}"></td>
+                            <td th:text="${Produit.getCat()}"></td>
+                            <td th:text="${Produit.getCouleur()}"></td>
+                            <td th:text="${Produit.getHexcouleur()}"></td>
+                            <td th:text="${Produit.getImage()}"></td>
+                            <td th:onclick="|Modif('${Produit.getId()}')|" th:id="'td'+${Produit.getId()}" class="td-fleche-modif"><i th:id="'i'+${Produit.getId()}" class="far fa-arrow-alt-circle-down"></i></td>
+                        </tr>
+
+                        <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
+                            <td></td>
+                            <td><input  type="text" name="produit" id="produit1"></td>
+                            <td><input  type="text" name="dispoS" id="dispoS1"></td>
+                            <td><input  type="text" name="dispoM" id="dispoM1"></td>
+                            <td><input  type="text" name="dispoL" id="dispoL1"></td>
+                            <td><input  type="text" name="prix" id="prixL1"></td>
+                            <td><input  type="text" name="cat" id="cat1"></td>
+                            <td><input  type="text" name="couleur" id="couleur1"></td>
+                            <td><label for="hexcouleur" class="input-file"><i class="fas fa-palette"></i></label><input type="color" name="hexcouleur" id="hexcouleur1"class="inactive"></td>
+                            <td><label for="image" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image" id="image1" class="inactive"></td>
+                            <td><input class="produitmanager-ajout" type="submit" value="Modifier"></td>
+
+                        </tr>
+                    </th:block>
 
                 </table>
             </form>

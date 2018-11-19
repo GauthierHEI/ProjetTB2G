@@ -9,18 +9,6 @@
 
     <body>
 
-        <script th:fragment="Script">
-            function Achat(ProductId){
-                var Id = ProductId;
-                document.getElementById("form"+Id).style.visibility="visible";
-            }
-
-            function Cache(ProductId){
-                var Id = ProductId;
-                document.getElementById("form"+Id).style.visibility="hidden";
-            }
-        </script>
-
         <header th:fragment="Header(connecte)" class="header-navigation" >
 
             <div class="header-logo">
@@ -28,10 +16,10 @@
             </div>
 
             <div class="header-menu">
-                <div> <a href="Tshirts">Tshirts</a> </div>
-                <div> <a href="Pulls">Pulls</a> </div>
-                <div> <a href="Chemises">Chemises</a> </div>
-                <div> <a href="managerproduit" th:class="${connecte == 2} ? 'active' : 'inactive'">Management Produits</a> </div>
+                <a href="Tshirts">Tshirts</a>
+                <a href="Pulls">Pulls</a>
+                <a href="Chemises">Chemises</a>
+                <a href="managerproduit" th:class="${connecte == 2} ? 'active' : 'inactive'">Management Produits</a>
             </div>
 
             <div class="header-utilisateur">
