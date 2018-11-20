@@ -67,6 +67,7 @@ public class ProduitStore  {
             throw new IllegalArgumentException("Hexcouleur can not be null.");
         LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
+
     }
 
 }

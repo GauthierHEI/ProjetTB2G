@@ -216,6 +216,14 @@ form.produit-achat input:hover {
     margin-top: 0.5vw;
 }
 
+.success {
+    color: darkgreen;
+    background-color: #f2f2f2;
+    text-align: center;
+    border-radius: 1em;
+    margin-top: 0.5vw;
+}
+
 .authentification-contenu input{
      width: 10vw;
      height: 1.5vw;

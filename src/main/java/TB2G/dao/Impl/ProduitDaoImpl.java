@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
+import static jdk.nashorn.internal.runtime.GlobalFunctions.parseFloat;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class ProduitDaoImpl implements ProduitDao {

@@ -34,7 +34,10 @@ public class ProductManagerServlet extends AbstractWebServlet {
         int connecte = VariableSessionConnecte(rsq);
         HttpSession session = rsq.getSession();
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
-
+        String errAjout = (String) session.getAttribute("errAjout");
+        session.removeAttribute("errAjout");
+        String messageAjout = (String) session.getAttribute("messageAjout");
+        session.removeAttribute("messageAjout");
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
@@ -50,6 +53,8 @@ public class ProductManagerServlet extends AbstractWebServlet {
             ListOfProduits = ProduitStore.getInstance().listProduit();
             context.setVariable("produit", ListOfProduits);
             context.setVariable("connecte", connecte);
+            context.setVariable("errAjout", errAjout);
+            context.setVariable("messageAjout", messageAjout);
 
             //process method
             String finalDocument = engine.process("managerproduit", context);
@@ -105,11 +110,17 @@ public class ProductManagerServlet extends AbstractWebServlet {
         try {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
+            if(createProd==null) {
+                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
+            }
+            else {
+                req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
+            }
 
             // REDIRECT TO DETAIL PRODUIT
             resp.sendRedirect("managerproduit");
         } catch (IllegalArgumentException e) {
-            req.getSession().setAttribute("film-error-message", e.getMessage());
+            req.getSession().setAttribute("produit-error-message", e.getMessage());
             resp.sendRedirect("managerproduit");
         }
 
