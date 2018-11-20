@@ -8,6 +8,8 @@ public interface ProduitDao {
 
     Produit addProduit(Produit produit);
 
+    Produit modifProduit(Produit produit);
+
     List<Produit> listProduit();
 
     List<Produit> listTshirt();
@@ -15,5 +17,7 @@ public interface ProduitDao {
     List<Produit> listPull();
 
     List<Produit> listChemise();
+
+    Produit getProduitById(Integer produitId);
 
 }

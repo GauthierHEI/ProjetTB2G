@@ -39,6 +39,10 @@ public class ProduitStore  {
 
     public List<Produit> listProduit() {return produitdao.listProduit(); }
 
+    public Produit modifProduit(Produit produit) {return produitdao.modifProduit(produit);}
+
+    public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
+
     public Produit addProduit(Produit produit) {
         if (produit == null) {
             throw new IllegalArgumentException("Produit can not be null.");
