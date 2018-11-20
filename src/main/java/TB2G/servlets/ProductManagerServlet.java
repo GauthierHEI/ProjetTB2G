@@ -124,6 +124,8 @@ public class ProductManagerServlet extends AbstractWebServlet {
             resp.sendRedirect("managerproduit");
             }
         }
+
+        /*
         else if("modif".equals(choix)){
             String nameprod = req.getParameter("produit");
             Integer id = null;
@@ -149,6 +151,5 @@ public class ProductManagerServlet extends AbstractWebServlet {
                 resp.sendRedirect("managerproduit");
             }
         }
-
+*/
     }
-}
