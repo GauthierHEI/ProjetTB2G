@@ -28,7 +28,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setFloat(5, produit.getPrix());
                 statement.setInt(6, produit.getCat());
                 statement.setString(7, produit.getCouleur());
-                statement.setString(8,produit.getHexcouleur());
+                statement.setString(8, produit.getHexcouleur());
                 statement.executeUpdate();
 
 
@@ -176,6 +176,30 @@ public class ProduitDaoImpl implements ProduitDao {
         return chemise;
     }
 
+    public Produit modifProduit(Produit produit) {
+        String sqlQuery = "UPDATE produit SET produit=? ,dispoS =? , dispoM=? , dispoL=? , prix=? , cat=? , couleur=? ,hexcouleur=? " +
+                "WHERE produit_id=? ";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, produit.getNameproduit());
+                statement.setInt(2, produit.getDispoS());
+                statement.setInt(3, produit.getDispoM());
+                statement.setInt(4, produit.getDispoL());
+                statement.setFloat(5, produit.getPrix());
+                statement.setInt(6, produit.getCat());
+                statement.setString(7, produit.getCouleur());
+                statement.setString(8, produit.getHexcouleur());
+                statement.setInt(9, produit.getId());
+                statement.executeUpdate();
+                LOG.info("Modification produit : nom{}", produit.getNameproduit());
+                return produit;
 
+            }
+
+
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Le formulaire n'est pas bien rempli");
+        }
+    }
 }
 

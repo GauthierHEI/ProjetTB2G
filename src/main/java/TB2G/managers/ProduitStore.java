@@ -28,6 +28,8 @@ public class ProduitStore  {
     private ProduitStore() {
     }
 
+    public Produit modifProduit(Produit produit){ return produitdao.modifProduit(produit); }
+
     public List<Produit> listTshirt() {
       return produitdao.listTshirt();
     }

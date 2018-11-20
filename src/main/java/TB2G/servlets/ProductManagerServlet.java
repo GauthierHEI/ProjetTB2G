@@ -122,6 +122,32 @@ public class ProductManagerServlet extends AbstractWebServlet {
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("produit-error-message", e.getMessage());
             resp.sendRedirect("managerproduit");
+            }
+        }
+        else if("modif".equals(choix)){
+            String nameprod = req.getParameter("produit");
+            Integer id = null;
+            try { id = Integer.parseInt(req.getParameter("id")); } catch (NumberFormatException ignored) { }
+            Integer dispoS = null;
+            try { dispoS = Integer.parseInt(req.getParameter("dispoS")); } catch (NumberFormatException ignored) { }
+            Integer dispoM = null;
+            try { dispoM = Integer.parseInt(req.getParameter("dispoM")); } catch (NumberFormatException ignored) { }
+            Integer dispoL = null;
+            try { dispoL = Integer.parseInt(req.getParameter("dispoL")); } catch (NumberFormatException ignored) { }
+            Float prix = null;
+            try { prix = Float.parseFloat(req.getParameter("prix")); } catch (NumberFormatException ignored) { }
+            Integer cat = null;
+            try { cat = Integer.parseInt(req.getParameter("cat")); } catch (NumberFormatException ignored) { }
+            String couleur = req.getParameter("couleur");
+            String hexcouleur = req.getParameter("hexcouleur");
+            Produit newProduit = new Produit( id, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, hexcouleur);
+            try{
+                ProduitStore.getInstance().modifProduit(newProduit);
+
+            }catch(IllegalArgumentException e){
+                req.getSession().setAttribute("errModifProduit", e.getMessage());
+                resp.sendRedirect("managerproduit");
+            }
         }
 
     }
