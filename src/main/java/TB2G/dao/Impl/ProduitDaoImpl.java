@@ -194,8 +194,6 @@ public class ProduitDaoImpl implements ProduitDao {
                 return produit;
 
             }
-
-
         } catch (SQLException e) {
             throw new IllegalArgumentException("Le formulaire n'est pas bien rempli");
         }

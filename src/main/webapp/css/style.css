@@ -385,3 +385,17 @@ div.footer-contact a{
     margin: 0.3vw;
 }
 
+/* PROFIL */
+
+.profil-container{
+    background-color: white;
+    border-radius: 1em;
+    padding:0.3vw;
+    margin: 1vw;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.profil-container div{
+    margin-bottom: 0.2vw;
+}
