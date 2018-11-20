@@ -15,7 +15,11 @@
 
         <div id="corps">
 
-            <h1>Vous êtes connect&eacute;</h1>
+            <h1 th:text="${utilisateurCourant.getPrenom()}+${utilisateurCourant.getPrenom()}"></h1>
+            <div>
+                <label th:text="Votre adresse email + ' : ' + ${utilisateurCourant.getEmail()}"></label>
+                <label th:text="Votre adresse est + ' : ' + ${utilisateurCourant.getAdresseliv()}"></label>
+            </div>
 
         </div>
 
