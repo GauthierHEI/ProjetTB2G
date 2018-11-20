@@ -101,4 +101,20 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         return utilisateur;
     }
 
+    public void ModificationMdp(Utilisateur utilisateur, String newMdp){
+
+        String SQLQuery = "UPDATE utilisateur SET motdepasse=? WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
+                statement.setString(1, newMdp);
+                statement.setInt(2, utilisateur.getId());
+                statement.executeUpdate();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié, vérifier que vous avez bien rempli le formulaire");
+        }
+
+    }
 }

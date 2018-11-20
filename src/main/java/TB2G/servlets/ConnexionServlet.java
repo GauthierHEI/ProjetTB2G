@@ -84,7 +84,7 @@ public class ConnexionServlet extends AbstractWebServlet {
 
                 String motDePasseHash = genererMotDePasse(password);
 
-                String adresse = rsq.getParameter("adresse") + ", " + rsq.getParameter("codepostal") + ", " + rsq.getParameter("ville");
+                String adresse = rsq.getParameter("adresse") + ", " + rsq.getParameter("ville") + " " + rsq.getParameter("codepostal");
 
                 Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                         birthDate, motDePasseHash, adresse, adresse, false);
