@@ -65,8 +65,8 @@ public class ConnexionServlet extends AbstractWebServlet {
         String choix = rsq.getParameter("choix");
         if (("creer").equals(rsq.getParameter("choix"))) {
 
-            String mail = rsq.getParameter("mail");
-            if (UtilisateurSource.getInstance().getUtilisateurByMail(mail) == null) {
+                String mail = rsq.getParameter("mail");
+
                 String nom = rsq.getParameter("nom");
 
                 String prenom = rsq.getParameter("prenom");
@@ -74,17 +74,17 @@ public class ConnexionServlet extends AbstractWebServlet {
                 String birthDateAsString = rsq.getParameter("birth");
 
                 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
                 LocalDate birthDate = null;
                 try {
                     birthDate = LocalDate.parse(birthDateAsString, dateFormat);
-                } catch (DateTimeParseException ignored) {
-                }
+                } catch (DateTimeParseException ignored) { }
 
                 String password = rsq.getParameter("password");
 
                 String motDePasseHash = genererMotDePasse(password);
 
-                String adresse = rsq.getParameter("adresse") + ", " + rsq.getParameter("codepostal") + ", " + rsq.getParameter("ville");
+                String adresse = rsq.getParameter("adresse") + ", " + rsq.getParameter("ville") + " " + rsq.getParameter("codepostal");
 
                 Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                         birthDate, motDePasseHash, adresse, adresse, false);
@@ -95,43 +95,37 @@ public class ConnexionServlet extends AbstractWebServlet {
                     session.setAttribute("errChamp", "Champ mal rempli");
                     rsp.sendRedirect("authentification");
                 } else {
-                    session.setAttribute("utilisateurConnecte", utilisateur);
-                    rsp.sendRedirect("authentification");
-                }
-
-                //Create task
-                if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail()) == null) {
-                    UtilisateurSource.getInstance().addUtilisateur(utilisateur);
-                    session.setAttribute("utilisateurConnecte", utilisateur);
-                    rsp.sendRedirect("authentification");
-                } else {
-                    session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
-                    rsp.sendRedirect("authentification");
+                    if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail()) == null) {
+                        UtilisateurSource.getInstance().addUtilisateur(utilisateur);
+                        session.setAttribute("utilisateurConnecte", utilisateur);
+                        rsp.sendRedirect("authentification");
+                    } else {
+                        session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
+                        rsp.sendRedirect("authentification");
+                    }
                 }
 
             } else {
-                String mailLogin = rsq.getParameter("mail");
+                String mail = rsq.getParameter("mail");
                 Utilisateur utilisateur;
-                utilisateur = UtilisateurSource.getInstance().getUtilisateurByMail(mailLogin);
+                utilisateur = UtilisateurSource.getInstance().getUtilisateurByMail(mail);
                 if (utilisateur == null) {
                     session.setAttribute("errEmail", "Email n'existe pas");
                     rsp.sendRedirect("authentification");
                 } else {
-                    String password = rsq.getParameter("password");
-                    String realPassword = utilisateur.getMotdepasse();
+                        String password = rsq.getParameter("password");
+                        String realPassword = utilisateur.getMotdepasse();
 
-                    if (validerMotDePasse(password, realPassword)) {
-                        session.setAttribute("utilisateurConnecte", utilisateur);
-                        rsp.sendRedirect("authentification");
-                    } else {
-                        session.setAttribute("errMDP", "Mot de passe incorrect");
-                        rsp.sendRedirect("authentification");
-                    }
+                        if (validerMotDePasse(password, realPassword)) {
+                            session.setAttribute("utilisateurConnecte", utilisateur);
+                            rsp.sendRedirect("authentification");
+                        } else {
+                            session.setAttribute("errMDP", "Mot de passe incorrect");
+                            rsp.sendRedirect("authentification");
+                        }
                 }
 
             }
 
         }
     }
-
-}

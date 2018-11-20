@@ -108,6 +108,14 @@ public class UtilisateurDaoTestCase {
             }
         }
     }
+
+    @Test
+    public void shouldModifyPassword(){
+        //WHEN
+
+        //THEN
+    }
+
 }
 
 

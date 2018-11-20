@@ -191,12 +191,9 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setString(8, produit.getHexcouleur());
                 statement.setInt(9, produit.getId());
                 statement.executeUpdate();
-                LOG.info("Modification produit : nom{}", produit.getNameproduit());
                 return produit;
 
             }
-
-
         } catch (SQLException e) {
             throw new IllegalArgumentException("Le formulaire n'est pas bien rempli");
         }

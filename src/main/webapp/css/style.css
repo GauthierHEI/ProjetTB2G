@@ -165,6 +165,7 @@ div.produit-nom{
 .produit-prix-couleur span {
     height: 1vw;
     width: 1vw;
+    border: 1px solid black;
 }
 
 form.produit-achat {
@@ -174,6 +175,7 @@ form.produit-achat {
     margin-top: 1vw;
     margin-left: 1vw;
     margin-right: 1vw;
+    display: flex;
 }
 
 form.produit-achat input {
@@ -383,3 +385,17 @@ div.footer-contact a{
     margin: 0.3vw;
 }
 
+/* PROFIL */
+
+.profil-container{
+    background-color: white;
+    border-radius: 1em;
+    padding:0.3vw;
+    margin: 1vw;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.profil-container div{
+    margin-bottom: 0.2vw;
+}
