@@ -42,6 +42,7 @@ public class ProduitDaoImpl implements ProduitDao {
         } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
+            LOG.error("exception SQL");
         }
         return null;
     }
@@ -68,13 +69,16 @@ public class ProduitDaoImpl implements ProduitDao {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
                     while (resultSet.next()) {
+                        LOG.info("ajout de la liste de produits dans la variable produits");
                         produits.add(mapProduit(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            LOG.error("exception SQL");
         }
+        LOG.info("retourne produits");
         return produits;
     }
 
@@ -101,13 +105,16 @@ public class ProduitDaoImpl implements ProduitDao {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
                     while (resultSet.next()) {
+                        LOG.info("ajout de la liste de Tshirts dans la variable tshirt");
                         tshirt.add(mapTshirt(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            LOG.error("exception SQL");
         }
+        LOG.info("retourne tshirt");
         return tshirt;
     }
 
@@ -133,13 +140,17 @@ public class ProduitDaoImpl implements ProduitDao {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
                     while (resultSet.next()) {
+                        LOG.info("ajout de la liste de pull dans la variable pull");
                         pull.add(mapPull(resultSet));
+
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            LOG.error("exception SQL");
         }
+        LOG.info("retourne pull");
         return pull;
     }
 
@@ -165,13 +176,16 @@ public class ProduitDaoImpl implements ProduitDao {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sqlQuery)) {
                     while (resultSet.next()) {
+                        LOG.info("ajout de la liste de chemises dans la variable chemise");
                         chemise.add(mapChemise(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            LOG.error("exception SQL");
         }
+        LOG.info("retourne chemise");
         return chemise;
     }
 
