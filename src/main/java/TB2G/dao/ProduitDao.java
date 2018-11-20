@@ -17,4 +17,5 @@ public interface ProduitDao {
     List<Produit> listPull();
 
     List<Produit> listChemise();
+
 }

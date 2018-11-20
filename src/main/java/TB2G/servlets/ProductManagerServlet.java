@@ -63,7 +63,9 @@ public class ProductManagerServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         // GET PARAMETERS
         Part filePart = req.getPart("image");
-        ProduitStore.getInstance().imageDansFichier(filePart);
+        File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
+
+        String image = newFile.getName();
 
         String nameprod = req.getParameter("produit");
         Integer dispoS = null;
@@ -95,7 +97,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         String hexcouleur = req.getParameter("hexcouleur");
 
         // CREATE PRODUIT
-        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, hexcouleur);
+        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, image, hexcouleur);
         try {
 
             ProduitStore.getInstance().addProduit(newProduit);

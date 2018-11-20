@@ -7,6 +7,7 @@ import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 
+import TB2G.utils.PropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,38 +80,17 @@ public class ProduitStore  {
         return produitdao.addProduit(produit);
     }
 
-    public void imageDansFichier (Part filePart) throws IOException {
-        Properties prop = new Properties();
-        InputStream input = null;
-
-        String leChemin = "";
-
-        try {
-            prop.load(ProduitDaoImpl.class.getResourceAsStream("/data.properties"));
+    public File imageDansFichier (Part filePart) throws IOException {
 
 
-            // get the property value
-            leChemin = prop.getProperty("path");
-
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
 
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        File uploads = new File(leChemin);
+        File uploads = new File(PropertiesUtils.cheminPro());
         File file = File.createTempFile("img", ".jpg", uploads);
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
+        return file;
     }
 
 }

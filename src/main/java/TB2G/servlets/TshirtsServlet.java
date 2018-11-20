@@ -2,6 +2,7 @@ package TB2G.servlets;
 
 import TB2G.entities.Produit;
 import TB2G.managers.ProduitStore;
+import TB2G.utils.PropertiesUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.annotation.WebServlet;
@@ -29,9 +30,11 @@ public class TshirtsServlet extends AbstractWebServlet {
         ListOfTshirts = ProduitStore.getInstance().listTshirt();
         context.setVariable("tshirt", ListOfTshirts);
         context.setVariable("connecte",connecte);
+        context.setVariable("chemin", PropertiesUtils.cheminPro());
 
         //process method
         String finalDocument = engine.process("Tshirts", context);
+
         rsp.getWriter().write(finalDocument);
     }
 }
