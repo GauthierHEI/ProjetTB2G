@@ -15,7 +15,6 @@ public class ProduitStore  {
 
     static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
 
-
     private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
     }
