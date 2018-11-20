@@ -63,13 +63,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         // GET PARAMETERS
         Part filePart = req.getPart("image");
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        File uploads = new File("C:/Users/Gustavo/Desktop/Project/projets7/image");
-        File file = File.createTempFile("somefile", ".jpg", uploads);
-
-        try (InputStream fileContent = filePart.getInputStream()) {
-            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        }
+        ProduitStore.getInstance().imageDansFichier(filePart);
 
         String nameprod = req.getParameter("produit");
         Integer dispoS = null;
@@ -104,7 +98,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, hexcouleur);
         try {
 
-            Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
+            ProduitStore.getInstance().addProduit(newProduit);
 
             // REDIRECT TO DETAIL PRODUIT
             resp.sendRedirect("managerproduit");
