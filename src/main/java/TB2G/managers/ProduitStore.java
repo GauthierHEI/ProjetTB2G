@@ -85,6 +85,7 @@ public class ProduitStore  {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File uploads = new File(PropertiesUtils.cheminPro());
         File file = File.createTempFile("img", ".jpg", uploads);
+
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
