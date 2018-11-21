@@ -6,6 +6,8 @@ import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import TB2G.utils.PropertiesUtils;
 import org.slf4j.Logger;
@@ -38,6 +40,8 @@ public class ProduitStore  {
 
     private ProduitStore() {
     }
+
+    public Produit modifProduit(Produit produit){ return produitdao.modifProduit(produit); }
 
     public List<Produit> listTshirt() {
       return produitdao.listTshirt();
@@ -74,10 +78,12 @@ public class ProduitStore  {
         if (produit.getCouleur() == null) {
             throw new IllegalArgumentException("Couleur can not be null.");
         }
-        if (produit.getHexcouleur() == null )
+        if (produit.getHexcouleur() == null ) {
             throw new IllegalArgumentException("Hexcouleur can not be null.");
+        }
         LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
+
     }
 
     public File imageDansFichier (Part filePart) throws IOException {

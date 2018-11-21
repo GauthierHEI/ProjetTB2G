@@ -12,4 +12,6 @@ public interface UtilisateurDao {
 
     Utilisateur getUtilisateurByMail(String mail);
 
+    void ModificationMdp(Utilisateur utilisateur,String newMdp);
+
 }
