@@ -98,4 +98,6 @@ public class Utilisateur {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+
+
 }

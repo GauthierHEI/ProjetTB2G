@@ -52,7 +52,8 @@
                             <td th:text="${Utilisateur.getNaissance()}"></td>
                             <td th:text="${Utilisateur.getAdresseliv()}"></td>
                             <td th:text="${Utilisateur.getAdressefac()}"></td>
-                            <td th:text="${Utilisateur.getAdmin()}"></td>
+                            <td th:text="${Utilisateur.getAdmin()}" th:id="'adminName'+${Utilisateur.getId()}"></td>
+                            <td  th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" class="fas fa-user-edit" ></td> <!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
                         </tr>
                 </table>
             </form>

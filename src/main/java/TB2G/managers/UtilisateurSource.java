@@ -6,6 +6,7 @@ import TB2G.dao.Impl.UtilisateurDaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UtilisateurSource {
@@ -34,6 +35,10 @@ public class UtilisateurSource {
     public Utilisateur getUtilisateurByMail(String mail) {
 
         return utilisateurDao.getUtilisateurByMail(mail);
+    }
+
+    public void editAdmin(Integer utilisateur_id, boolean role){
+        utilisateurDao.editAdmin(utilisateur_id,role);
     }
 
 }

@@ -113,4 +113,20 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         return utilisateur;
     }
 
+    @Override
+    public void editAdmin(Integer utilisateur_id, boolean role){
+        String sqlQuerry="UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection()){
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuerry)){
+                statement.setBoolean(1,role);
+                statement.setInt(2,utilisateur_id);
+                statement.executeUpdate();
+                LOG.info("le rôle de l'utilisateur est modifié");
+        }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("le role n'a pas été modifié");
+        }
+    }
 }

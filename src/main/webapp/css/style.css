@@ -419,3 +419,9 @@ div.footer-contact a{
 #moi{
     color: #f20019;
 }
+
+#pen{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
