@@ -13,7 +13,7 @@ public class Produit {
     private String image;
     private String hexcouleur;
 
-    public Produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur, String hexcouleur) {
+    public Produit(Integer id, String nameproduit, Integer dispoS, Integer dispoM, Integer dispoL, Float prix, Integer cat, String couleur, String image, String hexcouleur) {
         this.id = id;
         this.nameproduit = nameproduit;
         this.dispoS = dispoS;
@@ -22,6 +22,7 @@ public class Produit {
         this.prix = prix;
         this.cat = cat;
         this.couleur = couleur;
+        this.image = image;
         this.hexcouleur = hexcouleur;
     }
 

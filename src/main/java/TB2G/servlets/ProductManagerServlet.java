@@ -3,22 +3,30 @@ package TB2G.servlets;
 import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.managers.ProduitStore;
+
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @WebServlet("/managerproduit")
+@MultipartConfig
 public class ProductManagerServlet extends AbstractWebServlet {
 
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
@@ -78,11 +86,16 @@ public class ProductManagerServlet extends AbstractWebServlet {
         }
     }
 
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        // GET PARAMETERS
+        Part filePart = req.getPart("image");
+        File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //AJOUT OU MODIF
         String action = req.getParameter("action");
 
+        String image = newFile.getName();
         /******************/
         /*    A J O U T   */
         /******************/
@@ -119,9 +132,9 @@ public class ProductManagerServlet extends AbstractWebServlet {
             String couleur = req.getParameter("couleur");
             String hexcouleur = req.getParameter("hexcouleur");
 
-            // CREATE PRODUIT
-            Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, hexcouleur);
-            try {
+        // CREATE PRODUIT
+        Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, image, hexcouleur);
+        try {
 
                 Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
                 if(createProd==null) {

@@ -2,6 +2,8 @@ package TB2G.dao;
 
 import TB2G.entities.Produit;
 
+import javax.servlet.http.Part;
+import java.io.IOException;
 import java.util.List;
 
 public interface ProduitDao {

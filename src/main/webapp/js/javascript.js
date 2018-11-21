@@ -19,6 +19,7 @@ function Modif (ProductId){
 function CacheProduit(ProductId){
     var Id = ProductId;
     document.getElementById("tr"+Id).style.display="none";
+    document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
     document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
 
 };
@@ -35,4 +36,14 @@ function verificationEmail(champId) {
         console.log("Faux");
         document.getElementById(champId).style.borderBottomColor="red";
     }
+}
+
+function Connexion(){
+    document.getElementById("form-connexion").style.display="flex";
+    document.getElementById("form-creation").style.display="none";
+}
+
+function Creation(){
+    document.getElementById("form-creation").style.display="flex";
+    document.getElementById("form-connexion").style.display="none";
 }

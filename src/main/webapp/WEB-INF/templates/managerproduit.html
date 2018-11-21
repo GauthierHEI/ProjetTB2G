@@ -62,6 +62,7 @@
             </div>
 
             <div class="container-produitmanager">
+            <form method="post">
 
                 <h1>Index des produits</h1>
 
@@ -102,8 +103,7 @@
                             <td th:text="${Produit.getCouleur()}"></td>
                             <td th:text="${Produit.getHexcouleur()}"></td>
                             <td th:text="${Produit.getImage()}"></td>
-                            <td th:onclick="|Modif('${Produit.getId()}')|" th:id="'td'+${Produit.getId()}" class="td-fleche-modif"><i class="fas fa-edit"></i></td>
-                            <td></td>
+                            <td th:onclick="|Modif('${Produit.getId()}')|" th:id="'td'+${Produit.getId()}" class="td-fleche-modif"><i th:id="'i'+${Produit.getId()}" class="far fa-arrow-alt-circle-down"></i></td>
                         </tr>
 
                         <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
@@ -132,6 +132,7 @@
                     </th:block>
 
                 </table>
+            </form>
             </div>
         </div>
 
