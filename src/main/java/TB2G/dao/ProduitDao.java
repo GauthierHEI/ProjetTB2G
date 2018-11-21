@@ -18,4 +18,6 @@ public interface ProduitDao {
 
     List<Produit> listChemise();
 
+    Produit modifProduit(Produit produit);
+
 }
