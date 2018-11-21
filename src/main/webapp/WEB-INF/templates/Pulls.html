@@ -20,7 +20,7 @@
             <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|"
                  th:onmouseout="|Cache('${Pull.getId()}')|">
 
-                <img src="images/MannequinPull.jpg">
+                <img th:src=" '/images/' + ${Pull.getImage()}">
                 <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
                 <div  class="produit-prix-couleur">
                     <div>
