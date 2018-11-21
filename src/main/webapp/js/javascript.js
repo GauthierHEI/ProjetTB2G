@@ -27,7 +27,7 @@ function CacheProduit(ProductId) {
 
 function verificationEmail(champId) {
     console.log("Fonction");
-    let email = document.getElementById(champId).value;
+    email = document.getElementById(champId).value;
     var expressionReguliere = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
     if (expressionReguliere.test(email)) {
         console.log("Bon");
@@ -37,4 +37,14 @@ function verificationEmail(champId) {
         console.log("Faux");
         document.getElementById(champId).style.borderBottomColor="red";
     }
+}
+
+function Connexion(){
+    document.getElementById("form-connexion").style.display="flex";
+    document.getElementById("form-creation").style.display="none";
+}
+
+function Creation(){
+    document.getElementById("form-creation").style.display="flex";
+    document.getElementById("form-connexion").style.display="none";
 }

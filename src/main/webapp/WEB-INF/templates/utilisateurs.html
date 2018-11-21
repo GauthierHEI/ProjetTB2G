@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des utilisateurs inscrits</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+<div class="page">
+    <header th:replace="~{fragments :: header(${connecte})}"></header>
+
+    <div class="corps">
+        <div class="container-produitmanager">
+            <form method="post">
+                <h1>Liste des utilisateurs inscrits</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Mail</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Date de naissance</th>
+                        <th>Adresse de livraison</th>
+                        <th>Adresse</th>
+                        <th>Admin</th>
+                    </tr>
+                    </thead>
+
+                 <!-- Créer un bloc dynamique (avec thymeleaf) pour chaque utilisateur (1 bloc par utilisateur) -->
+                        <tr th:each=" Utilisateur : ${utilisateur}">
+                            <td th:text="${Utilisateur.getId()}"></td>
+                            <td th:text="${Utilisateur.getEmail()}"></td>
+                            <td th:text="${Utilisateur.getPrenom()}"></td>
+                            <td th:text="${Utilisateur.getNom()}"></td>
+                            <td th:text="${Utilisateur.getNaissance()}"></td>
+                            <td th:text="${Utilisateur.getAdresseliv()}"></td>
+                            <td th:text="${Utilisateur.getAdressefac()}"></td>
+                            <td th:text="${Utilisateur.getAdmin()}"></td>
+                        </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments :: Footer}"></footer>
+</div>
+
+</body>
+</html>

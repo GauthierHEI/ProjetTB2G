@@ -134,6 +134,10 @@ div.produit-nom{
     font-family: "ArchivoMedium";
 }
 
+.selection-taille{
+    width: 25%;
+}
+
 .produit-informations{
     background-color: white;
     padding: 1%;
@@ -195,19 +199,37 @@ form.produit-achat input:hover {
 /*AUTHENTIFICATION */
 
 .authentification-contenu {
-    width: 40%;
-    background-color: white;
+     padding: 1%;
+     margin: 5% 0;
+     font-size: 1vw;
+     text-decoration-color: black;
+     display: flex;
+     align-items: center;
+}
+
+.creation-contenu {
     padding: 1%;
     margin: 5% 0;
     font-size: 1vw;
     text-decoration-color: black;
-    display: flex;
-    justify-content: center;
+    display: none;
     align-items: center;
 }
 
 .container-authentification{
+    background-color: white;
+    width: 40%;
+    boder-radius:1em;
+    margin: 1vw;
+}
+
+.sous-container-authentification{
     text-align: center;
+}
+
+.sous-container-authentification button{
+    margin: 0.5vw;
+    border-left: 1px solid black;
 }
 
 .error {
