@@ -15,7 +15,7 @@
     <div class="page">
         <header th:replace="~{fragments :: header(${connecte})}"></header>
 
-        <div class="corps">
+        <div class="corps-noflex">
 
             <div class="container-authentification">
                 <form method="post" class="authentification-contenu" id="form-connexion">
@@ -36,6 +36,8 @@
                     </div>
 
                 </form>
+
+                <div class="separation-authentification"> </div>
 
                 <form method="post" action="authentification" class="creation-contenu" id="form-creation" >
                     <div>
@@ -83,12 +85,13 @@
 
                     </div>
                 </form>
-
-                <div class="sous-container-authentification">
-                    <button onclick="Connexion()">Connexion</button>
-                    <button onclick="Creation()">Cr&eacute;ation</button>
-                </div>
             </div>
+
+            <div class="sous-container-authentification">
+                <button onclick="Connexion()">Connexion</button>
+                <button onclick="Creation()">Cr&eacute;ation</button>
+            </div>
+
         </div>
 
         <footer th:replace="~{fragments :: Footer}"></footer>
