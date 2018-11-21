@@ -3,6 +3,7 @@ package TB2G.dao.Impl;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 
+import TB2G.utils.PropertiesUtils;
 import org.mariadb.jdbc.MariaDbDataSource;
 
     public class DataSourceProvider {
@@ -12,11 +13,11 @@ import org.mariadb.jdbc.MariaDbDataSource;
         public static DataSource getDataSource() throws SQLException {
             if (dataSource == null) {
                 dataSource = new MariaDbDataSource();
-                dataSource.setServerName("localhost");
-                dataSource.setPort(3306);
-                dataSource.setDatabaseName("tb2g");
-                dataSource.setUser("root");
-                dataSource.setPassword("");
+                dataSource.setServerName(PropertiesUtils.ServerName());
+                dataSource.setPort(PropertiesUtils.Port());
+                dataSource.setDatabaseName(PropertiesUtils.DataBaseName());
+                dataSource.setUser(PropertiesUtils.User());
+                dataSource.setPassword(PropertiesUtils.Pass());
             }
             return dataSource;
         }
