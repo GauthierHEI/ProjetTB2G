@@ -38,6 +38,8 @@ public class ProduitStore  {
     private ProduitStore() {
     }
 
+    public Produit modifProduit(Produit produit){ return produitdao.modifProduit(produit); }
+
     public List<Produit> listTshirt() {
       return produitdao.listTshirt();
     }
@@ -78,6 +80,7 @@ public class ProduitStore  {
         }
         LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
+
     }
 
     public File imageDansFichier (Part filePart) throws IOException {
