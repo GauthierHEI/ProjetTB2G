@@ -82,8 +82,6 @@ public class ProduitStore  {
 
     public File imageDansFichier (Part filePart) throws IOException {
 
-
-
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File uploads = new File(PropertiesUtils.cheminPro());
         File file = File.createTempFile("img", ".jpg", uploads);
@@ -92,5 +90,6 @@ public class ProduitStore  {
         }
         return file;
     }
+
 
 }
