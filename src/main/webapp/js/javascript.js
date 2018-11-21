@@ -42,6 +42,7 @@ function verificationEmail(champId) {
 function Connexion(){
     document.getElementById("form-connexion").style.display="flex";
     document.getElementById("form-creation").style.display="none";
+    /*OK OKOKOKOKOKKOK */
 }
 
 function Creation(){
