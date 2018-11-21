@@ -6,10 +6,20 @@ import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
+
+import TB2G.utils.PropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Properties;
 
 public class ProduitStore  {
 
@@ -65,11 +75,24 @@ public class ProduitStore  {
         if (produit.getCouleur() == null) {
             throw new IllegalArgumentException("Couleur can not be null.");
         }
-        if (produit.getHexcouleur() == null )
+        if (produit.getHexcouleur() == null ) {
             throw new IllegalArgumentException("Hexcouleur can not be null.");
+        }
         LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
 
     }
+
+    public File imageDansFichier (Part filePart) throws IOException {
+
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        File uploads = new File(PropertiesUtils.cheminPro());
+        File file = File.createTempFile("img", ".jpg", uploads);
+        try (InputStream fileContent = filePart.getInputStream()) {
+            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        }
+        return file;
+    }
+
 
 }
