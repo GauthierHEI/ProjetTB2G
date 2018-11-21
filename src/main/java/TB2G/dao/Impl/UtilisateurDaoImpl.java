@@ -113,7 +113,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }
         catch(SQLException e){
             e.printStackTrace();
-            throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié");
+            throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié, vérifier que vous avez bien rempli le formulaire");
         }
 
     }
