@@ -18,6 +18,10 @@
 
             <div class="profil-container">
                 <h1 th:text="'Bonjour, '+${utilisateurCourant.getPrenom()}+' '+${utilisateurCourant.getNom()}"></h1>
+<<<<<<< Updated upstream
+=======
+                <h2 th:if="${connecte==2}">Vous êtes administrateur</h2>
+>>>>>>> Stashed changes
                 <div>
                     <div ><i class="far fa-envelope"></i><label th:text="' '+${utilisateurCourant.getEmail()}"></label></div>
                     <div ><i class="fas fa-home"></i><label th:text="' '+${utilisateurCourant.getAdresseliv()}"></label></div>
@@ -34,8 +38,11 @@
         </div>
 
         <footer th:replace="~{fragments :: Footer}"></footer>
+<<<<<<< Updated upstream
 
     </div>
+=======
+>>>>>>> Stashed changes
 
 </body>
 </html>

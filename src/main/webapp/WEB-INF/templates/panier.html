@@ -14,7 +14,22 @@
     <header th:replace="~{fragments :: header(${connecte})}"></header>
 
     <div class="corps">
-        <div class="soon"> Bientot disponible </div>
+
+        <div th:class="${connecte == 1 || connecte == 2} ?'active':'inactive'">
+            <div class="soon"> Bientot disponible </div>
+        </div>
+
+        <div th:class="${connecte==0} ?'active':'inactive'">
+            <div class="produit-informations">
+                <h1>Il faut &ecirc;tre connecter pour avoir acc&egrave;s &agrave; votre panier</h1>
+                <div>
+                    <h2><a href="authentification"><i class="fas fa-user"></i> Vous pouvez vous connecter en cliquant ici</a></h2>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 
     <footer th:replace="~{fragments :: Footer}"></footer>

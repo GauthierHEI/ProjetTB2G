@@ -52,7 +52,7 @@ public class ConnexionServlet extends AbstractWebServlet {
             rsp.getWriter().write(finalDocument);
         } else if (utilisateurConnecte.getAdmin()) {
             session.setAttribute("connecte", 2);
-            rsp.sendRedirect("managerproduit");
+            rsp.sendRedirect("profil");
         } else {
             session.setAttribute("connecte", 1);
             rsp.sendRedirect("profil");

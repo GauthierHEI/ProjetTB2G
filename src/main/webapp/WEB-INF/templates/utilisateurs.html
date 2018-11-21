@@ -14,7 +14,7 @@
     <header th:replace="~{fragments :: header(${connecte})}"></header>
 
     <div class="corps">
-        <div class="container-utilisateurs">
+        <div class="container-produitmanager">
             <form method="post">
                 <h1>Liste des utilisateurs inscrits</h1>
                 <table>
@@ -31,8 +31,8 @@
                     </tr>
                     </thead>
 
-                    <th:block  th:each=" Utilisateur : ${utilisateur}"><!-- Créer un bloc dynamique (avec thymeleaf) pour chaque utilisateur (1 bloc par utilisateur) -->
-                        <tr>
+                 <!-- Créer un bloc dynamique (avec thymeleaf) pour chaque utilisateur (1 bloc par utilisateur) -->
+                        <tr th:each=" Utilisateur : ${utilisateur}">
                             <td th:text="${Utilisateur.getId()}"></td>
                             <td th:text="${Utilisateur.getEmail()}"></td>
                             <td th:text="${Utilisateur.getPrenom()}"></td>
