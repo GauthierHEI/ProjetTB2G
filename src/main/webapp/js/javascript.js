@@ -40,11 +40,16 @@ function verificationEmail(champId) {
 }
 
 function Connexion(){
-    document.getElementById("form-connexion").style.display="flex";
-    document.getElementById("form-creation").style.display="none";
+    var connexion = document.getElementById("form-connexion");
+    var creation =  document.getElementById("form-creation");
+    connexion.className="authentification-contenu";
+    creation.className="creation-contenu";
 }
 
 function Creation(){
-    document.getElementById("form-creation").style.display="flex";
-    document.getElementById("form-connexion").style.display="none";
+    var connexion = document.getElementById("form-creation");
+    var creation =  document.getElementById("form-connexion");
+    connexion.className="authentification-contenu";
+    creation.className="creation-contenu";
+
 }
