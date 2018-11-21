@@ -3,21 +3,27 @@ package TB2G.dao.Impl;
 import TB2G.dao.ProduitDao;
 import TB2G.entities.Produit;
 
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class ProduitDaoImpl implements ProduitDao {
 
-    static final Logger LOG = LoggerFactory.getLogger(ProduitDaoImpl.class);
-
     @Override
     public Produit addProduit(Produit produit) {
-        String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur,hexcouleur) VALUES(?, ?, ?, ?, ?, ?, ?,?)";
+        String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur, image, hexcouleur) VALUES(?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, produit.getNameproduit());
@@ -27,9 +33,10 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setFloat(5, produit.getPrix());
                 statement.setInt(6, produit.getCat());
                 statement.setString(7, produit.getCouleur());
-                statement.setString(8,produit.getHexcouleur());
+                statement.setString(8,produit.getImage());
+                statement.setString(9,produit.getHexcouleur());
                 statement.executeUpdate();
-                LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
+
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -56,6 +63,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
                 resultSetRow.getString("couleur"),
+                resultSetRow.getString("image"),
                 resultSetRow.getString("hexcouleur")
         );
     }
@@ -89,6 +97,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
                 resultSetRow.getString("couleur"),
+                resultSetRow.getString("image"),
                 resultSetRow.getString("hexcouleur")
         );
     }
@@ -121,6 +130,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
                 resultSetRow.getString("couleur"),
+                resultSetRow.getString("image"),
                 resultSetRow.getString("hexcouleur")
         );
     }
@@ -153,6 +163,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 resultSetRow.getFloat("prix"),
                 resultSetRow.getInt("cat"),
                 resultSetRow.getString("couleur"),
+                resultSetRow.getString("image"),
                 resultSetRow.getString("hexcouleur")
         );
     }
