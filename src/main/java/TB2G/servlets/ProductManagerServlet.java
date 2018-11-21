@@ -25,11 +25,28 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
         int connecte = VariableSessionConnecte(rsq);
         HttpSession session = rsq.getSession();
+
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
+
+        //Get error and success messages
+
         String errAjout = (String) session.getAttribute("errAjout");
         session.removeAttribute("errAjout");
+
         String messageAjout = (String) session.getAttribute("messageAjout");
         session.removeAttribute("messageAjout");
+
+        /*String errModif = (String) session.getAttribute("errModif");
+        session.removeAttribute("errModif");
+
+        String messageModif = (String) session.getAttribute("messageModif");
+        session.removeAttribute("messageModif");
+
+        String errDelete = (String) session.getAttribute("errDelete");
+        session.removeAttribute("errDelete");
+
+        String messageDelete = (String) session.getAttribute("messageDelete");
+        session.removeAttribute("messageDelete");*/
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
@@ -47,6 +64,10 @@ public class ProductManagerServlet extends AbstractWebServlet {
             context.setVariable("connecte", connecte);
             context.setVariable("errAjout", errAjout);
             context.setVariable("messageAjout", messageAjout);
+            /*context.setVariable("errModif", errModif);
+            context.setVariable("messageModif", messageModif);
+            context.setVariable("errDelete", errDelete);
+            context.setVariable("messageDelete", messageDelete);*/
 
             //process method
             String finalDocument = engine.process("managerproduit", context);
@@ -60,12 +81,13 @@ public class ProductManagerServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //AJOUT OU MODIF
-
         String action = req.getParameter("action");
 
         /******************/
         /*    A J O U T   */
         /******************/
+
+        System.out.println(action);
 
         if("ajout".equals(action)) {
             String nameprod = req.getParameter("produit");
@@ -111,6 +133,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
                 // REDIRECT TO DETAIL PRODUIT
                 resp.sendRedirect("managerproduit");
+
             } catch (IllegalArgumentException e) {
                 req.getSession().setAttribute("produit-error-message", e.getMessage());
                 resp.sendRedirect("managerproduit");
@@ -121,7 +144,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         /*    M O D I F   */
         /******************/
 
-        else {
+        else if ("modif".equals(action)) {
             Integer produitId1 = null;
             if ((req.getParameter("produitId1") != null) && !("".equals(req.getParameter("produitId1")))) {
 
@@ -214,6 +237,44 @@ public class ProductManagerServlet extends AbstractWebServlet {
             }
 
         }
+
+        /********************/
+        /*    D E L E T E   */
+        /********************/
+
+        /*else if ("modif".equals(action)) {
+
+            Integer produitId2 = null;
+            if ((req.getParameter("produitId2") != null) && !("".equals(req.getParameter("produitId1")))) {
+
+                //Id not null nor empty
+
+                produitId2 = Integer.parseInt(req.getParameter("produitId1"));
+                try {
+                    Integer idSuppr = ProduitStore.getInstance().deleteProduit(produitId2);
+                    if (idSuppr == null) {
+                        req.getSession().setAttribute("errDelete","Le produit n'a pas pu être supprimé.");
+                    }
+                    else {
+                        req.getSession().setAttribute("messageDelete","Le produit n'a pas pu être supprimé.");
+                    }
+
+                    // REDIRECT TO DETAIL PRODUIT
+                    resp.sendRedirect("managerproduit");
+
+                } catch (IllegalArgumentException e) {
+                    req.getSession().setAttribute("produit-error-message", e.getMessage());
+                    resp.sendRedirect("managerproduit");
+                }
+
+            }
+            else {
+                req.getSession().setAttribute("errDelete","Impossible de récupérer l'Id produit.");
+                // REDIRECT TO DETAIL PRODUIT
+                resp.sendRedirect("managerproduit");
+            }
+
+        }*/
 
     }
 }

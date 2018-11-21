@@ -1,11 +1,8 @@
 package TB2G.managers;
 
 import TB2G.dao.ProduitDao;
-import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Produit;
-import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
-import TB2G.dao.Impl.UtilisateurDaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +36,8 @@ public class ProduitStore  {
     public List<Produit> listProduit() {return produitdao.listProduit(); }
 
     public Produit modifProduit(Produit produit) {return produitdao.modifProduit(produit);}
+
+    public Integer deleteProduit(Integer id) {return produitdao.deleteProduit(id);}
 
     public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
 

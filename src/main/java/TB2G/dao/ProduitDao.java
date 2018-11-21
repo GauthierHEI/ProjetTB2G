@@ -20,4 +20,6 @@ public interface ProduitDao {
 
     Produit getProduitById(Integer produitId);
 
+    Integer deleteProduit(Integer id);
+
 }

@@ -208,12 +208,21 @@ form.produit-achat input:hover {
     text-align: center;
 }
 
+.error::before {
+    content: 'Erreur : ';
+    color: darkred;
+}
 .error {
     color: darkred;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
     margin-top: 0.5vw;
+}
+
+.success::before {
+    content: 'Succès : ';
+    color: darkgreen;
 }
 
 .success {

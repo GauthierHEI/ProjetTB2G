@@ -64,15 +64,48 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setString(8, produit.getHexcouleur());
                 statement.setInt(9, produit.getId());
                 statement.executeUpdate();
-                LOG.info("Modification produit : nom{}", produit.getNameproduit());
-                return produit;
+
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        produit.setId(generatedKeys.getInt(1));
+                        return produit;
+                    }
+                }
 
             }
 
 
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Le formulaire n'est pas bien rempli");
+            e.printStackTrace();
+            return null;
         }
+        return null;
+    }
+
+    @Override
+    public Integer deleteProduit(Integer id) {
+
+        Integer idProduitSupprime;
+        String sqlQuery = "DELETE FROM produit WHERE produit_id=?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        idProduitSupprime = generatedKeys.getInt(1);
+                        return idProduitSupprime;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return null;
     }
 
     private Produit mapProduit(ResultSet resultSetRow) throws SQLException {
