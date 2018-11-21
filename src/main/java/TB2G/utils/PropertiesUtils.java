@@ -13,7 +13,7 @@ public class PropertiesUtils {
 
         String leChemin = "";
         try {
-            prop.load(ProduitDaoImpl.class.getResourceAsStream("/data.properties"));
+            prop.load(ProduitDaoImpl.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             leChemin = prop.getProperty("path");
         } catch (IOException ex) {
@@ -26,7 +26,7 @@ public class PropertiesUtils {
 
         String leUser = "";
         try {
-            prop.load(DataSourceProvider.class.getResourceAsStream("/data.properties"));
+            prop.load(DataSourceProvider.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             leUser = prop.getProperty("user");
         } catch (IOException ex) {
@@ -39,7 +39,7 @@ public class PropertiesUtils {
 
         String lePass = "";
         try {
-            prop.load(DataSourceProvider.class.getResourceAsStream("/data.properties"));
+            prop.load(DataSourceProvider.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             lePass = prop.getProperty("pass");
         } catch (IOException ex) {
@@ -52,7 +52,7 @@ public class PropertiesUtils {
 
         int lePort = 0;
         try {
-            prop.load(DataSourceProvider.class.getResourceAsStream("/data.properties"));
+            prop.load(DataSourceProvider.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             lePort = Integer.parseInt(prop.getProperty("port"));
         } catch (IOException ex) {
@@ -65,7 +65,7 @@ public class PropertiesUtils {
 
         String leDataBaseName = "";
         try {
-            prop.load(DataSourceProvider.class.getResourceAsStream("/data.properties"));
+            prop.load(DataSourceProvider.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             leDataBaseName = prop.getProperty("databasename");
         } catch (IOException ex) {
@@ -78,7 +78,7 @@ public class PropertiesUtils {
 
         String leServerName = "";
         try {
-            prop.load(DataSourceProvider.class.getResourceAsStream("/data.properties"));
+            prop.load(DataSourceProvider.class.getResourceAsStream("/data-exemple.properties"));
             // get the property value
             leServerName = prop.getProperty("servername");
         } catch (IOException ex) {
