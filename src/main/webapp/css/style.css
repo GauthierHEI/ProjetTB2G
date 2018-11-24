@@ -378,6 +378,7 @@ div.footer-contact a{
 }
 
 .input-file i{
+    text-shadow: 0 0 1px #000;
     font-size: 1.5vw;
 }
 
@@ -442,6 +443,56 @@ div.footer-contact a{
     margin: 0.3vw;
 }
 
+/* PAGE UTILISATEURS INSCRITS (en mode admin) */
+
+.container-utilisateurs {
+    font-size: 1vw;
+    width: 100%;
+    padding: 0.8vw;
+    background-color:white;
+    text-align: center;
+    border-radius: 1em;
+    margin: 0.5vw;
+}
+
+.container-utilisateurs form{
+    font-size: 1.4vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-utilisateurs table{
+    justify-content: space-between;
+    margin: auto;
+    border: 1px solid black;
+    width: 94%;
+}
+
+
+.container-utilisateurs td{
+    border-bottom: 1px dotted darkgray;
+    border-right: 1px dotted darkgray;
+}
+
+#moiUtilisateurConnecte{
+    background-color: #c6c6c6;
+}
+
+#emailmoi{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#moi{
+    color: #f20019;
+}
+
+#pen{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
 /* PROFIL */
 
 .profil-container{
@@ -486,3 +537,4 @@ div.footer-contact a{
         opacity: 0;
     }
 }
+
