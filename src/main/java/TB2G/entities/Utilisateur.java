@@ -99,5 +99,4 @@ public class Utilisateur {
         this.admin = admin;
     }
 
-
 }

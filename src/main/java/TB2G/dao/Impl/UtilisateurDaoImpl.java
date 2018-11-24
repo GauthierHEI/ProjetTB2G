@@ -26,7 +26,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(1,utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
-                statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
+                if (utilisateur.getNaissance() != null) {
+                    statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
+                }
                 statement.setString(5, utilisateur.getMotdepasse());
                 statement.setString(6, utilisateur.getAdresseliv());
                 statement.setString(7, utilisateur.getAdressefac());
@@ -45,6 +47,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             // Manage Exception
             e.printStackTrace();
             LOG.error("exception SQL");
+            return new Utilisateur(null,null,null,null,null,null,null,null, null);
         }
         return null;
     }
@@ -112,7 +115,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         LOG.info("return utilisateur");
         return utilisateur;
     }
-
+    
     @Override
     public void editAdmin(Integer utilisateur_id, boolean role){
         String sqlQuerry="UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
@@ -128,5 +131,21 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
             throw new IllegalArgumentException("le role n'a pas été modifié");
         }
+
+    public void ModificationMdp(Utilisateur utilisateur, String newMdp){
+
+        String SQLQuery = "UPDATE utilisateur SET motdepasse=? WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
+                statement.setString(1, newMdp);
+                statement.setInt(2, utilisateur.getId());
+                statement.executeUpdate();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié, vérifier que vous avez bien rempli le formulaire");
+        }
+
     }
 }

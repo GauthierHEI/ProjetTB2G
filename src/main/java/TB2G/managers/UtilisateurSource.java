@@ -37,8 +37,17 @@ public class UtilisateurSource {
         return utilisateurDao.getUtilisateurByMail(mail);
     }
 
+
     public void editAdmin(Integer utilisateur_id, boolean role){
         utilisateurDao.editAdmin(utilisateur_id,role);
+    }
+    
+    public void ModificationMdp(Utilisateur util, String mdp){
+        if(mdp==null || "".equals(mdp)){
+            throw new IllegalArgumentException("Le mot de passe ne peut pas être nulle");
+        }else {
+            utilisateurDao.ModificationMdp(util, mdp);
+        }
     }
 
 }

@@ -5,23 +5,42 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
+    <title>profil</title>
 </head>
+
 <body>
 
     <div class="page">
 
         <header th:replace="~{fragments :: header(${connecte})}"></header>
 
-        <div id="corps">
+        <div class="corps">
 
-            <h1>Vous êtes connect&eacute;</h1>
+            <div class="profil-container">
+                <h1 th:text="'Bonjour, '+${utilisateurCourant.getPrenom()}+' '+${utilisateurCourant.getNom()}"></h1>
 
+                <h2 th:if="${connecte==2}">Vous êtes administrateur</h2>
+
+                <div>
+                    <div ><i class="far fa-envelope"></i><label th:text="' '+${utilisateurCourant.getEmail()}"></label></div>
+                    <div ><i class="fas fa-home"></i><label th:text="' '+${utilisateurCourant.getAdresseliv()}"></label></div>
+                    <h2>Modifier votre mot de passe : </h2>
+                    <form method="POST" action="profil">
+                        <i class="fas fa-unlock-alt"></i>
+                        <input type="password" class="login" name="newmdp" required>
+                        <input type="submit" value="modifier" class="produitmanager-ajout">
+                    </form>
+                    <label class="error" th:text="${errChampMdp}"></label>
+                    <label class="success" th:text="${successMdp}"></label>
+                </div>
+            </div>
         </div>
+
+        <footer th:replace="~{fragments :: Footer}"></footer>
+
 
     </div>
 
-    <footer th:replace="~{fragments :: Footer}"></footer>
 
 </body>
 </html>

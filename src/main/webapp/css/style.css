@@ -120,6 +120,11 @@ div.corps{
     padding-right:3%;
 }
 
+div.corps-noflex{
+    padding: 1%;
+    background-color: #f2f2f2;
+}
+
 .active {
     display: block;
 }
@@ -132,6 +137,10 @@ div.corps{
 
 div.produit-nom{
     font-family: "ArchivoMedium";
+}
+
+.selection-taille{
+    width: 25%;
 }
 
 .produit-informations{
@@ -165,6 +174,7 @@ div.produit-nom{
 .produit-prix-couleur span {
     height: 1vw;
     width: 1vw;
+    border: 1px solid black;
 }
 
 form.produit-achat {
@@ -174,6 +184,7 @@ form.produit-achat {
     margin-top: 1vw;
     margin-left: 1vw;
     margin-right: 1vw;
+    display: flex;
 }
 
 form.produit-achat input {
@@ -192,24 +203,80 @@ form.produit-achat input:hover {
 
 /*AUTHENTIFICATION */
 
-.authentification-contenu {
-    width: 40%;
-    background-color: white;
+.authentification-contenu{
+     padding: 1%;
+     margin: 5%;
+     font-size: 1vw;
+     text-decoration-color: black;
+     display: flex;
+     width: 70%;
+    opacity: 1;
+     align-items: center;
+    animation: AnimationGrand 2s;
+}
+
+.creation-contenu{
     padding: 1%;
-    margin: 5% 0;
+    margin: 5%;
     font-size: 1vw;
     text-decoration-color: black;
+    width: 2%;
     display: flex;
-    justify-content: center;
+    opacity: 0;
     align-items: center;
+    animation: AnimationPetit 2s;
 }
 
 .container-authentification{
+    background-color: white;
+    width: 40%;
+    margin: auto;
+    display: flex;
+    height: 30vw;
+}
+
+.separation-authentification{
+    height: 100%;
+    width: 1%;
+    background-color: #004d66;
+    transform: rotate(5deg);
+}
+
+.sous-container-authentification{
+    background-color: white;
     text-align: center;
+    border-top: 0.2vw solid #004d66;
+    margin: auto;
+    width: 40%;
+}
+
+.sous-container-authentification button{
+    margin: 0;
+    text-align: center;
+    border: none;
+    background-color: white;
+    color: #004d66;
+    width: 49.6%;
+    padding: 0.2vw;
+    font-size: 1.5vw;
+}
+
+.sous-container-authentification button:hover{
+    background-color: #004d66;
+    color: white;
+    cursor: pointer;
 }
 
 .error {
     color: darkred;
+    background-color: #f2f2f2;
+    text-align: center;
+    border-radius: 1em;
+    margin-top: 0.5vw;
+}
+
+.success {
+    color: darkgreen;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
@@ -425,3 +492,48 @@ div.footer-contact a{
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+/* PROFIL */
+
+.profil-container{
+    background-color: white;
+    border-radius: 1em;
+    padding:0.3vw;
+    margin: 1vw;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.profil-container div{
+    margin-bottom: 0.2vw;
+}
+
+/* ANIMATION */
+
+@keyframes AnimationGrand {
+    0%{
+        width: 2%;
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        width: 70%;
+        opacity: 1;
+    }
+
+}
+@keyframes AnimationPetit {
+    0%{
+        width: 70%;
+        opacity: 1;
+    }
+    10%{
+        opacity: 0;
+    }
+    100%{
+        width: 2%;
+        opacity: 0;
+    }
+}
+

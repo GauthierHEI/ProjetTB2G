@@ -14,6 +14,6 @@ public interface UtilisateurDao {
 
     void editAdmin(Integer utilisateur_id, boolean role);
 
-
+    void ModificationMdp(Utilisateur utilisateur,String newMdp);
 
 }

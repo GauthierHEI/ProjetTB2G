@@ -9,7 +9,8 @@ CREATE TABLE `utilisateur` (
   `adressefac` varchar (100) NOT NULL,
   `admin` boolean NOT NULL,
 
-   PRIMARY KEY (`utilisateur_id`)
+   PRIMARY KEY (`utilisateur_id`),
+   UNIQUE (`email`)
 );
 
 
