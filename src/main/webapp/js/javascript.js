@@ -59,3 +59,9 @@ function InputCouleur(){
     var icone = document.getElementById("icone-hexcouleur");
     icone.style.color= couleur;
 }
+
+function InputImage(){
+    var icone = document.getElementById("icone-image");
+    icone.style.color="#18cd66";
+    icone.className= "fas fa-check";
+}
