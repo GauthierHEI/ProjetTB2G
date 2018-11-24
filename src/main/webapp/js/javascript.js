@@ -24,6 +24,48 @@ function CacheProduit(ProductId){
 
 };
 
+function editAdmin(utilisateur_id){
+    console.log(utilisateur_id);
+    var role = document.getElementById("adminName"+ utilisateur_id).innerText;
+    console.log("logInnerText : "+role);
+    var requete=new XMLHttpRequest();
+    requete.open("POST","editAdministrateur", true);
+    requete.responseType="text";
+    requete.onload=function () {
+        var response = this.response;
+        console.log(response);
+        adminText = document.getElementById("adminName" + utilisateur_id);
+        console.log(role);
+        if (role) {
+            console.log("Je passe le rôle à true");
+
+            adminText.innerText ="true";
+        }
+        else{
+            console.log("Je passe le rôle à false");
+
+            adminText.innerText="false";
+        }
+    }
+    requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+    if(role == "false" ) {
+        role=true;
+        console.log("role :" + role);
+    }
+    else{
+        role=false;
+        console.log("role :" + role);
+    }
+
+    requete.send("id=" + utilisateur_id + "&admin=" + role);
+
+    function truc(){
+        alert("machin");
+    }
+
+}
+
 function verificationEmail(champId) {
     console.log("Fonction");
     let email = document.getElementById(champId).value;
@@ -39,11 +81,29 @@ function verificationEmail(champId) {
 }
 
 function Connexion(){
-    document.getElementById("form-connexion").style.display="flex";
-    document.getElementById("form-creation").style.display="none";
+    var connexion = document.getElementById("form-connexion");
+    var creation =  document.getElementById("form-creation");
+    connexion.className="authentification-contenu";
+    creation.className="creation-contenu";
 }
 
 function Creation(){
-    document.getElementById("form-creation").style.display="flex";
-    document.getElementById("form-connexion").style.display="none";
+    var connexion = document.getElementById("form-creation");
+    var creation =  document.getElementById("form-connexion");
+    connexion.className="authentification-contenu";
+    creation.className="creation-contenu";
 }
+
+function InputCouleur(){
+    var couleur = document.getElementById("hexcouleur").value;
+    console.log(couleur);
+    var icone = document.getElementById("icone-hexcouleur");
+    icone.style.color= couleur;
+}
+
+function InputImage(){
+    var icone = document.getElementById("icone-image");
+    icone.style.color="#18cd66";
+    icone.className= "fas fa-check";
+}
+

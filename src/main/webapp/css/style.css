@@ -120,6 +120,11 @@ div.corps{
     padding-right:3%;
 }
 
+div.corps-noflex{
+    padding: 1%;
+    background-color: #f2f2f2;
+}
+
 .active {
     display: block;
 }
@@ -198,38 +203,68 @@ form.produit-achat input:hover {
 
 /*AUTHENTIFICATION */
 
-.authentification-contenu {
+.authentification-contenu{
      padding: 1%;
-     margin: 5% 0;
+     margin: 5%;
      font-size: 1vw;
      text-decoration-color: black;
      display: flex;
+     width: 70%;
+    opacity: 1;
      align-items: center;
+    animation: AnimationGrand 2s;
 }
 
-.creation-contenu {
+.creation-contenu{
     padding: 1%;
-    margin: 5% 0;
+    margin: 5%;
     font-size: 1vw;
     text-decoration-color: black;
-    display: none;
+    width: 2%;
+    display: flex;
+    opacity: 0;
     align-items: center;
+    animation: AnimationPetit 2s;
 }
 
 .container-authentification{
     background-color: white;
     width: 40%;
-    boder-radius:1em;
-    margin: 1vw;
+    margin: auto;
+    display: flex;
+    height: 30vw;
+}
+
+.separation-authentification{
+    height: 100%;
+    width: 1%;
+    background-color: #004d66;
+    transform: rotate(5deg);
 }
 
 .sous-container-authentification{
+    background-color: white;
     text-align: center;
+    border-top: 0.2vw solid #004d66;
+    margin: auto;
+    width: 40%;
 }
 
 .sous-container-authentification button{
-    margin: 0.5vw;
-    border-left: 1px solid black;
+    margin: 0;
+    text-align: center;
+    border: none;
+    background-color: white;
+    color: #004d66;
+    width: 49.6%;
+    padding: 0.2vw;
+    font-size: 1.5vw;
+}
+
+.sous-container-authentification button:hover{
+    background-color: #004d66;
+    color: white;
+    cursor: pointer;
 }
 
 .error::before {
@@ -353,6 +388,7 @@ div.footer-contact a{
 }
 
 .input-file i{
+    text-shadow: 0 0 1px #000;
     font-size: 1.5vw;
 }
 
@@ -417,6 +453,56 @@ div.footer-contact a{
     margin: 0.3vw;
 }
 
+/* PAGE UTILISATEURS INSCRITS (en mode admin) */
+
+.container-utilisateurs {
+    font-size: 1vw;
+    width: 100%;
+    padding: 0.8vw;
+    background-color:white;
+    text-align: center;
+    border-radius: 1em;
+    margin: 0.5vw;
+}
+
+.container-utilisateurs form{
+    font-size: 1.4vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-utilisateurs table{
+    justify-content: space-between;
+    margin: auto;
+    border: 1px solid black;
+    width: 94%;
+}
+
+
+.container-utilisateurs td{
+    border-bottom: 1px dotted darkgray;
+    border-right: 1px dotted darkgray;
+}
+
+#moiUtilisateurConnecte{
+    background-color: #c6c6c6;
+}
+
+#emailmoi{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#moi{
+    color: #f20019;
+}
+
+#pen{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
 /* PROFIL */
 
 .profil-container{
@@ -431,3 +517,34 @@ div.footer-contact a{
 .profil-container div{
     margin-bottom: 0.2vw;
 }
+
+/* ANIMATION */
+
+@keyframes AnimationGrand {
+    0%{
+        width: 2%;
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        width: 70%;
+        opacity: 1;
+    }
+
+}
+@keyframes AnimationPetit {
+    0%{
+        width: 70%;
+        opacity: 1;
+    }
+    10%{
+        opacity: 0;
+    }
+    100%{
+        width: 2%;
+        opacity: 0;
+    }
+}
+

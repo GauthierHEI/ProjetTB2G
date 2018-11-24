@@ -23,6 +23,7 @@ public class ProduitStore  {
 
     static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
 
+
     private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
     }
@@ -77,12 +78,10 @@ public class ProduitStore  {
         if (produit.getCouleur() == null) {
             throw new IllegalArgumentException("Couleur can not be null.");
         }
-        if (produit.getHexcouleur() == null ) {
+        if (produit.getHexcouleur() == null )
             throw new IllegalArgumentException("Hexcouleur can not be null.");
-        }
         LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
         return produitdao.addProduit(produit);
-
     }
 
     public File imageDansFichier (Part filePart) throws IOException {
