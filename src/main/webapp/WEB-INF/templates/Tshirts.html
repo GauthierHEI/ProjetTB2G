@@ -17,8 +17,7 @@
 
         <div class="corps">
 
-                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|"
-                th:onmouseout="|Cache('${Tshirt.getId()}')|">
+                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|">
 
                     <img th:src=" '/images/' + ${Tshirt.getImage()}">
                     <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
@@ -29,13 +28,20 @@
                         </div>
                         <div th:text="${Tshirt.getPrix()}+ '$'"> </div>
                     </div>
-                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat">
+                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" method="post">
+
+                        <input type="text" name="produit" th:value="${Tshirt.getNameproduit()}">
+                        <input type="number" name="prixUni" th:value="${Tshirt.getPrix()}">
+                        <input type="number" name="idObj" th:value="${Tshirt.getId()}">
+
                         <select name="taille" class="selection-taille">
                             <option th:if="${Tshirt.getDispoS()>0}">S</option>
                             <option th:if="${Tshirt.getDispoM()>0}">M</option>
                             <option th:if="${Tshirt.getDispoL()>0}">L</option>
                         </select>
-                        <input type="submit" name="achat" value="bientot disponible"/>
+
+                        <input type="number" name="quantite" id="quantite" value="1" required>
+                        <input type="submit" name="achat" value="+"/>
                     </form>
                 </div>
 

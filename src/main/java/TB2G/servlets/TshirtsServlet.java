@@ -1,15 +1,20 @@
 package TB2G.servlets;
 
+import TB2G.entities.Panier;
 import TB2G.entities.Produit;
+import TB2G.entities.Utilisateur;
+import TB2G.managers.PanierManager;
 import TB2G.managers.ProduitStore;
 import TB2G.utils.PropertiesUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -39,6 +44,54 @@ public class TshirtsServlet extends AbstractWebServlet {
         //process method
         String finalDocument = engine.process("Tshirts", context);
 
+
         rsp.getWriter().write(finalDocument);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
+
+
+        String nameprod = req.getParameter("produit");
+        Integer Id = null;
+        try {
+            Id = Integer.parseInt(req.getParameter("idObj"));
+        } catch (NumberFormatException ignored) {
+        }
+        String taille = req.getParameter("taille");
+        Integer quantite = null;
+        try {
+            quantite = Integer.parseInt(req.getParameter("quantite"));
+        } catch (NumberFormatException ignored) {
+        }
+        Float prixUni = null;
+        try {
+            prixUni = Float.parseFloat(req.getParameter("prixUni"));
+        } catch (NumberFormatException ignored) {
+        }
+
+
+        // CREATE PRODUIT
+        Panier newProduit = new Panier(null, Id, nameprod, taille, quantite, prixUni,false);
+        try {
+
+            Panier createProd = PanierManager.getInstance().addP2P(newProduit);
+            if(createProd==null) {
+                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
+            }
+            else {
+                req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
+            }
+
+            // REDIRECT TO DETAIL PRODUIT
+            resp.sendRedirect("Tshirts");
+        } catch (IllegalArgumentException e) {
+            req.getSession().setAttribute("produit-error-message", e.getMessage());
+            resp.sendRedirect("Tshirts");
+        }
+    }
+
 }
