@@ -93,6 +93,18 @@ function Creation(){
     var creation =  document.getElementById("form-connexion");
     connexion.className="authentification-contenu";
     creation.className="creation-contenu";
+}
 
+function InputCouleur(){
+    var couleur = document.getElementById("hexcouleur").value;
+    console.log(couleur);
+    var icone = document.getElementById("icone-hexcouleur");
+    icone.style.color= couleur;
+}
+
+function InputImage(){
+    var icone = document.getElementById("icone-image");
+    icone.style.color="#18cd66";
+    icone.className= "fas fa-check";
 }
 

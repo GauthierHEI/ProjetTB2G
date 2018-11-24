@@ -378,6 +378,7 @@ div.footer-contact a{
 }
 
 .input-file i{
+    text-shadow: 0 0 1px #000;
     font-size: 1.5vw;
 }
 
