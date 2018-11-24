@@ -75,21 +75,13 @@ public class ProduitDaoImpl implements ProduitDao {
                 statement.setInt(9, produit.getId());
                 statement.executeUpdate();
 
-                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        produit.setId(generatedKeys.getInt(1));
-                        return produit;
-                    }
-                }
-
+                return produit;
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return null;
     }
 
     @Override
@@ -99,7 +91,7 @@ public class ProduitDaoImpl implements ProduitDao {
         String sqlQuery = "DELETE FROM produit WHERE produit_id=?";
 
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setInt(1, id);
                 statement.executeUpdate();
 
