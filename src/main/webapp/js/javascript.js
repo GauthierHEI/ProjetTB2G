@@ -65,3 +65,19 @@ function InputImage(){
     icone.style.color="#18cd66";
     icone.className= "fas fa-check";
 }
+
+function VerificationMdp(){
+    var mdp1 = document.getElementById("profil-mdp1").value;
+    console.log("mdp1 = " +mdp1);
+    var mdp2 = document.getElementById("profil-mdp2").value;
+    console.log("mdp2 = " +mdp2);
+
+    if(mdp1 == mdp2){
+        console.log("jesuisla");
+        return true;
+    }
+    else{
+        alert("les mots de passes ne correspondent pas!");
+        return false;
+    }
+}

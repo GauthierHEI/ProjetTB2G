@@ -46,6 +46,8 @@ public class ProfilServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
         HttpSession session = rsq.getSession();
         Utilisateur utilisateurconnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
+
+
         String newMdp = genererMotDePasse(rsq.getParameter("newmdp"));
         try{
             UtilisateurSource.getInstance().ModificationMdp(utilisateurconnecte, newMdp);
