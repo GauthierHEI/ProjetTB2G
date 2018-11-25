@@ -98,7 +98,7 @@ public class ConnexionServlet extends AbstractWebServlet {
                     if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail()) == null) {
                         UtilisateurSource.getInstance().addUtilisateur(utilisateur);
                         session.setAttribute("utilisateurConnecte", utilisateur);
-                        rsp.sendRedirect("authentification");
+                        rsp.sendRedirect("profil");
                     } else {
                         session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
                         rsp.sendRedirect("authentification");

@@ -97,7 +97,7 @@
                             <td th:text="${Produit.getPrix()}" th:id="'xprix'+${Produit.getId()}"></td>
                             <td th:text="${Produit.getCat()}" th:id="'xcat'+${Produit.getId()}"></td>
                             <td th:text="${Produit.getCouleur()}" th:id="'xcouleur'+${Produit.getId()}"></td>
-                            <td th:text="${Produit.getHexcouleur()}" th:id="'xhexcouleur'+${Produit.getId()}" th:style="'background-color:'+${Produit.getHexcouleur()}"></td>
+                            <td th:text="${Produit.getHexcouleur()}" th:id="'xhexcouleur'+${Produit.getId()}"></td>
                             <td th:text="${Produit.getImage()}" th:id="'ximage'+${Produit.getId()}"></td>
                             <td colspan="2" th:onclick="|Modif('${Produit.getId()}')|" th:id="'td'+${Produit.getId()}" class="td-fleche-modif"><i th:id="'i'+${Produit.getId()}" class="fas fa-edit"></i></td>
                         </tr>

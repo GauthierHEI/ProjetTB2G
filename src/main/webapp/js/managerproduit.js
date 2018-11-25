@@ -72,7 +72,7 @@ var modifProduit = function (produitId) {
             document.getElementById("xcouleur" + produitId).innerText = couleur;
             document.getElementById("couleur" + produitId).value = "";
         }
-        if (hexcouleur != "") {
+        if ((hexcouleur != "") && (hexcouleur !="#000001")) {
             document.getElementById("xhexcouleur" + produitId).innerText = hexcouleur;
             document.getElementById("hexcouleur" + produitId).value = "#000001";
         }
