@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="js/javascript.js" type="application/javascript"></script>
+    <script src="js/managerproduit.js" type="application/javascript"></script>
     <title>Produit Manager</title>
 </head>
+
 <body>
-
-
 
     <div class="page">
 
@@ -53,7 +53,7 @@
 
                     </tbody>
                 </table>
-
+                <input type="hidden" name="action" value="ajout">
                 <input type="submit" value="Ajouter" class="produitmanager-ajout" id="ajout">
                 <div class="error" th:text="${errAjout}"></div>
                 <div class="success" th:text="${messageAjout}"></div>
@@ -62,9 +62,10 @@
             </div>
 
             <div class="container-produitmanager">
-            <form method="post">
+            <form method="post"enctype="multipart/form-data">
 
                 <h1>Index des produits</h1>
+                <div id="retourModif"></div>
 
                 <table>
 
@@ -80,40 +81,44 @@
                         <th>Couleur</th>
                         <th>HexColor</th>
                         <th>Image</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
 
                     <th:block  th:each=" Produit : ${produit}">
 
-                        <tr>
+                        <tr th:id="'tr'+${Produit.getId()}">
                             <td th:text="${Produit.getId()}"></td>
-                            <td th:text="${Produit.getNameproduit()}"></td>
-                            <td th:text="${Produit.getDispoS()}"></td>
-                            <td th:text="${Produit.getDispoM()}"></td>
-                            <td th:text="${Produit.getDispoL()}"></td>
-                            <td th:text="${Produit.getPrix()}"></td>
-                            <td th:text="${Produit.getCat()}"></td>
-                            <td th:text="${Produit.getCouleur()}"></td>
-                            <td th:text="${Produit.getHexcouleur()}"></td>
-                            <td th:text="${Produit.getImage()}"></td>
+                            <td th:text="${Produit.getNameproduit()}" th:id="'xproduit'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getDispoS()}" th:id="'xdispoS'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getDispoM()}" th:id="'xdispoM'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getDispoL()}" th:id="'xdispoL'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getPrix()}" th:id="'xprix'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getCat()}" th:id="'xcat'+${Produit.getId()}"></td>></td>
+                            <td th:text="${Produit.getCouleur()}" th:id="'xcouleur'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getHexcouleur()}" th:id="'xhexcouleur'+${Produit.getId()}"></td>
+                            <td th:text="${Produit.getImage()}" th:id="'ximage'+${Produit.getId()}"></td>
                             <td th:onclick="|Modif('${Produit.getId()}')|" th:id="'td'+${Produit.getId()}" class="td-fleche-modif"><i th:id="'i'+${Produit.getId()}" class="far fa-arrow-alt-circle-down"></i></td>
                         </tr>
 
-                        <tr class="modification-produit" th:id="'tr'+${Produit.getId()}">
-                            <td th:text="${Produit.getId()}" name="id"></td>
-                            <td><input  type="text" name="produit" id="produit"></td>
-                            <td><input  type="number" name="dispoS" id="dispoS"></td>
-                            <td><input  type="number" name="dispoM" id="dispoM"></td>
-                            <td><input  type="number" name="dispoL" id="dispoL"></td>
-                            <td><input  type="number" step="0.01" name="prix" id="prixL"></td>
-                            <td><input  type="text" name="cat" id="cat"></td>
-                            <td><input  type="text" name="couleur" id="couleur"></td>
-                            <td><label for="hexcouleur" class="input-file"><i class="fas fa-palette"></i></label><input type="color" name="hexcouleur" id="hexcouleur"class="inactive" required></td>
-                            <td><label for="image" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image" id="image" class="inactive"></td>
-                            <td><input class="produitmanager-ajout" type="submit" value="Modifier"> <input type="hidden"  value="modif" name="choix"></td>
+                        <tr class="modification-produit" th:id="'trmodif'+${Produit.getId()}">
 
+                            <td></td>
+                            <td><input type="text" name="produit1" th:id="'produit'+${Produit.getId()}"></td>
+                            <td><input type="number" name="dispoS1" th:id="'dispoS'+${Produit.getId()}"></td>
+                            <td><input type="number" name="dispoM1" th:id="'dispoM'+${Produit.getId()}"></td>
+                            <td><input type="number" name="dispoL1" th:id="'dispoL'+${Produit.getId()}"></td>
+                            <td><input type="number" step="0.01" name="prix1" th:id="'prix'+${Produit.getId()}"></td>
+                            <td><input type="number" name="cat1" th:id="'cat'+${Produit.getId()}"></td>
+                            <td><input type="text" name="couleur1" th:id="'couleur'+${Produit.getId()}"></td>
+                            <td><label th:for="'hexcouleur'+${Produit.getId()}" class="input-file"><i class="fas fa-palette"></i></label><input type="color" value="#000001" name="hexcouleur1" th:id="'hexcouleur'+${Produit.getId()}" class="inactive"></td>
+                            <td><label th:for="'image'+${Produit.getId()}" class="input-file"><i class="far fa-file-image"></i></label><input type="file" name="image1" th:id="'image'+${Produit.getId()}" class="inactive"></td>
+                            <td th:onclick="'modifProduit('+${Produit.getId()}+')'"><i class="fas fa-arrow-circle-right"></i></td>
+                            <td th:onclick="'deleteProduit('+${Produit.getId()}+')'"><i class="fas fa-trash"></i></td>
 
                         </tr>
+
                     </th:block>
 
                 </table>

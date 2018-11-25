@@ -33,9 +33,14 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
         int connecte = VariableSessionConnecte(rsq);
         HttpSession session = rsq.getSession();
+
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
+
+        //Get error and success messages
+
         String errAjout = (String) session.getAttribute("errAjout");
         session.removeAttribute("errAjout");
+
         String messageAjout = (String) session.getAttribute("messageAjout");
         session.removeAttribute("messageAjout");
 
@@ -65,12 +70,28 @@ public class ProductManagerServlet extends AbstractWebServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        // GET PARAMETERS
-        Part filePart = req.getPart("image");
-        File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String image = newFile.getName();
+
+        //AJOUT OU MODIF
+        String action = req.getParameter("action");
+
+
+        /******************/
+        /*    A J O U T   */
+        /******************/
+
+        System.out.println(action);
+
+        Part filePart = req.getPart("image");
+        String image;
+        if (filePart.getSize() == 0) {
+            image = "none";
+        } else {
+            File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
+            image = newFile.getName();
+        }
+
 
         String nameprod = req.getParameter("produit");
         Integer dispoS = null;
@@ -106,18 +127,19 @@ public class ProductManagerServlet extends AbstractWebServlet {
         try {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
-            if(createProd==null) {
+            if (createProd == null) {
                 req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
-            }
-            else {
+            } else {
                 req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
             }
 
             // REDIRECT TO DETAIL PRODUIT
             resp.sendRedirect("managerproduit");
+
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("produit-error-message", e.getMessage());
             resp.sendRedirect("managerproduit");
-            }
         }
     }
+
+}

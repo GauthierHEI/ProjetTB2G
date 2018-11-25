@@ -40,6 +40,7 @@ public class ListeUtilisateursServlet extends AbstractWebServlet{
             ListOfUtilisateurs = UtilisateurSource.getInstance().listUtilisateur();
             context.setVariable("utilisateur", ListOfUtilisateurs);
             context.setVariable("connecte", connecte);
+            context.setVariable("utilisateurCourant",utilisateurConnecte.getId());
 
             //process method
             String finalDocument = engine.process("utilisateurs", context);

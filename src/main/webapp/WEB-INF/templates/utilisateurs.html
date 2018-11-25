@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/javascript.js" type="application/javascript"></script>
 
 </head>
 
@@ -31,8 +32,19 @@
                     </tr>
                     </thead>
 
-                 <!-- Créer un bloc dynamique (avec thymeleaf) pour chaque utilisateur (1 bloc par utilisateur) -->
-                        <tr th:each=" Utilisateur : ${utilisateur}">
+                    <!-- Créer un bloc dynamique (avec thymeleaf) pour chaque utilisateur (1 bloc par utilisateur) -->
+                    <tr th:if="${Utilisateur.getId()==utilisateurCourant}" th:each=" Utilisateur : ${utilisateur}" id="moiUtilisateurConnecte">
+                        <td th:text="${Utilisateur.getId()}"></td>
+                        <td id="emailmoi"><div th:text="${Utilisateur.getEmail()}"></div><div id="moi">[Moi]</div></td>
+                        <td th:text="${Utilisateur.getPrenom()}"></td>
+                        <td th:text="${Utilisateur.getNom()}"></td>
+                        <td th:text="${Utilisateur.getNaissance()}"></td>
+                        <td th:text="${Utilisateur.getAdresseliv()}"></td>
+                        <td th:text="${Utilisateur.getAdressefac()}"></td>
+                        <td th:text="${Utilisateur.getAdmin()}"></td>
+                    </tr>
+
+                        <tr th:if="${Utilisateur.getId()!= utilisateurCourant}" th:each=" Utilisateur : ${utilisateur}" >
                             <td th:text="${Utilisateur.getId()}"></td>
                             <td th:text="${Utilisateur.getEmail()}"></td>
                             <td th:text="${Utilisateur.getPrenom()}"></td>
@@ -40,7 +52,8 @@
                             <td th:text="${Utilisateur.getNaissance()}"></td>
                             <td th:text="${Utilisateur.getAdresseliv()}"></td>
                             <td th:text="${Utilisateur.getAdressefac()}"></td>
-                            <td th:text="${Utilisateur.getAdmin()}"></td>
+                            <td th:text="${Utilisateur.getAdmin()}" th:id="'adminName'+${Utilisateur.getId()}"></td>
+                            <td  th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" class="fas fa-user-edit" ></td> <!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
                         </tr>
                 </table>
             </form>
