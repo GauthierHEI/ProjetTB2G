@@ -62,10 +62,6 @@ function editAdmin(utilisateur_id){
 
     requete.send("id=" + utilisateur_id + "&admin=" + role);
 
-    function truc(){
-        alert("machin");
-    }
-
 }
 
 function verificationEmail(champId) {
