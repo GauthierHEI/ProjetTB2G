@@ -62,7 +62,7 @@ public class ConnexionServlet extends AbstractWebServlet {
     @Override
     protected void doPost(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
         HttpSession session = rsq.getSession();
-        String choix = rsq.getParameter("choix");
+
         if (("creer").equals(rsq.getParameter("choix"))) {
 
                 String mail = rsq.getParameter("mail");

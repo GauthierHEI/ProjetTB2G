@@ -109,3 +109,16 @@ function InputImage(){
     icone.className= "fas fa-check";
 }
 
+function VerificationMdp(){
+    var mdp1 = document.getElementById("profil-mdp1").value;
+    var mdp2 = document.getElementById("profil-mdp2").value;
+
+    if(mdp1 == mdp2){
+        return true;
+    }
+    else{
+        alert("les mots de passes ne correspondent pas!");
+        return false;
+    }
+}
+

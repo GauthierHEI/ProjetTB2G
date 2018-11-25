@@ -116,6 +116,21 @@ public class UtilisateurDaoTestCase {
         //THEN
     }
 
+    @Test
+    public void shouldModifyAdress(){
+        //WHEN
+
+        //THEN
+
+    }
+
+    @Test
+    public void shouldModifyEmail(){
+        //WHEN
+
+        //THEN
+    }
+
 }
 
 

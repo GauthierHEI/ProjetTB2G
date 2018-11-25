@@ -154,7 +154,7 @@ div.produit-nom{
 
 .produit-informations img{
     width: 15vw;
-    height: auto;
+    height: 17vw;
 }
 
 .produit-prix-couleur{
@@ -202,6 +202,7 @@ form.produit-achat input:hover {
 }
 
 /*AUTHENTIFICATION */
+
 
 .authentification-contenu{
      padding: 1%;
@@ -273,11 +274,12 @@ form.produit-achat input:hover {
 }
 
 .error {
+    font-size: 1.2vw;
     color: darkred;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
-    margin-top: 0.5vw;
+    margin: 0.5vw;
 }
 
 .success::before {
@@ -286,11 +288,12 @@ form.produit-achat input:hover {
 }
 
 .success {
+    font-size: 1.2vw;
     color: darkgreen;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
-    margin-top: 0.5vw;
+    margin: 0.5vw;
 }
 
 .authentification-contenu input{
@@ -505,6 +508,34 @@ div.footer-contact a{
 }
 /* PROFIL */
 
+.flex{
+    display: flex;
+}
+
+.separation-profil{
+    width: 0.2vw;
+    background-color: #004d66;
+}
+
+.form-profil{
+    margin: auto;
+}
+
+.form-profil h3{
+    font-size: 1vw;
+}
+
+.profil-modifmdp{
+    background-color: #18cd66;
+    color: white;
+    text-align: center;
+    padding: 0.3vw;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    margin: 0.3vw;
+}
+
 .profil-container{
     background-color: white;
     border-radius: 1em;
@@ -512,6 +543,7 @@ div.footer-contact a{
     margin: 1vw;
     text-align: center;
     font-size: 1.5vw;
+    width: 80%;
 }
 
 .profil-container div{
