@@ -268,10 +268,6 @@ form.produit-achat input:hover {
     cursor: pointer;
 }
 
-.error::before {
-    content: 'Erreur : ';
-    color: darkred;
-}
 
 .error {
     font-size: 1.2vw;
@@ -282,10 +278,6 @@ form.produit-achat input:hover {
     margin: 0.5vw;
 }
 
-.success::before {
-    content: 'Succès : ';
-    color: darkgreen;
-}
 
 .success {
     font-size: 1.2vw;
@@ -385,6 +377,23 @@ div.footer-contact a{
 }
 
 /* MANAGER PRODUIT */
+
+.icone-validation-modification:hover {
+    color: #18cd66;
+    cursor: pointer;
+}
+
+.icone-validation-supprimer:hover {
+    color: #f20019;
+    cursor: pointer;
+}
+
+
+input#ajout{
+    width: 8vw;
+    height: 1.8vw;
+}
+
 .input-file{
     color: black;
     cursor: pointer;
@@ -416,6 +425,11 @@ div.footer-contact a{
     text-align: center;
     border-radius: 1em;
     margin: 0.5vw;
+}
+
+.container-produitmanager input{
+    width: 8vw;
+    height: 1.1vw;
 }
 
 .container-produitmanager table{

@@ -21,7 +21,6 @@ function CacheProduit(ProductId){
     console.log("In cache");
     var Id = ProductId;
     document.getElementById("trmodif"+Id).style.display="none";
-    document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
     document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
 
 };

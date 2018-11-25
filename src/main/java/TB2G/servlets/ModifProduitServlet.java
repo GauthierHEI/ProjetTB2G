@@ -33,30 +33,37 @@ public class ModifProduitServlet extends AbstractWebServlet{
             if (req.getParameter("produit") != null && !"".equals(req.getParameter("produit"))) {
                 nameprod1 = req.getParameter("produit");
             }
+
             Integer dispoS1 = null;
             if (req.getParameter("dispoS") != null && !"".equals(req.getParameter("dispoS"))) {
                 dispoS1 = Integer.parseInt(req.getParameter("dispoS"));
             }
+
             Integer dispoM1 = null;
             if (req.getParameter("dispoM") != null && !"".equals(req.getParameter("dispoM"))) {
                 dispoM1 = Integer.parseInt(req.getParameter("dispoM"));
             }
+
             Integer dispoL1 = null;
             if (req.getParameter("dispoL") != null && !"".equals(req.getParameter("dispoL"))) {
                 dispoL1 = Integer.parseInt(req.getParameter("dispoL"));
             }
+
             Float prix1 = null;
             if (req.getParameter("prix") != null && !"".equals(req.getParameter("prix"))) {
                 prix1 = Float.parseFloat(req.getParameter("prix"));
             }
+
             Integer cat1 = null;
             if (req.getParameter("cat") != null && !"".equals(req.getParameter("cat"))) {
                 dispoS1 = Integer.parseInt(req.getParameter("cat"));
             }
+
             String couleur1 = null;
             if (req.getParameter("couleur") != null && !"".equals(req.getParameter("couleur"))) {
                 couleur1 = req.getParameter("couleur");
             }
+
             String hexcouleur1 = null;
             if ((req.getParameter("hexcouleur") != null) &&
                     !("".equals(req.getParameter("hexcouleur"))) &&
