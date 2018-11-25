@@ -117,4 +117,36 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }
 
     }
+
+    @Override
+    public void ModificationAdresse(Utilisateur utilisateur, String newAdresse) {
+        String SQLQuery = "UPDATE utilisateur SET adresseliv=? WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
+                statement.setString(1, newAdresse);
+                statement.setInt(2, utilisateur.getId());
+                statement.executeUpdate();
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("L'adresse n'a pas pu etre modifiee, verifier que vous avez bien rempli le formulaire");
+        }
+    }
+
+    @Override
+    public void ModificationEmail(Utilisateur utilisateur, String newEmail) {
+        String SQLQuery = "UPDATE utilisateur SET email=? WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
+                statement.setString(1, newEmail);
+                statement.setInt(2, utilisateur.getId());
+                statement.executeUpdate();
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("L'email n'a pas pu etre modifie, verifier que vous avez bien rempli le formulaire");
+        }
+    }
 }
