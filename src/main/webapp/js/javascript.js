@@ -9,16 +9,18 @@ function Cache(ProductId){
     document.getElementById("form"+Id).style.visibility="hidden";
 };
 
-function Modif (ProductId){
+function Modif(ProductId){
+    console.log("In affiche");
     var Id = ProductId;
-    document.getElementById("tr"+Id).style.display="table-row";
+    document.getElementById("trmodif"+Id).style.display="table-row";
     document.getElementById("td"+Id).onclick = function (ev) { CacheProduit(Id) };
 
 };
 
 function CacheProduit(ProductId){
+    console.log("In cache");
     var Id = ProductId;
-    document.getElementById("tr"+Id).style.display="none";
+    document.getElementById("trmodif"+Id).style.display="none";
     document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
     document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
 

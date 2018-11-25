@@ -117,43 +117,9 @@ public class ModifProduitServlet extends AbstractWebServlet{
                 resp.getWriter().print(e.getMessage());
             }
         }
-
-
-        /********************/
-        /*    D E L E T E   */
-        /********************/
-
-
-        /*Integer produitId2;
-        if ((req.getParameter("produitId2") != null) && !("".equals(req.getParameter("produitId2")))) {
-
-            //Id not null nor empty
-
-            produitId2 = Integer.parseInt(req.getParameter("produitId2"));
-            try {
-                Integer idSuppr = ProduitStore.getInstance().deleteProduit(produitId2);
-                if (idSuppr == null) {
-                    req.getSession().setAttribute("errDelete","Le produit n'a pas pu être supprimé.");
-                }
-                else {
-                    req.getSession().setAttribute("messageDelete","Le produit n'a pas pu être supprimé.");
-                }
-
-                // REDIRECT TO DETAIL PRODUIT
-                resp.sendRedirect("managerproduit");
-
-            } catch (IllegalArgumentException e) {
-                req.getSession().setAttribute("produit-error-message", e.getMessage());
-                resp.sendRedirect("managerproduit");
-            }
-
-        }
         else {
-            req.getSession().setAttribute("errDelete", "Impossible de récupérer l'Id produit.");
-            // REDIRECT TO DETAIL PRODUIT
-            resp.sendRedirect("managerproduit");
+            resp.getWriter().print("Impossible de récupérer l'Id produit.");
         }
-        */
     }
 
 }

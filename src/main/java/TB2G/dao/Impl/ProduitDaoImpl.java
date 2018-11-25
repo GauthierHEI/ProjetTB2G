@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Properties;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
+import static TB2G.dao.Impl.UtilisateurDaoImpl.LOG;
 import static jdk.nashorn.internal.runtime.GlobalFunctions.parseFloat;
 
 import org.slf4j.Logger;
@@ -106,8 +107,8 @@ public class ProduitDaoImpl implements ProduitDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
             LOG.error("exception SQL");
+            return null;
         }
         return null;
     }
