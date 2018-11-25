@@ -20,7 +20,7 @@
             <div th:each=" Chemise : ${chemise}" class="produit-informations" th:onmouseover="|Achat('${Chemise.getId()}')|"
                  th:onmouseout="|Cache('${Chemise.getId()}')|">
 
-                <img src="images/MannequinChemise.jpg">
+                <img th:src=" '/images/' + ${Chemise.getImage()}">
 
                 <div th:text="${Chemise.getNameproduit()}" class="produit-nom"> </div>
                 <div  class="produit-prix-couleur">
@@ -31,6 +31,11 @@
                     <div th:text="${Chemise.getPrix()}+ '$'"> </div>
                 </div>
                 <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Chemise.getId()}+'\');'">
+                    <select name="taille" class="selection-taille">
+                        <option th:if="${Chemise.getDispoS()>0}">S</option>
+                        <option th:if="${Chemise.getDispoM()>0}">M</option>
+                        <option th:if="${Chemise.getDispoL()>0}">L</option>
+                    </select>
                     <input type="submit" name="achat" value="bientot disponible"/>
                 </form>
             </div>

@@ -10,6 +10,8 @@ public interface ProduitDao {
 
     Produit addProduit(Produit produit);
 
+    Produit modifProduit(Produit produit);
+
     List<Produit> listProduit();
 
     List<Produit> listTshirt();
@@ -18,6 +20,8 @@ public interface ProduitDao {
 
     List<Produit> listChemise();
 
-    Produit modifProduit(Produit produit);
+    Produit getProduitById(Integer produitId);
+
+    Integer deleteProduit(Integer id);
 
 }

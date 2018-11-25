@@ -16,4 +16,7 @@ public interface UtilisateurDao {
 
     void ModificationMdp(Utilisateur utilisateur,String newMdp);
 
+    void ModificationAdresse(Utilisateur utilisateur,String newAdresse);
+
+    void ModificationEmail(Utilisateur utilisateur,String newEmail);
 }

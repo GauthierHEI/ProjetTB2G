@@ -50,4 +50,20 @@ public class UtilisateurSource {
         }
     }
 
+    public void ModificationAdresse(Utilisateur util, String adresse){
+        if(adresse==null || "".equals(adresse)){
+            throw new IllegalArgumentException("L'adresse ne peut pas être nulle");
+        }else {
+            utilisateurDao.ModificationAdresse(util, adresse);
+        }
+    }
+
+    public void ModificationEmail(Utilisateur util, String email){
+        if(email==null || "".equals(email)){
+            throw new IllegalArgumentException("L'email ne peut pas être nulle");
+        }else {
+            utilisateurDao.ModificationEmail(util, email);
+        }
+    }
+
 }
