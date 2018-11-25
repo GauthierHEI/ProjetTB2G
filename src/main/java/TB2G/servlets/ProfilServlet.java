@@ -18,6 +18,7 @@ public class ProfilServlet extends AbstractWebServlet {
 
     @Override
     protected void doGet(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
+
         int connecte = VariableSessionConnecte(rsq);
         HttpSession session = rsq.getSession();
         String errMdp= (String) session.getAttribute("errChampMdp");
@@ -40,13 +41,13 @@ public class ProfilServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
+        context.setVariable("connecte", connecte);
         context.setVariable("errChampMdp",errMdp);
         context.setVariable("successMdp",SuccessMdp);
         context.setVariable("errChampEmail",errEmail);
         context.setVariable("successEmail",SuccessEmail);
         context.setVariable("errChampAdresse",errAdresse);
         context.setVariable("successAdresse",SuccessAdresse);
-        context.setVariable("connecte", connecte);
         context.setVariable("utilisateurCourant", utilisateurConnecte);
 
         //process method
