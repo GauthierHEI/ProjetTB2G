@@ -520,6 +520,14 @@ input#ajout{
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
+.admin{
+    color: green;
+}
+
+.utilisateur{
+    color: red;
+}
 /* PROFIL */
 
 .flex{

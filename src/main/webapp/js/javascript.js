@@ -41,11 +41,13 @@ function editAdmin(utilisateur_id){
             console.log("Je passe le rôle à true");
 
             adminText.innerText ="true";
+            adminText.className="admin";
         }
         else{
             console.log("Je passe le rôle à false");
 
             adminText.innerText="false";
+            adminText.className="utilisateur";
         }
     }
     requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
