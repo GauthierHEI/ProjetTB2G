@@ -21,7 +21,6 @@ function CacheProduit(ProductId){
     console.log("In cache");
     var Id = ProductId;
     document.getElementById("trmodif"+Id).style.display="none";
-    document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
     document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
 
 };
@@ -42,11 +41,13 @@ function editAdmin(utilisateur_id){
             console.log("Je passe le rôle à true");
 
             adminText.innerText ="true";
+            adminText.className="admin";
         }
         else{
             console.log("Je passe le rôle à false");
 
             adminText.innerText="false";
+            adminText.className="utilisateur";
         }
     }
     requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");

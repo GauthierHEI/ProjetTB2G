@@ -4,7 +4,6 @@ var modifProduit = function (produitId) {
     if (document.getElementById("produit" + produitId) != null) {
         produit = document.getElementById("produit" + produitId).value;
     }
-
     var dispoS = "";
     if (document.getElementById("dispoS" + produitId) != null) {
         dispoS = document.getElementById("dispoS" + produitId).value;
@@ -27,7 +26,7 @@ var modifProduit = function (produitId) {
     }
     var couleur = "";
     if (document.getElementById("couleur" + produitId) != null) {
-        couelur = document.getElementById("couleur" + produitId).value;
+        couleur = document.getElementById("couleur" + produitId).value;
     }
     var hexcouleur = "";
     if (document.getElementById("hexcouleur" + produitId) != null) {
@@ -73,7 +72,7 @@ var modifProduit = function (produitId) {
             document.getElementById("xcouleur" + produitId).innerText = couleur;
             document.getElementById("couleur" + produitId).value = "";
         }
-        if (hexcouleur != "") {
+        if ((hexcouleur != "") && (hexcouleur !="#000001")) {
             document.getElementById("xhexcouleur" + produitId).innerText = hexcouleur;
             document.getElementById("hexcouleur" + produitId).value = "#000001";
         }
@@ -89,7 +88,25 @@ var deleteProduit = function (produitId) {
     request.send("produitId="+produitId);
 
     request.onload = function () {
-        document.getElementById("tr"+produitId).style.display='none';
-        document.getElementById("trmodif"+produitId).style.display='none';
+        var child = document.getElementById('tr'+ produitId);
+        var parent = child.parentNode;
+        var index = Array.prototype.indexOf.call(parent.children, child);
+        console.log("index = "+index);
+        document.getElementById("table-modif").deleteRow(index+2);
+        document.getElementById("table-modif").deleteRow(index+1);
     };
 };
+
+function ModifHexColor (ProductId) {
+    var couleur = document.getElementById("hexcouleur"+ProductId).value;
+    console.log(couleur);
+    var icone = document.getElementById("icone-hexcouleur"+ProductId);
+    icone.style.color= couleur;
+
+};
+
+function ModifImage (ProductId) {
+    var icone = document.getElementById("icone-image"+ProductId);
+    icone.style.color="#18cd66";
+    icone.className= "fas fa-check";
+}
