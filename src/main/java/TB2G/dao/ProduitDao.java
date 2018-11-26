@@ -20,4 +20,6 @@ public interface ProduitDao {
 
     Produit modifProduit(Produit produit);
 
+    Produit getProduit(Integer id);
+
 }

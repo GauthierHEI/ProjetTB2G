@@ -3,32 +3,19 @@ package TB2G.entities;
 public class Panier {
 
     private Integer idCo;
-    private Integer id;
+    private Produit produit;
     private Integer idUtil;
-    private String nameproduit;
     private String taille;
     private Integer quantite;
-    private float prixTot;
-    private float prixUni;
     private boolean vendu;
 
-    public Panier(Integer idCo, Integer idUtil, Integer id, String nameproduit, String taille, Integer quantite, float prixUni ,boolean vendu) {
+    public Panier(Integer idCo, Integer idUtil, Produit produit, String taille, Integer quantite ,boolean vendu) {
         this.idCo = idCo;
-        this.id = id;
+        this.produit = produit;
         this.idUtil = idUtil;
-        this.nameproduit = nameproduit;
         this.taille = taille;
         this.quantite = quantite;
-        this.prixUni = prixUni;
         this.vendu = vendu;
-    }
-
-    public float getPrixUni() {
-        return prixUni;
-    }
-
-    public void setPrixUni(float prixUni) {
-        this.prixUni = prixUni;
     }
 
     public Integer getIdCo() {
@@ -39,20 +26,12 @@ public class Panier {
         this.idCo = idCo;
     }
 
-    public Integer getId() {
-        return id;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNameproduit() {
-        return nameproduit;
-    }
-
-    public void setNameproduit(String nameproduit) {
-        this.nameproduit = nameproduit;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     public String getTaille() {
@@ -77,14 +56,6 @@ public class Panier {
 
     public void setQuantite(Integer quantite) {
         this.quantite = quantite;
-    }
-
-    public float getPrixTot() {
-        return prixTot;
-    }
-
-    public void setPrixTot(float prixTot) {
-        this.prixTot = prixTot;
     }
 
     public boolean isVendu() {

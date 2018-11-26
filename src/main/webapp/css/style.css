@@ -371,6 +371,11 @@ div.footer-contact a{
     color: white;
 }
 
+.imagePanier {
+    max-width: 8vw;
+    max-height: 10vw;
+}
+
 /* MANAGER PRODUIT */
 .input-file{
     color: black;
@@ -486,3 +491,5 @@ div.footer-contact a{
         opacity: 0;
     }
 }
+
+

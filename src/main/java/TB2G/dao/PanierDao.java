@@ -8,6 +8,6 @@ public interface PanierDao {
 
     Panier addP2P(Panier produit);
 
-    List<Panier> listPanier();
+    List<Panier> listPanier(Integer id);
 
 }

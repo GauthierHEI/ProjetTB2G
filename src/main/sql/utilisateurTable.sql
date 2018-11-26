@@ -33,11 +33,8 @@ CREATE TABLE `panier` (
   `element_id` int(11) NOT NULL AUTO_INCREMENT,
   `utilisateur_id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
-  `nameproduit` varchar (30) NOT NULL,
   `taille` varchar (30) NOT NULL,
   `quantite` int(10) NOT NULL,
-  `prixUni` float(20) NOT NULL,
-  `prixTotal` float(20) NOT NULL,
   `vendu` boolean NOT NULL,
 
 

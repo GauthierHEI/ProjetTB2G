@@ -26,6 +26,13 @@ public class Produit {
         this.hexcouleur = hexcouleur;
     }
 
+    public Produit(Integer id, String nameproduit, Float prix, String image) {
+        this.id = id;
+        this.nameproduit = nameproduit;
+        this.prix = prix;
+        this.image = image;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -45,6 +52,8 @@ public class Produit {
     public Integer getDispoS() {
         return dispoS;
     }
+
+
 
     public void setDispoS(Integer dispoS) {
         this.dispoS = dispoS;
