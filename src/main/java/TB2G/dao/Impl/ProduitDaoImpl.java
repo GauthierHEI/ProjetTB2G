@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 
 public class ProduitDaoImpl implements ProduitDao {
 
+    static final Logger LOG = LoggerFactory.getLogger(ProduitDaoImpl.class);
+
     @Override
     public Produit addProduit(Produit produit) {
         String sqlQuery = "INSERT INTO produit(produit, dispoS, dispoM, dispoL, prix, cat, couleur, image, hexcouleur) VALUES(?, ?, ?, ?, ?, ?, ?, ?,?)";

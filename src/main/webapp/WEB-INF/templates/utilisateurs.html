@@ -44,7 +44,7 @@
                         <td th:text="${Utilisateur.getAdmin()}"></td>
                     </tr>
 
-                        <tr th:if="${Utilisateur.getId()!= utilisateurCourant}" th:each=" Utilisateur : ${utilisateur}" >
+                        <tr th:if="${Utilisateur.getId()!= utilisateurCourant}" th:each=" Utilisateur : ${utilisateur}" th:id="'utilisateurConcerne'+${Utilisateur.getId()}" >
                             <td th:text="${Utilisateur.getId()}"></td>
                             <td th:text="${Utilisateur.getEmail()}"></td>
                             <td th:text="${Utilisateur.getPrenom()}"></td>
@@ -53,7 +53,8 @@
                             <td th:text="${Utilisateur.getAdresseliv()}"></td>
                             <td th:text="${Utilisateur.getAdressefac()}"></td>
                             <td th:text="${Utilisateur.getAdmin()}" th:id="'adminName'+${Utilisateur.getId()}"></td>
-                            <td  th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" class="fas fa-user-edit" ></td> <!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
+                            <td  th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" class="fas fa-user-edit" ></td><!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
+                            <td th:onclick="'deleteUtilisateur('+${Utilisateur.getId()}+')'" class="fas fa-times-circle"></td>
                         </tr>
                 </table>
             </form>

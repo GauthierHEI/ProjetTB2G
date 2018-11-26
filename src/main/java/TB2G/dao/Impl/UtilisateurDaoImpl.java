@@ -23,7 +23,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             String sqlQuery = "insert into utilisateur( email, prenom, nom, datenaissance," +
                     "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(1,utilisateur.getEmail());
+                statement.setString(1, utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
                 if (utilisateur.getNaissance() != null) {
@@ -34,7 +34,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(7, utilisateur.getAdressefac());
                 statement.setBoolean(8, false);
                 statement.executeUpdate();
-                LOG.info("Un nouvel utilisateur est ajouté dans la base de données : "+utilisateur.getPrenom()+" "+utilisateur.getNom()+" "+utilisateur.getEmail());
+                LOG.info("Un nouvel utilisateur est ajouté dans la base de données : " + utilisateur.getPrenom() + " " + utilisateur.getNom() + " " + utilisateur.getEmail());
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -43,11 +43,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                     }
                 }
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
             LOG.error("exception SQL");
-            return new Utilisateur(null,null,null,null,null,null,null,null, null);
+            return new Utilisateur(null, null, null, null, null, null, null, null, null);
         }
         return null;
     }
@@ -115,24 +115,26 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         LOG.info("return utilisateur");
         return utilisateur;
     }
-    
+
     @Override
-    public void editAdmin(Integer utilisateur_id, boolean role){
-        String sqlQuerry="UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
-        try(Connection connection = DataSourceProvider.getDataSource().getConnection()){
-            try (PreparedStatement statement = connection.prepareStatement(sqlQuerry)){
-                statement.setBoolean(1,role);
-                statement.setInt(2,utilisateur_id);
+    public void editAdmin(Integer utilisateur_id, boolean role) {
+        String sqlQuerry = "UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuerry)) {
+                statement.setBoolean(1, role);
+                statement.setInt(2, utilisateur_id);
                 statement.executeUpdate();
                 LOG.info("le rôle de l'utilisateur est modifié");
-        }
-        }
-        catch (SQLException e) {
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("le role n'a pas été modifié");
         }
+    }
 
-    public void ModificationMdp(Utilisateur utilisateur, String newMdp){
+
+    @Override
+    public void ModificationMdp(Utilisateur utilisateur, String newMdp) {
 
         String SQLQuery = "UPDATE utilisateur SET motdepasse=? WHERE utilisateur_id=?";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -141,11 +143,27 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setInt(2, utilisateur.getId());
                 statement.executeUpdate();
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié, vérifier que vous avez bien rempli le formulaire");
         }
 
     }
+
+    @Override
+    public void deleteUtilisateur(Integer utilisateur_id) {
+
+        String SQLQuerry = "DELETE FROM utilisateur WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuerry)) {
+                statement.setInt(1,utilisateur_id);
+                statement.executeUpdate();
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL");
+        }
+    }
 }
+

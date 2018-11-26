@@ -6,7 +6,6 @@ import TB2G.dao.Impl.UtilisateurDaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UtilisateurSource {
@@ -48,6 +47,10 @@ public class UtilisateurSource {
         }else {
             utilisateurDao.ModificationMdp(util, mdp);
         }
+    }
+
+    public void deleteUtilisateur(Integer utilisateur_id){
+            utilisateurDao.deleteUtilisateur(utilisateur_id);
     }
 
 }
