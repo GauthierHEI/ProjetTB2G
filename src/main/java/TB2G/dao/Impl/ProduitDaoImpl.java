@@ -333,5 +333,31 @@ public class ProduitDaoImpl implements ProduitDao {
     }
 
 
+
+
+    @Override
+    public Produit getProduit(Integer id) {
+
+        try (Connection connection = getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "select * from produit where produit_id=?")) {
+                statement.setInt(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return new Produit(
+                                resultSet.getInt("produit_id"),
+                                resultSet.getString("produit"),
+                                resultSet.getFloat("prix"),
+                                resultSet.getString("image"));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 }
 

@@ -20,7 +20,7 @@
             <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|"
                  th:onmouseout="|Cache('${Pull.getId()}')|">
 
-                <img src="images/MannequinPull.jpg">
+                <img th:src=" '/images/' + ${Pull.getImage()}">
                 <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
                 <div  class="produit-prix-couleur">
                     <div>
@@ -29,8 +29,18 @@
                     </div>
                     <div th:text="${Pull.getPrix()}+ '$'"> </div>
                 </div>
-                <form th:id="'form'+ ${Pull.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Pull.getId()}+'\');'">
-                    <input type="submit" name="achat" value="bientot disponible"/>
+                <form th:id="'form'+ ${Pull.getId()}" class="produit-achat">
+
+                    <input type="number" name="idObj" th:value="${Pull.getId()}">
+
+                    <select name="taille" class="selection-taille">
+                        <option th:if="${Pull.getDispoS()>0}">S</option>
+                        <option th:if="${Pull.getDispoM()>0}">M</option>
+                        <option th:if="${Pull.getDispoL()>0}">L</option>
+                    </select>
+
+                    <input type="number" name="quantite" id="quantite" value="1" required>
+                    <input type="submit" name="achat" value="+"/>
                 </form>
             </div>
 

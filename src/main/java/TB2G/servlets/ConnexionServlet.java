@@ -62,7 +62,7 @@ public class ConnexionServlet extends AbstractWebServlet {
     @Override
     protected void doPost(HttpServletRequest rsq, HttpServletResponse rsp) throws IOException {
         HttpSession session = rsq.getSession();
-        String choix = rsq.getParameter("choix");
+
         if (("creer").equals(rsq.getParameter("choix"))) {
 
                 String mail = rsq.getParameter("mail");
@@ -88,21 +88,20 @@ public class ConnexionServlet extends AbstractWebServlet {
 
                 Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                         birthDate, motDePasseHash, adresse, adresse, false);
-
                 //Create task
-                Utilisateur utilisateurRetour = UtilisateurSource.getInstance().addUtilisateur(utilisateur);
-                if (utilisateurRetour.getPrenom() == null) {
-                    session.setAttribute("errChamp", "Champ mal rempli");
-                    rsp.sendRedirect("authentification");
-                } else {
-                    if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail()) == null) {
-                        UtilisateurSource.getInstance().addUtilisateur(utilisateur);
-                        session.setAttribute("utilisateurConnecte", utilisateur);
-                        rsp.sendRedirect("authentification");
-                    } else {
-                        session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
+                if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail())== null) {
+                    Utilisateur utilisateurRetour = UtilisateurSource.getInstance().addUtilisateur(utilisateur);
+                    if (utilisateurRetour.getPrenom() == null) {
+                        session.setAttribute("errChamp", "Champ mal rempli");
                         rsp.sendRedirect("authentification");
                     }
+                    else{
+                        session.setAttribute("utilisateurConnecte", utilisateur);
+                        rsp.sendRedirect("authentification");
+                        }
+                }else{
+                    session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
+                    rsp.sendRedirect("authentification");
                 }
 
             } else {

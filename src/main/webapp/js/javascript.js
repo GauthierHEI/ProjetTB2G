@@ -21,7 +21,6 @@ function CacheProduit(ProductId){
     console.log("In cache");
     var Id = ProductId;
     document.getElementById("trmodif"+Id).style.display="none";
-    document.getElementById("i"+Id).className="far fa-arrow-alt-circle-down";
     document.getElementById("td"+Id).onclick = function (ev) { Modif(Id) };
 
 };
@@ -42,11 +41,13 @@ function editAdmin(utilisateur_id){
             console.log("Je passe le rôle à true");
 
             adminText.innerText ="true";
+            adminText.className="admin";
         }
         else{
             console.log("Je passe le rôle à false");
 
             adminText.innerText="false";
+            adminText.className="utilisateur";
         }
     }
     requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -61,11 +62,6 @@ function editAdmin(utilisateur_id){
     }
 
     requete.send("id=" + utilisateur_id + "&admin=" + role);
-
-    function truc(){
-        alert("machin");
-    }
-
 }
 
 function verificationEmail(champId) {
@@ -107,5 +103,18 @@ function InputImage(){
     var icone = document.getElementById("icone-image");
     icone.style.color="#18cd66";
     icone.className= "fas fa-check";
+}
+
+function VerificationMdp(){
+    var mdp1 = document.getElementById("profil-mdp1").value;
+    var mdp2 = document.getElementById("profil-mdp2").value;
+
+    if(mdp1 == mdp2){
+        return true;
+    }
+    else{
+        alert("les mots de passes ne correspondent pas!");
+        return false;
+    }
 }
 
