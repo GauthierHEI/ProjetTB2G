@@ -31,6 +31,7 @@ CREATE TABLE `produit` (
 
 CREATE TABLE `panier` (
   `element_id` int(11) NOT NULL AUTO_INCREMENT,
+  `utilisateur_id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
   `nameproduit` varchar (30) NOT NULL,
   `taille` varchar (30) NOT NULL,

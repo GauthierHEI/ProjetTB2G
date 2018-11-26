@@ -4,6 +4,7 @@ public class Panier {
 
     private Integer idCo;
     private Integer id;
+    private Integer idUtil;
     private String nameproduit;
     private String taille;
     private Integer quantite;
@@ -11,9 +12,10 @@ public class Panier {
     private float prixUni;
     private boolean vendu;
 
-    public Panier(Integer idCo, Integer id, String nameproduit, String taille, Integer quantite, float prixUni ,boolean vendu) {
+    public Panier(Integer idCo, Integer idUtil, Integer id, String nameproduit, String taille, Integer quantite, float prixUni ,boolean vendu) {
         this.idCo = idCo;
         this.id = id;
+        this.idUtil = idUtil;
         this.nameproduit = nameproduit;
         this.taille = taille;
         this.quantite = quantite;
@@ -63,6 +65,14 @@ public class Panier {
 
     public Integer getQuantite() {
         return quantite;
+    }
+
+    public Integer getIdUtil() {
+        return idUtil;
+    }
+
+    public void setIdUtil(Integer idUtil) {
+        this.idUtil = idUtil;
     }
 
     public void setQuantite(Integer quantite) {

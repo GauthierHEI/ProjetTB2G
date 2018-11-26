@@ -54,6 +54,7 @@ public class TshirtsServlet extends AbstractWebServlet {
         HttpSession session = req.getSession();
         Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
 
+        Integer IdUtil = utilCo.getId();
 
         String nameprod = req.getParameter("produit");
         Integer Id = null;
@@ -75,7 +76,7 @@ public class TshirtsServlet extends AbstractWebServlet {
 
 
         // CREATE PRODUIT
-        Panier newProduit = new Panier(null, Id, nameprod, taille, quantite, prixUni,false);
+        Panier newProduit = new Panier(null, IdUtil, Id, nameprod, taille, quantite, prixUni,false);
         try {
 
             Panier createProd = PanierManager.getInstance().addP2P(newProduit);
