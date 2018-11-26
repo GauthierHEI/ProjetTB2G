@@ -51,6 +51,7 @@ public class UtilisateurSource {
 
     public void deleteUtilisateur(Integer utilisateur_id){
             utilisateurDao.deleteUtilisateur(utilisateur_id);
+            LOG.info("l'utilisateur a été supprimé");
     }
 
 }

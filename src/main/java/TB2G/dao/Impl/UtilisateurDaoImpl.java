@@ -158,6 +158,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             try (PreparedStatement statement = connection.prepareStatement(SQLQuerry)) {
                 statement.setInt(1,utilisateur_id);
                 statement.executeUpdate();
+                LOG.info("l'utilisateur a été supprimé de la base de données");
             }
         }
         catch (SQLException e) {

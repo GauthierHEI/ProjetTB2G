@@ -130,7 +130,7 @@ public class UtilisateurDaoTestCase {
         List<Utilisateur> liste=utilisateurDao.listUtilisateur();
         //THEN
         assertThat(liste.size()).isEqualTo(1);
-        
+
     }
 
 }
