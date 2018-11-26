@@ -30,8 +30,6 @@
                     </div>
                     <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" method="post">
 
-                        <input type="text" name="produit" th:value="${Tshirt.getNameproduit()}">
-                        <input type="number" name="prixUni" th:value="${Tshirt.getPrix()}">
                         <input type="number" name="idObj" th:value="${Tshirt.getId()}">
 
                         <select name="taille" class="selection-taille">

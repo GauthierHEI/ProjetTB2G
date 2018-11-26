@@ -94,4 +94,8 @@ public class ProduitStore  {
         }
         return file;
     }
+
+    public Produit getProduit(Integer id) {
+        return produitdao.getProduit( id);
+    }
 }

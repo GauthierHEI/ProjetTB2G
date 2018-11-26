@@ -24,4 +24,6 @@ public interface ProduitDao {
 
     Integer deleteProduit(Integer id);
 
+    Produit getProduit(Integer id);
+
 }

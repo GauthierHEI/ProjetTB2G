@@ -51,27 +51,19 @@ public class ChemisesServlet extends AbstractWebServlet {
 
         Integer IdUtil = utilCo.getId();
 
-        String nameprod = req.getParameter("produit");
-        Integer Id = null;
-        try {
-            Id = Integer.parseInt(req.getParameter("idObj"));
-        } catch (NumberFormatException ignored) {
-        }
+        Produit produit = ProduitStore.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
+
         String taille = req.getParameter("taille");
         Integer quantite = null;
         try {
             quantite = Integer.parseInt(req.getParameter("quantite"));
         } catch (NumberFormatException ignored) {
         }
-        Float prixUni = null;
-        try {
-            prixUni = Float.parseFloat(req.getParameter("prixUni"));
-        } catch (NumberFormatException ignored) {
-        }
+
 
 
         // CREATE PRODUIT
-        Panier newProduit = new Panier(null, IdUtil, Id, nameprod, taille, quantite, prixUni,false);
+        Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
         try {
 
             Panier createProd = PanierManager.getInstance().addP2P(newProduit);
