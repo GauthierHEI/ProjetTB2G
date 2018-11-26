@@ -11,17 +11,18 @@ public class PanierDaoImpl implements PanierDao {
 
     @Override
     public Panier addP2P(Panier produit) {
-        String sqlQuery = "INSERT INTO panier(produit_id, nameproduit, taille, quantite, prixUni, prixTotal, vendu) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO panier(utilisateur_id, produit_id, nameproduit, taille, quantite, prixUni, prixTotal, vendu) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setInt(1, produit.getId());
-                statement.setString(2, produit.getNameproduit());
-                statement.setString(3,produit.getTaille());
-                statement.setInt(4, produit.getQuantite());
-                statement.setFloat(5, produit.getPrixUni());
+                statement.setInt(1, produit.getIdUtil());
+                statement.setInt(2, produit.getId());
+                statement.setString(3, produit.getNameproduit());
+                statement.setString(4,produit.getTaille());
+                statement.setInt(5, produit.getQuantite());
+                statement.setFloat(6, produit.getPrixUni());
                 Float prixT = produit.getQuantite()*produit.getPrixUni();
-                statement.setFloat(6, prixT);
-                statement.setBoolean(7, false);
+                statement.setFloat(7, prixT);
+                statement.setBoolean(8, false);
                 statement.executeUpdate();
 
 

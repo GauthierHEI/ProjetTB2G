@@ -31,13 +31,21 @@
                     <div th:text="${Chemise.getPrix()}+ '$'"> </div>
                 </div>
                 <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Chemise.getId()}+'\');'">
+                    <input type="text" name="produit" th:value="${Chemise.getNameproduit()}">
+                    <input type="number" name="prixUni" th:value="${Chemise.getPrix()}">
+                    <input type="number" name="idObj" th:value="${Chemise.getId()}">
+
                     <select name="taille" class="selection-taille">
                         <option th:if="${Chemise.getDispoS()>0}">S</option>
                         <option th:if="${Chemise.getDispoM()>0}">M</option>
                         <option th:if="${Chemise.getDispoL()>0}">L</option>
                     </select>
-                    <input type="submit" name="achat" value="bientot disponible"/>
+
+                    <input type="number" name="quantite" id="quantite" value="1" required>
+                    <input type="submit" name="achat" value="+"/>
                 </form>
+
+
             </div>
 
         </div>
