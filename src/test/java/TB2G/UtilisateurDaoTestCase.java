@@ -31,7 +31,7 @@ public class UtilisateurDaoTestCase {
     }
 
     @Test
-    public void shouldListUtilisateur() {
+    public void shouldListUtilisateurs() {
 
         //WHEN
         List<Utilisateur> utilisateurs = utilisateurDao.listUtilisateur();

@@ -49,40 +49,11 @@ public class ProduitStore  {
 
     public Produit modifProduit(Produit produit) {return produitdao.modifProduit(produit);}
 
-    public Integer deleteProduit(Integer id) {return produitdao.deleteProduit(id);}
+    public void deleteProduit(Integer id) { produitdao.deleteProduit(id);}
 
     public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
 
-    public Produit addProduit(Produit produit) {
-        if (produit == null) {
-            throw new IllegalArgumentException("Produit can not be null.");
-        }
-        if (produit.getNameproduit() == null || "".equals(produit.getNameproduit())) {
-            throw new IllegalArgumentException("Name can not be null.");
-        }
-        if (produit.getDispoS() == null) {
-            produit.setDispoS(0);
-        }
-        if (produit.getDispoM() == null) {
-            produit.setDispoM(0);
-        }
-        if (produit.getDispoL() == null) {
-            produit.setDispoL(0);
-        }
-        if (produit.getPrix() == null) {
-            throw new IllegalArgumentException("Prix can not be null.");
-        }
-        if (produit.getCat() == null) {
-            throw new IllegalArgumentException("Categorie can not be null.");
-        }
-        if (produit.getCouleur() == null) {
-            throw new IllegalArgumentException("Couleur can not be null.");
-        }
-        if (produit.getHexcouleur() == null )
-            throw new IllegalArgumentException("Hexcouleur can not be null.");
-        LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
-        return produitdao.addProduit(produit);
-    }
+    public Produit addProduit(Produit produit) { return produitdao.addProduit(produit); }
 
     public File imageDansFichier (Part filePart) throws IOException {
 
