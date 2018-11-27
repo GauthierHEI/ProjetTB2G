@@ -1,9 +1,7 @@
 package TB2G.managers;
 
 import TB2G.dao.ProduitDao;
-import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Produit;
-import TB2G.entities.Utilisateur;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 
@@ -49,47 +47,26 @@ public class ProduitStore  {
 
     public List<Produit> listProduit() {return produitdao.listProduit(); }
 
-    public Produit addProduit(Produit produit) {
-        if (produit == null) {
-            throw new IllegalArgumentException("Produit can not be null.");
-        }
-        if (produit.getNameproduit() == null || "".equals(produit.getNameproduit())) {
-            throw new IllegalArgumentException("Name can not be null.");
-        }
-        if (produit.getDispoS() == null) {
-            produit.setDispoS(0);
-        }
-        if (produit.getDispoM() == null) {
-            produit.setDispoM(0);
-        }
-        if (produit.getDispoL() == null) {
-            produit.setDispoL(0);
-        }
-        if (produit.getPrix() == null) {
-            throw new IllegalArgumentException("Prix can not be null.");
-        }
-        if (produit.getCat() == null) {
-            throw new IllegalArgumentException("Categorie can not be null.");
-        }
-        if (produit.getCouleur() == null) {
-            throw new IllegalArgumentException("Couleur can not be null.");
-        }
-        if (produit.getHexcouleur() == null )
-            throw new IllegalArgumentException("Hexcouleur can not be null.");
-        LOG.info("Nouveau produit : nom{}", produit.getNameproduit());
-        return produitdao.addProduit(produit);
-    }
+    public Produit modifProduit(Produit produit) {return produitdao.modifProduit(produit);}
+
+    public void deleteProduit(Integer id) { produitdao.deleteProduit(id);}
+
+    public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
+
+    public Produit addProduit(Produit produit) { return produitdao.addProduit(produit); }
 
     public File imageDansFichier (Part filePart) throws IOException {
 
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File uploads = new File(PropertiesUtils.cheminPro());
         File file = File.createTempFile("img", ".jpg", uploads);
+
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
         return file;
     }
 
-
+    public Produit getProduit(Integer id) {
+        return produitdao.getProduit( id);
+    }
 }

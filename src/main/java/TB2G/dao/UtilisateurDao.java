@@ -19,4 +19,7 @@ public interface UtilisateurDao {
 
     void deleteUtilisateur(Integer utilisateur_id);
 
+    void ModificationAdresse(Utilisateur utilisateur,String newAdresse);
+
+    void ModificationEmail(Utilisateur utilisateur,String newEmail);
 }

@@ -203,6 +203,7 @@ form.produit-achat input:hover {
 
 /*AUTHENTIFICATION */
 
+
 .authentification-contenu{
      padding: 1%;
      margin: 5%;
@@ -267,20 +268,24 @@ form.produit-achat input:hover {
     cursor: pointer;
 }
 
+
 .error {
+    font-size: 1.2vw;
     color: darkred;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
-    margin-top: 0.5vw;
+    margin: 0.5vw;
 }
 
+
 .success {
+    font-size: 1.2vw;
     color: darkgreen;
     background-color: #f2f2f2;
     text-align: center;
     border-radius: 1em;
-    margin-top: 0.5vw;
+    margin: 0.5vw;
 }
 
 .authentification-contenu input{
@@ -371,13 +376,36 @@ div.footer-contact a{
     color: white;
 }
 
+.imagePanier {
+    max-width: 8vw;
+    max-height: 10vw;
+}
+
 /* MANAGER PRODUIT */
+
+.icone-validation-modification:hover {
+    color: #18cd66;
+    cursor: pointer;
+}
+
+.icone-validation-supprimer:hover {
+    color: #f20019;
+    cursor: pointer;
+}
+
+
+input#ajout{
+    width: 8vw;
+    height: 1.8vw;
+}
+
 .input-file{
     color: black;
     cursor: pointer;
 }
 
 .input-file i{
+    text-shadow: 0 0 1px #000;
     font-size: 1.5vw;
 }
 
@@ -402,6 +430,11 @@ div.footer-contact a{
     text-align: center;
     border-radius: 1em;
     margin: 0.5vw;
+}
+
+.container-produitmanager input{
+    width: 8vw;
+    height: 1.1vw;
 }
 
 .container-produitmanager table{
@@ -492,7 +525,43 @@ div.footer-contact a{
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
+.admin{
+    color: green;
+}
+
+.utilisateur{
+    color: red;
+}
 /* PROFIL */
+
+.flex{
+    display: flex;
+}
+
+.separation-profil{
+    width: 0.2vw;
+    background-color: #004d66;
+}
+
+.form-profil{
+    margin: auto;
+}
+
+.form-profil h3{
+    font-size: 1vw;
+}
+
+.profil-modifmdp{
+    background-color: #18cd66;
+    color: white;
+    text-align: center;
+    padding: 0.3vw;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    margin: 0.3vw;
+}
 
 .profil-container{
     background-color: white;
@@ -501,6 +570,7 @@ div.footer-contact a{
     margin: 1vw;
     text-align: center;
     font-size: 1.5vw;
+    width: 80%;
 }
 
 .profil-container div{
@@ -536,4 +606,6 @@ div.footer-contact a{
         opacity: 0;
     }
 }
+
+
 

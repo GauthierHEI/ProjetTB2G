@@ -34,7 +34,7 @@ public class UtilisateurDaoTestCase {
     }
 
     @Test
-    public void shouldListUtilisateur() {
+    public void shouldListUtilisateurs() {
 
         //WHEN
         List<Utilisateur> utilisateurs = utilisateurDao.listUtilisateur();
@@ -114,6 +114,21 @@ public class UtilisateurDaoTestCase {
 
     @Test
     public void shouldModifyPassword(){
+        //WHEN
+
+        //THEN
+    }
+
+    @Test
+    public void shouldModifyAdress(){
+        //WHEN
+
+        //THEN
+
+    }
+
+    @Test
+    public void shouldModifyEmail(){
         //WHEN
 
         //THEN
