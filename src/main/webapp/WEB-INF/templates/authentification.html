@@ -18,7 +18,7 @@
         <div class="corps-noflex">
 
             <div class="container-authentification">
-                <form method="post" class="authentification-contenu" id="form-connexion">
+                <form method="post" class="authentification-contenu" id="form-connexion" >
                     <div>
                         <h1>Connexion</h1>
                         <p>
@@ -45,13 +45,13 @@
 
                         <p>
                             <i class="far fa-envelope"></i>
-                            <input type="text" name="mail" class="login" placeholder="Email" id="mail-crea" onblur="verificationEmail('mail-crea')">
-                            <span class="error" th:text="${errEmailExist}"></span>
+                            <input type="text" name="mail" class="login" placeholder="Email" id="mail-crea" onblur="verificationEmail('mail-crea')" >
+                            <label id="erreur-email-connexion" class="error2"></label>
                         </p>
 
                         <p>
                             <i class="far fa-user"></i>
-                            <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login" required>
+                            <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login" required >
                         </p>
                         <p>
                             <i class="far fa-user"></i>
@@ -77,7 +77,7 @@
                             <input type="number" name="codepostal" id="codepostal" placeholder="Code Postal" class="login" required>
                         </p>
 
-                        <input type="submit" value="Cr&eacute;er" class="login-submit">
+                        <button class="login-submit" id="bouton-form-creation"> Cr&eacute;er </button>
 
                         <input type="hidden" value="creer" name="choix">
                         <div class="error" th:text="${errChamp}"></div>

@@ -34,8 +34,8 @@ public class EditAdminServlet extends AbstractWebServlet {
 
         try{
             UtilisateurSource.getInstance().editAdmin(utilisateur_id,role);
-            resp.getWriter().print("OK");}
-
+            resp.getWriter().print("OK");
+        }
             catch(IllegalArgumentException e){
                 resp.getWriter().print("KO");
             }

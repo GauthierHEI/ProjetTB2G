@@ -219,13 +219,18 @@ form.produit-achat input:hover {
 .creation-contenu{
     padding: 1%;
     margin: 5%;
-    font-size: 1vw;
+    font-size: 0vw;
     text-decoration-color: black;
     width: 2%;
     display: flex;
     opacity: 0;
     align-items: center;
     animation: AnimationPetit 2s;
+}
+
+.creation-contenu input{
+    width: 0vw;
+    height: 0vw;
 }
 
 .container-authentification{
@@ -270,7 +275,7 @@ form.produit-achat input:hover {
 
 
 .error {
-    font-size: 1.2vw;
+    font-size: 1vw;
     color: darkred;
     background-color: #f2f2f2;
     text-align: center;
@@ -278,6 +283,12 @@ form.produit-achat input:hover {
     margin: 0.5vw;
 }
 
+.error2{
+    font-size: 1vw;
+    color: darkred;
+    text-align: center;
+    margin: 0.5vw;
+}
 
 .success {
     font-size: 1.2vw;
