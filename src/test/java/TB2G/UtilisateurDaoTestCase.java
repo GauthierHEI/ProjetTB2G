@@ -6,6 +6,9 @@ import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Utilisateur;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -129,6 +132,20 @@ public class UtilisateurDaoTestCase {
         //WHEN
 
         //THEN
+    }
+
+
+
+    @Test
+    public void shouldDeleteUtilisateur(){
+        //GIVEN
+        Utilisateur utilisateurToDelete=utilisateurDao.getUtilisateurByMail("admin@hei.yncrea.fr");
+        //WHEN
+        utilisateurDao.deleteUtilisateur(utilisateurToDelete.getId());
+        List<Utilisateur> liste=utilisateurDao.listUtilisateur();
+        //THEN
+        assertThat(liste.size()).isEqualTo(1);
+
     }
 
 }
