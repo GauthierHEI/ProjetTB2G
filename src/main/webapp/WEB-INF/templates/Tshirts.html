@@ -30,15 +30,16 @@
                     </div>
                     <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" method="post">
 
-                        <input type="number" name="idObj" th:value="${Tshirt.getId()}">
+                        <input name="idObj" th:value="${Tshirt.getId()}" type="hidden">
 
-                        <select name="taille" class="selection-taille">
+                        <select name="taille" class="selection-taille" th:onchange="'PlaceHolder('+${Tshirt.getDispoS()}+','+${Tshirt.getDispoM()}+','
+                        +${Tshirt.getDispoL()}+','+${Tshirt.getId()}+')'" th:id="'selectTT'+${Tshirt.getId()}">
                             <option th:if="${Tshirt.getDispoS()>0}">S</option>
                             <option th:if="${Tshirt.getDispoM()>0}">M</option>
                             <option th:if="${Tshirt.getDispoL()>0}">L</option>
                         </select>
 
-                        <input type="number" name="quantite" id="quantite" value="1" required>
+                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" placeholder="Quantite" required>
                         <input type="submit" name="achat" value="+"/>
                     </form>
                 </div>

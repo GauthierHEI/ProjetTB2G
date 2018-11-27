@@ -118,3 +118,18 @@ function VerificationMdp(){
     }
 }
 
+function PlaceHolder(DispoS, DispoM, DispoL, Id) {
+    var taille = document.getElementById("selectTT"+Id).value;
+    if (taille == "S"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoS;
+    }
+    if (taille == "M"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoM;
+    }
+    if (taille == "L"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoL;
+    }
+    console.log(taille);
+}
+
+
