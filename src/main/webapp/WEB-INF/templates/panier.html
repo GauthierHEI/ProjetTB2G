@@ -15,9 +15,6 @@
 
     <div class="corps">
 
-        <div th:class="${connecte == 1 || connecte == 2} ?'active':'inactive'">
-            <div class="soon"> Bientot disponible </div>
-        </div>
 
         <div th:class="${connecte==0} ?'active':'inactive'">
             <div class="produit-informations">
@@ -29,6 +26,33 @@
 
         </div>
 
+        <div th:class="${connecte==1} ?'active':'inactive'">
+            <table>
+
+                <thead>
+                <tr>
+                    <th>Nom du produit</th>
+                    <th>Taille</th>
+                    <th>Quantite</th>
+                    <th>Prix</th>
+                    <th>Image</th>
+                </tr>
+                </thead>
+
+                <th:block  th:each=" ProduitPan : ${panierList}">
+
+                    <tr>
+                        <td th:text="${ProduitPan.getProduit().getNameproduit()}"></td>
+                        <td th:text="${ProduitPan.getTaille()}"></td>
+                        <td th:text="${ProduitPan.getQuantite()}"></td>
+                        <td th:text="${ProduitPan.getProduit().getPrix()}"></td>
+                        <td> <img th:src=" '/images/' + ${ProduitPan.getProduit().getImage()}" class="imagePanier"> </td>
+                    </tr>
+
+                </th:block>
+
+            </table>
+        </div>
 
     </div>
 

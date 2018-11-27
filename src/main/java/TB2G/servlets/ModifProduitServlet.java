@@ -79,37 +79,6 @@ public class ModifProduitServlet extends AbstractWebServlet{
 
             Produit newProduit1 = new Produit(produitId1, nameprod1, dispoS1, dispoM1, dispoL1, prix1, cat1, couleur1, null, hexcouleur1);
 
-            //We change the null values by the values in the DB
-            Produit produitExist = ProduitStore.getInstance().getProduitById(produitId1);
-
-            if (newProduit1.getNameproduit() == null) {
-                newProduit1.setNameproduit(produitExist.getNameproduit());
-            }
-            if (newProduit1.getDispoS() == null) {
-                newProduit1.setDispoS(produitExist.getDispoS());
-            }
-            if (newProduit1.getDispoM() == null) {
-                newProduit1.setDispoM(produitExist.getDispoM());
-            }
-            if (newProduit1.getDispoL() == null) {
-                newProduit1.setDispoL(produitExist.getDispoL());
-            }
-            if (newProduit1.getPrix() == null) {
-                newProduit1.setPrix(produitExist.getPrix());
-            }
-            if (newProduit1.getCat() == null) {
-                newProduit1.setCat(produitExist.getCat());
-            }
-            if (newProduit1.getCouleur() == null) {
-                newProduit1.setCouleur(produitExist.getCouleur());
-            }
-            if (newProduit1.getImage() == null) {
-                newProduit1.setImage(produitExist.getImage());
-            }
-            if (newProduit1.getHexcouleur() == null) {
-                newProduit1.setHexcouleur(produitExist.getHexcouleur());
-            }
-
             // MODIFY PRODUIT
             try {
 

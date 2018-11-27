@@ -65,6 +65,29 @@ function editAdmin(utilisateur_id){
 
 }
 
+function deleteUtilisateur(utilisateur_id){
+    if(confirm("Etes-vous sur de vouloir supprimer cet utilisateur ?")){
+
+        console.log("Id de l'utilisateur:"+utilisateur_id);
+        var utilisateur = document.getElementById("utilisateurConcerne"+ utilisateur_id);
+        console.log("Utilisateur concerne : "+utilisateur);
+
+        var requete=new XMLHttpRequest();
+        requete.open("POST","deleteUtilisateur", true);
+        requete.responseType="text";
+        requete.onload=function (){
+            console.log(this.response);
+            utilisateur.remove();
+        }
+        requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        requete.send("id=" + utilisateur_id);
+
+
+
+    }
+
+}
+
 function verificationEmail(champId) {
     console.log("Fonction");
     var email = document.getElementById(champId).value;

@@ -154,7 +154,7 @@ div.produit-nom{
 
 .produit-informations img{
     width: 15vw;
-    height: 17vw;
+    height: auto;
 }
 
 .produit-prix-couleur{
@@ -387,6 +387,11 @@ div.footer-contact a{
     color: white;
 }
 
+.imagePanier {
+    max-width: 8vw;
+    max-height: 10vw;
+}
+
 /* MANAGER PRODUIT */
 
 .icone-validation-modification:hover {
@@ -612,4 +617,6 @@ input#ajout{
         opacity: 0;
     }
 }
+
+
 
