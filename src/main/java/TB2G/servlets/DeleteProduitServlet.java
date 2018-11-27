@@ -20,7 +20,6 @@ public class DeleteProduitServlet extends AbstractWebServlet {
         /*    D E L E T E   */
         /********************/
 
-
         Integer produitId2;
         if ((req.getParameter("produitId") != null) && !("".equals(req.getParameter("produitId")))) {
 
@@ -28,13 +27,9 @@ public class DeleteProduitServlet extends AbstractWebServlet {
 
             produitId2 = Integer.parseInt(req.getParameter("produitId"));
             try {
-                Integer idSuppr = ProduitStore.getInstance().deleteProduit(produitId2);
-                if (idSuppr == null) {
-                    resp.getWriter().print("Le produit n'a pas pu être supprimé.");
-                }
-                else {
+                ProduitStore.getInstance().deleteProduit(produitId2);
+
                     resp.getWriter().print("Le produit a été supprimé.");
-                }
 
             } catch (IllegalArgumentException e) {
                 resp.getWriter().print(e.getMessage());
@@ -43,6 +38,7 @@ public class DeleteProduitServlet extends AbstractWebServlet {
         }
         else {
             resp.getWriter().print("Impossible de récupérer l'Id produit.");
+
         }
 
     }

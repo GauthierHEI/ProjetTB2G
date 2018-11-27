@@ -8,9 +8,11 @@ import java.util.List;
 
 public interface ProduitDao {
 
+    Produit getProduitById(Integer produitId);
+
     Produit addProduit(Produit produit);
 
-    Produit modifProduit(Produit produit);
+    void deleteProduit(Integer id);
 
     List<Produit> listProduit();
 
@@ -20,8 +22,8 @@ public interface ProduitDao {
 
     List<Produit> listChemise();
 
-    Produit getProduitById(Integer produitId);
+    Produit modifProduit(Produit produit);
 
-    Integer deleteProduit(Integer id);
+    Produit getProduit(Integer id);
 
 }

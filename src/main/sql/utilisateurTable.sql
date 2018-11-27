@@ -23,7 +23,7 @@ CREATE TABLE `produit` (
   `prix` float(20) NOT NULL,
   `cat` int (5) NOT NULL,
   `couleur` varchar (30) NOT NULL,
-  `image` varchar (50),
+  `image` varchar (50) NOT NULL,
   `Hexcouleur` varchar (7) NOT NULL,
 
    PRIMARY KEY (`produit_id`)
@@ -31,22 +31,15 @@ CREATE TABLE `produit` (
 
 CREATE TABLE `panier` (
   `element_id` int(11) NOT NULL AUTO_INCREMENT,
-  `commmande_id` int(11) NOT NULL,
   `utilisateur_id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
-  `taille` enum('S','M','L') NOT NULL,
+  `taille` varchar (30) NOT NULL,
+  `quantite` int(10) NOT NULL,
+  `vendu` boolean NOT NULL,
+
 
   PRIMARY KEY (`element_id`)
 );
 
-ALTER TABLE `panier`
-ADD FOREIGN KEY (`utilisateur_id`)
-REFERENCES `utilisateur`(`utilisateur_id`)
-ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE `panier`
-ADD FOREIGN KEY (`produit_id`)
-REFERENCES `produit`(`produit_id`)
-ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
