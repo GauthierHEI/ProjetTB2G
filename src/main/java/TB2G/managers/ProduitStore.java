@@ -34,9 +34,6 @@ public class ProduitStore  {
 
     private ProduitDao produitdao = new ProduitDaoImpl();
 
-    private ProduitStore() {
-    }
-
     public List<Produit> listTshirt() {
       return produitdao.listTshirt();
     }
@@ -47,13 +44,57 @@ public class ProduitStore  {
 
     public List<Produit> listProduit() {return produitdao.listProduit(); }
 
-    public Produit modifProduit(Produit produit) {return produitdao.modifProduit(produit);}
+    public Produit modifProduit(Produit produit) {
+        if (produit == null) {
+            throw new IllegalArgumentException("Produit cannot be null");
+        }
+        return produitdao.modifProduit(produit);
+    }
 
-    public void deleteProduit(Integer id) { produitdao.deleteProduit(id);}
+    public void deleteProduit(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
+        produitdao.deleteProduit(id);
+    }
 
-    public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
+    public Produit getProduitById(Integer produitId) {
+        if (produitId == null) {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
+        return produitdao.getProduitById(produitId);
+    }
 
-    public Produit addProduit(Produit produit) { return produitdao.addProduit(produit); }
+    public Produit addProduit(Produit produit) {
+        if (produit == null) {
+            throw new IllegalArgumentException("Produit can not be null.");
+        }
+        if (produit.getNameproduit() == null || "".equals(produit.getNameproduit())) {
+            throw new IllegalArgumentException("Name can not be null.");
+        }
+        if (produit.getDispoS() == null) {
+            produit.setDispoS(0);
+        }
+        if (produit.getDispoM() == null) {
+            produit.setDispoM(0);
+        }
+        if (produit.getDispoL() == null) {
+            produit.setDispoL(0);
+        }
+        if (produit.getPrix() == null) {
+            throw new IllegalArgumentException("Prix can not be null.");
+        }
+        if (produit.getCat() == null) {
+            throw new IllegalArgumentException("Categorie can not be null.");
+        }
+        if (produit.getCouleur() == null || "".equals(produit.getCouleur())) {
+            throw new IllegalArgumentException("Couleur can not be null.");
+        }
+        if (produit.getHexcouleur() == null || "".equals(produit.getHexcouleur())) {
+            throw new IllegalArgumentException("Hexcouleur can not be null.");
+        }
+        return produitdao.addProduit(produit);
+    }
 
     public File imageDansFichier (Part filePart) throws IOException {
 
@@ -66,8 +107,11 @@ public class ProduitStore  {
         return file;
     }
 
-    public Produit getProduit(Integer id) {
-        return produitdao.getProduit( id);
+    public Produit getProduit(Integer produitId) {
+        if (produitId == null) {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
+        return produitdao.getProduit( produitId);
     }
 
 
