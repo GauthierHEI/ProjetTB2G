@@ -53,6 +53,8 @@ public class ProduitStore  {
 
     public Produit getProduitById(Integer produitId) {return produitdao.getProduitById(produitId);}
 
+    public Produit getProduitByName(String produitName){return produitdao.getProduitByName(produitName);}
+
     public Produit addProduit(Produit produit) { return produitdao.addProduit(produit); }
 
     public File imageDansFichier (Part filePart) throws IOException {

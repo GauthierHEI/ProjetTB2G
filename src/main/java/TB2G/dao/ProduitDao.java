@@ -26,4 +26,5 @@ public interface ProduitDao {
 
     Produit getProduit(Integer id);
 
+    Produit getProduitByName(String produitName);
 }

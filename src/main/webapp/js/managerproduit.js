@@ -110,3 +110,8 @@ function ModifImage (ProductId) {
     icone.style.color="#18cd66";
     icone.className= "fas fa-check";
 }
+
+function getProduitByName(ProductName){
+    var produit=document.getElementsByName(nomduproduit);
+
+}

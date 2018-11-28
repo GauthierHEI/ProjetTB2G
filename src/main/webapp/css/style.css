@@ -88,6 +88,7 @@ div.header-menu a:hover {
     transition: all 0.5s;
 }
 
+
 div.header-utilisateur {
     width: 15%;
     display: flex;
@@ -382,6 +383,16 @@ div.footer-contact a{
 }
 
 /* MANAGER PRODUIT */
+
+div.header-research{
+    width: 50%;
+}
+
+div.header-research form{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+}
 
 .icone-validation-modification:hover {
     color: #18cd66;

@@ -334,6 +334,28 @@ public class ProduitDaoImpl implements ProduitDao {
         return produit;
     }
 
+    @Override
+    public Produit getProduitByName(String produitName) {
+
+        String sqlQuery = "SELECT * FROM produit WHERE produit=?";
+        Produit produit = null;
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, produitName);
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        produit = mapProduit(resultSet);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            produit = null;
+        }
+        return produit;
+    }
+
 
 
 
