@@ -6,7 +6,6 @@ import TB2G.dao.ProduitDao;
 import TB2G.entities.Produit;
 import org.junit.Before;
 import org.junit.Test;
-import sun.reflect.annotation.ExceptionProxy;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -129,6 +128,31 @@ public class ProduitDaoTestCase {
         //WHEN
         int produitId = -1;
         Produit produit = produitDao.getProduitById(produitId);
+
+        //THEN
+        assertThat(produit).isNull();
+    }
+
+    @Test
+    public void shouldGetProduitForPanier() {
+
+        //WHEN
+        int produitId = 1;
+        Produit produit = produitDao.getProduit(produitId);
+
+        //THEN
+        assertThat(produit).isNotNull();
+        assertThat(produit.getId()).isEqualTo(1);
+        assertThat(produit.getNameproduit()).isEqualTo("Tshirt Gris");
+        assertThat(produit.getPrix()).isEqualTo(9.99f);
+        assertThat(produit.getImage()).isEqualTo("");
+    }
+
+    @Test
+    public void shouldNotGetProduitForPanier() {
+        //WHEN
+        int produitId = -1;
+        Produit produit = produitDao.getProduit(produitId);
 
         //THEN
         assertThat(produit).isNull();

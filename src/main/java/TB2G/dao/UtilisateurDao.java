@@ -12,7 +12,7 @@ public interface UtilisateurDao {
 
     Utilisateur getUtilisateurByMail(String mail);
 
-    void editAdmin(Integer utilisateur_id, boolean role);
+    void editAdmin(Integer utilisateur_id, Boolean role);
 
     void ModificationMdp(Utilisateur utilisateur,String newMdp);
 
