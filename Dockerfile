@@ -1,4 +1,4 @@
-FROM tomcat:8.0-jre8
+FROM tomcat:8.5-jre8
 
 ENV WEBAPP_PATH /usr/local/tomcat/webapps/ROOT
 ENV TMP_CONF_IN_FOLDER /tmp/conf/
@@ -18,6 +18,6 @@ RUN unlink /etc/localtime
 RUN ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 RUN echo "${TIMEZONE}" > /etc/timezone
 
-COPY ./target/learnings/ $WEBAPP_PATH
+COPY ./target/tb2g/ $WEBAPP_PATH
 
-CMD startu
+CMD startup
