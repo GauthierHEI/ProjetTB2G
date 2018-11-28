@@ -22,7 +22,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             String sqlQuery = "insert into utilisateur( email, prenom, nom, datenaissance," +
                     "motdepasse, adresseliv, adressefac, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(1,utilisateur.getEmail());
+                statement.setString(1, utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
                 statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
@@ -31,7 +31,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(7, utilisateur.getAdressefac());
                 statement.setBoolean(8, false);
                 statement.executeUpdate();
-                LOG.info("Un nouvel utilisateur est ajouté dans la base de données : "+utilisateur.getPrenom()+" "+utilisateur.getNom()+" "+utilisateur.getEmail());
+                LOG.info("Un nouvel utilisateur est ajouté dans la base de données : " + utilisateur.getPrenom() + " " + utilisateur.getNom() + " " + utilisateur.getEmail());
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -40,7 +40,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                     }
                 }
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
             LOG.error("exception SQL");
@@ -111,7 +111,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         LOG.info("return utilisateur");
         return utilisateur;
     }
-    
+
     @Override
     public void editAdmin(Integer utilisateur_id, Boolean role) {
         String sqlQuerry = "UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
@@ -130,7 +130,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }
     }
 
-    public void ModificationMdp(Utilisateur utilisateur, String newMdp){
+
+    @Override
+    public void ModificationMdp(Utilisateur utilisateur, String newMdp) {
 
         String SQLQuery = "UPDATE utilisateur SET motdepasse=? WHERE utilisateur_id=?";
 
@@ -144,7 +146,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
             throw new IllegalArgumentException("Le mot de passe n'a pas pu être modifié, vérifiez que vous avez bien rempli le formulaire");
         }
-
 
     }
 
@@ -162,7 +163,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
             throw new IllegalArgumentException("L'adresse n'a pas pu etre modifiee, verifier que vous avez bien rempli le formulaire");
         }
-
     }
 
     @Override
@@ -179,6 +179,23 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             e.printStackTrace();
             throw new IllegalArgumentException("L'email n'a pas pu etre modifie, verifier que vous avez bien rempli le formulaire");
         }
+    }
 
+    @Override
+    public void deleteUtilisateur(Integer utilisateur_id) {
+
+        String SQLQuerry = "DELETE FROM utilisateur WHERE utilisateur_id=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(SQLQuerry)) {
+                statement.setInt(1,utilisateur_id);
+                statement.executeUpdate();
+                LOG.info("l'utilisateur a été supprimé de la base de données");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL");
+        }
     }
 }
+

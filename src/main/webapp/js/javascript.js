@@ -62,6 +62,30 @@ function editAdmin(utilisateur_id){
     }
 
     requete.send("id=" + utilisateur_id + "&admin=" + role);
+
+}
+
+function deleteUtilisateur(utilisateur_id){
+    if(confirm("Etes-vous sur de vouloir supprimer cet utilisateur ?")){
+
+        console.log("Id de l'utilisateur:"+utilisateur_id);
+        var utilisateur = document.getElementById("utilisateurConcerne"+ utilisateur_id);
+        console.log("Utilisateur concerne : "+utilisateur);
+
+        var requete=new XMLHttpRequest();
+        requete.open("POST","deleteUtilisateur", true);
+        requete.responseType="text";
+        requete.onload=function (){
+            console.log(this.response);
+            utilisateur.remove();
+        }
+        requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        requete.send("id=" + utilisateur_id);
+
+
+
+    }
+
 }
 
 function verificationEmail(champId) {
@@ -117,4 +141,19 @@ function VerificationMdp(){
         return false;
     }
 }
+
+function PlaceHolder(DispoS, DispoM, DispoL, Id) {
+    var taille = document.getElementById("selectTT"+Id).value;
+    if (taille == "S"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoS;
+    }
+    if (taille == "M"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoM;
+    }
+    if (taille == "L"){
+        document.getElementById("quantite"+Id).placeholder = "Max : " + DispoL;
+    }
+    console.log(taille);
+}
+
 
