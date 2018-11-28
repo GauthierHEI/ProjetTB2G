@@ -19,7 +19,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 public class ProduitDaoTestCase {
     private ProduitDao produitDao = new ProduitDaoImpl();
 
-    @Before
+    /*@Before
     public void initDb() throws Exception {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
@@ -504,4 +504,5 @@ public class ProduitDaoTestCase {
             }
         }
     }
+    */
 }
