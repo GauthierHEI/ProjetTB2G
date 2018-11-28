@@ -110,7 +110,7 @@ public class ProfilServlet extends AbstractWebServlet {
                     rsp.sendRedirect("profil");
                 }
             }else{
-                    session.setAttribute("errEmailExist","Un compte utilisant cette adresse email existe !");
+                    session.setAttribute("errEmailExist","Un compte utilisant cet email existe!");
                     rsp.sendRedirect("profil");
             }
 

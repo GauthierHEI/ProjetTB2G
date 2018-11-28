@@ -17,7 +17,7 @@ import org.mariadb.jdbc.MariaDbDataSource;
                 dataSource.setPort(PropertiesUtils.Port());
                 dataSource.setDatabaseName(PropertiesUtils.DataBaseName());
                 dataSource.setUser(PropertiesUtils.User());
-                dataSource.setPassword(PropertiesUtils.Pass());
+                   dataSource.setPassword(PropertiesUtils.Pass());
             }
             return dataSource;
         }
