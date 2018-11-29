@@ -31,5 +31,5 @@ package-image-job:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   image: docker:stable
   script:
-    - docker build -t $CONTAINER_IMAGE:latest
+    - docker build -t $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:latest
