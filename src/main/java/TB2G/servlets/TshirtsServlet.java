@@ -37,10 +37,6 @@ public class TshirtsServlet extends AbstractWebServlet {
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
         //Get error and success messages
-        String errAjout = (String) session.getAttribute("errAjout");
-        session.removeAttribute("errAjout");
-        String messageAjout = (String) session.getAttribute("messageAjout");
-        session.removeAttribute("messageAjout");
         String errAddPanier = (String) session.getAttribute("errAddPanier");
         session.removeAttribute("errAddPanier");
         String messAddPanier = (String) session.getAttribute("messAddPanier");
