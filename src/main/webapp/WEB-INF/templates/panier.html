@@ -26,7 +26,7 @@
 
         </div>
 
-        <div th:class="${connecte==1} ?'active':'inactive'">
+        <div th:class="${connecte==1 || connecte==2} ?'active':'inactive'">
             <table>
 
                 <thead>
@@ -48,8 +48,10 @@
                         <td th:text="${ProduitPan.getProduit().getPrix()}"></td>
                         <td> <img th:src=" '/images/' + ${ProduitPan.getProduit().getImage()}" class="imagePanier"> </td>
                     </tr>
-
                 </th:block>
+
+                <div>TOTAL</div>
+
 
             </table>
         </div>

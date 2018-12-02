@@ -26,7 +26,13 @@ public class PanierServlet extends AbstractWebServlet {
         HttpSession session = rsq.getSession();
         Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
 
-        Integer IdUtil = utilCo.getId();
+        Integer IdUtil;
+        if (utilCo == null) {
+            IdUtil = 0;
+        } else {
+            IdUtil = utilCo.getId();
+        }
+
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());

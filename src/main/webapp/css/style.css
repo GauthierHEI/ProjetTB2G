@@ -140,7 +140,9 @@ div.produit-nom{
 }
 
 .selection-taille{
-    width: 25%;
+    width: 3vw;
+    text-align: center;
+    font-size: 0.9vw;
 }
 
 .produit-informations{
@@ -154,7 +156,7 @@ div.produit-nom{
 
 .produit-informations img{
     width: 15vw;
-    height: auto;
+    height: 17.5vw;
 }
 
 .produit-prix-couleur{
@@ -192,13 +194,14 @@ form.produit-achat input {
     color: white;
     font-size: 1vw;
     font-family: "ArchivoMedium";
-    width: 100%;
+    width: 6vw;
     border: none;
     padding: 0.5vw;
 }
 
-form.produit-achat input:hover {
+.input-achat:hover{
     cursor: pointer;
+    background-color: #094c17cc;
 }
 
 /*AUTHENTIFICATION */
