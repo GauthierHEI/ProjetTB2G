@@ -18,7 +18,7 @@
         <div class="corps-noflex">
 
             <div class="container-authentification">
-                <form method="post" class="authentification-contenu" id="form-connexion">
+                <form method="post" class="authentification-contenu" id="form-connexion" >
                     <div>
                         <h1>Connexion</h1>
                         <p>
@@ -39,26 +39,26 @@
 
                 <div class="separation-authentification"> </div>
 
-                <form method="post" action="authentification" class="creation-contenu" id="form-creation" >
+                <form method="post" action="authentification" id="form-creation" class="creation-contenu" >
                     <div>
                         <h1>Cr&eacute;er votre compte</h1>
 
                         <p>
                             <i class="far fa-envelope"></i>
-                            <input type="text" name="mail" class="login" placeholder="Email" id="mail-crea" onblur="verificationEmail('mail-crea')">
-                            <span class="error" th:text="${errEmailExist}"></span>
+                            <input type="text" name="mail" class="login" placeholder="Email" id="mail-crea" onblur="verificationEmail('mail-crea')" >
+                            <label id="erreur-email-connexion" class="error"></label>
                         </p>
 
                         <p>
                             <i class="far fa-user"></i>
-                            <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login" required>
+                            <input type="text" name="prenom" id="prenom" placeholder="Pr&eacute;nom" class="login" required >
                         </p>
                         <p>
                             <i class="far fa-user"></i>
-                            <input type="text" name="nom"  placeholder="Nom" class="login" required>
+                            <input type="text" name="nom"  id="nom" placeholder="Nom" class="login" required>
                         <p>
                             <i class="far fa-calendar-alt"></i>
-                            <input type="date"  name="birth" value="aaaa-mm-dd" max="" placeholder="Date de naissance" class="login" required/>
+                            <input type="date"  name="birth" value="aaaa-mm-dd" max="9999-12-31" placeholder="Date de naissance" class="login"  id="authentification-date" required/>
                         </p>
                         <p>
                             <i class="fas fa-unlock-alt"></i>
@@ -77,7 +77,7 @@
                             <input type="number" name="codepostal" id="codepostal" placeholder="Code Postal" class="login" required>
                         </p>
 
-                        <input type="submit" value="Cr&eacute;er" class="login-submit">
+                        <input type="button" class="login-submit" id="bouton-form-creation" value="Cr&eacute;er">
 
                         <input type="hidden" value="creer" name="choix">
                         <div class="error" th:text="${errChamp}"></div>

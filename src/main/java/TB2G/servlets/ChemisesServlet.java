@@ -26,9 +26,20 @@ public class ChemisesServlet extends AbstractWebServlet {
         List<Produit> ListOfChemises = new ArrayList<>();
 
         int connecte = VariableSessionConnecte(rsq);
+        HttpSession session = rsq.getSession();
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
+
+        //Get error and success messages
+        String errAjout = (String) session.getAttribute("errAjout");
+        session.removeAttribute("errAjout");
+        String messageAjout = (String) session.getAttribute("messageAjout");
+        session.removeAttribute("messageAjout");
+        String errAddPanier = (String) session.getAttribute("errAddPanier");
+        session.removeAttribute("errAddPanier");
+        String messAddPanier = (String) session.getAttribute("messAddPanier");
+        session.removeAttribute("messAddPanier");
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
@@ -36,6 +47,8 @@ public class ChemisesServlet extends AbstractWebServlet {
         context.setVariable("connecte", connecte);
         context.setVariable("chemise", ListOfChemises);
         context.setVariable("chemin", PropertiesUtils.cheminPro());
+        context.setVariable("errAddPanier", errAddPanier);
+        context.setVariable("messAddPanier", messAddPanier);
 
 
         //process method
@@ -61,24 +74,47 @@ public class ChemisesServlet extends AbstractWebServlet {
         }
 
 
-
-        // CREATE PRODUIT
-        Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
+        Integer IdProduit = null;
         try {
+            IdProduit = Integer.parseInt(req.getParameter("idObj"));
+        } catch (NumberFormatException ignored) {
+        }
+        // CREATE PRODUIT
+        Integer disp = 0;
+        if (taille.equals("S")) {
+            disp = ProduitStore.getInstance().getQuantiteDispoS(IdProduit);
+        }
+        if (taille.equals("M")) {
+            disp = ProduitStore.getInstance().getQuantiteDispoM(IdProduit);
+        }
+        if (taille.equals("L")) {
+            disp = ProduitStore.getInstance().getQuantiteDispoL(IdProduit);
+        }
 
-            Panier createProd = PanierManager.getInstance().addP2P(newProduit);
-            if(createProd==null) {
-                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
+        if(quantite > disp) {
+            req.getSession().setAttribute("errAddPanier", "Désolé ! On n'a pas assez de cet article en stock... ");
+        } else {
+            Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
+            PanierManager.getInstance().addP2P(newProduit);
+            if (taille.equals("S")) {
+                ProduitStore.getInstance().updateDispoS(quantite, IdProduit);
             }
-            else {
-                req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
+            if (taille.equals("M")) {
+                ProduitStore.getInstance().updateDispoM(quantite, IdProduit);
             }
+            if (taille.equals("L")) {
+                ProduitStore.getInstance().updateDispoL(quantite, IdProduit);
+            }
+            req.getSession().setAttribute("messAddPanier", "On a bien ajouté l'item dans ton panier!!  ");
+        }
 
+
+        try {
             // REDIRECT TO DETAIL PRODUIT
             resp.sendRedirect("Chemises");
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("produit-error-message", e.getMessage());
-            resp.sendRedirect("Chemises");
+            resp.sendRedirect("Chemises ");
         }
     }
 

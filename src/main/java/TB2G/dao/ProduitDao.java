@@ -26,4 +26,18 @@ public interface ProduitDao {
 
     Produit getProduit(Integer id);
 
+    Integer getQuantiteDispoS(Integer produitId);
+
+    Integer getQuantiteDispoL(Integer produitId);
+
+    Integer getQuantiteDispoM(Integer produitId);
+
+    void updateDispoS(Integer quantiteAcheter, Integer produitId);
+
+    void updateDispoM(Integer quantiteAcheter, Integer produitId);
+
+    void updateDispoL(Integer quantiteAcheter, Integer produitId);
+
+    List<Produit> getProduitByName(String nameProduit);
+
 }

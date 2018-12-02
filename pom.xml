@@ -83,4 +83,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>tb2g</finalName>
+    </build>
+
 </project>

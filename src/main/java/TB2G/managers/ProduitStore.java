@@ -114,6 +114,24 @@ public class ProduitStore  {
         return produitdao.getProduit( produitId);
     }
 
+    public Integer getQuantiteDispoS(Integer produitId) {
+        return produitdao.getQuantiteDispoS(produitId);
+    }
 
+    public Integer getQuantiteDispoM(Integer produitId) {
+        return produitdao.getQuantiteDispoM(produitId);
+    }
+
+    public Integer getQuantiteDispoL(Integer produitId) {
+        return produitdao.getQuantiteDispoL(produitId);
+    }
+
+    public void updateDispoS(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoS(quantiteAcheter, produitId); }
+
+    public void updateDispoM(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoM(quantiteAcheter, produitId); }
+
+    public void updateDispoL(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoL(quantiteAcheter, produitId); }
+
+    public List<Produit> getProduitByName(String nameProduit) { return produitdao.getProduitByName(nameProduit); }
 
 }

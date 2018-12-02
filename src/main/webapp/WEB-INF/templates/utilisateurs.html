@@ -52,11 +52,9 @@
                             <td th:text="${Utilisateur.getNaissance()}"></td>
                             <td th:text="${Utilisateur.getAdresseliv()}"></td>
                             <td th:text="${Utilisateur.getAdressefac()}"></td>
-                            <td th:text="${Utilisateur.getAdmin()}" th:id="'adminName'+${Utilisateur.getId()}"></td>
-                            <td  th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" class="fas fa-user-edit" ></td><!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
-                            <td th:onclick="'deleteUtilisateur('+${Utilisateur.getId()}+')'" class="fas fa-times-circle"></td>
                             <td th:class="${Utilisateur.getAdmin() == true} ? 'admin' : 'utilisateur'" th:text="${Utilisateur.getAdmin()}" th:id="'adminName'+${Utilisateur.getId()}"></td>
-                            <td class="icone-validation-modification" th:onclick="'editAdmin('+${Utilisateur.getId()}+')'"><i class="fas fa-user-edit" ></i></td> <!-- |editAdmin('${Utilisateur.getId()},${Utilisateur.getAdmin()}')| -->
+                            <td class="icone-validation-modification" th:onclick="'editAdmin('+${Utilisateur.getId()}+')'" ><i class="fas fa-user-edit"></i></td>
+                            <td class="icone-validation-supprimer" th:onclick="'deleteUtilisateur('+${Utilisateur.getId()}+')'" ><i class="fas fa-times-circle"></i></td>
                         </tr>
                 </table>
             </form>

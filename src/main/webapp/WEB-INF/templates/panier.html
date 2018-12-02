@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:divth="http://www.w3.org/1999/html">
 <head>
     <title>Panier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -26,7 +26,7 @@
 
         </div>
 
-        <div th:class="${connecte==1} ?'active':'inactive'">
+        <div th:class="${connecte==1 || connecte==2} ?'active':'inactive'">
             <table>
 
                 <thead>
@@ -49,10 +49,19 @@
                         <td> <img th:src=" '/images/' + ${ProduitPan.getProduit().getImage()}" class="imagePanier"> </td>
                     </tr>
 
+                    <tr>
+                        <td th:text="${ProduitPan.getQuantite()}*${ProduitPan.getProduit().getPrix()}" th:id="'tr-panier'+${ProduitPan.getIdCo()}" ></td>
+                    </tr>
+
                 </th:block>
 
             </table>
+
+            <div th:text="'Total : '+${total}"></div>
+
+            <button>Payer</button>
         </div>
+
 
     </div>
 

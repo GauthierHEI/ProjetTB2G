@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +22,20 @@ public class PanierServlet extends AbstractWebServlet {
 
         int connecte = VariableSessionConnecte(rsq);
 
+        float Total=0;
+
         List<Panier> listOfPanier = new ArrayList<>();
 
         HttpSession session = rsq.getSession();
         Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
 
-        Integer IdUtil = utilCo.getId();
+        Integer IdUtil;
+        if (utilCo == null) {
+            IdUtil = 0;
+        } else {
+            IdUtil = utilCo.getId();
+        }
+
 
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
@@ -36,9 +45,16 @@ public class PanierServlet extends AbstractWebServlet {
         context.setVariable("connecte",connecte);
 
         listOfPanier = PanierManager.getInstance().listPanier(IdUtil);
+        for(int i=0; i < listOfPanier.size(); i++){
+            Total += ( listOfPanier.get(i).getQuantite() * listOfPanier.get(i).getProduit().getPrix());
+
+        }
+
+        DecimalFormat df = new DecimalFormat("#.##");
 
         context.setVariable("chemin", PropertiesUtils.cheminPro());
         context.setVariable("panierList", listOfPanier);
+        context.setVariable("total", df.format(Total));
 
         //process method
         String finalDocument = engine.process("panier", context);

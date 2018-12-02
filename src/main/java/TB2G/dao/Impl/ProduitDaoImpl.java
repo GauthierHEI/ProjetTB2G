@@ -71,7 +71,7 @@ public class ProduitDaoImpl implements ProduitDao {
                 "WHERE produit_id=? ";
         Produit newProduit1 = produit;
         int produitId1 = newProduit1.getId();
-        //We change the null values by the values in the DB
+
         Produit produitExist = ProduitStore.getInstance().getProduitById(produitId1);
 
         if (newProduit1.getNameproduit() == null || "".equals(newProduit1.getNameproduit())) {
@@ -141,6 +141,57 @@ public class ProduitDaoImpl implements ProduitDao {
         }
     }
 
+    @Override
+    public void updateDispoS(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoS = dispoS - "+ quantiteAcheter +" WHERE produit_id = ?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error(" exception SQL");
+        }
+    }
+
+    @Override
+    public void updateDispoL(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoL = dispoL - "+ quantiteAcheter +" WHERE produit_id = ?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL ");
+        }
+    }
+
+    @Override
+    public void updateDispoM(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoM = dispoM - "+ quantiteAcheter +" WHERE produit_id =?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL");
+        }
+    }
+
     private Produit mapProduit(ResultSet resultSetRow) throws SQLException {
         return new Produit(
                 resultSetRow.getInt("produit_id"),
@@ -177,6 +228,26 @@ public class ProduitDaoImpl implements ProduitDao {
         return produits;
     }
 
+    @Override
+    public List<Produit> getProduitByName(String nameProduit) {
+
+        String sqlQuery = "SELECT * FROM produit WHERE produit =?";
+        List<Produit> produits = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, nameProduit);
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        produits.add(mapProduit(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return produits;
+    }
 
     private Produit mapTshirt(ResultSet resultSetRow) throws SQLException {
         return new Produit(
@@ -309,8 +380,68 @@ public class ProduitDaoImpl implements ProduitDao {
         return produit;
     }
 
+    @Override
+    public Integer getQuantiteDispoS(Integer produitId) {
+        String sqlQuery = "SELECT dispoS FROM produit WHERE produit_id =?";
+        Integer qtDispo = 0;
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, String.valueOf(produitId));
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        qtDispo = resultSet.getInt("dispoS");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            qtDispo = null;
+        }
+        return qtDispo;
+    }
 
+    @Override
+    public Integer getQuantiteDispoL(Integer produitId) {
+        String sqlQuery = "SELECT dispoL FROM produit WHERE produit_id =?";
+        Integer qtDispo = 0;
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, String.valueOf(produitId));
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        qtDispo = resultSet.getInt("dispoL");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            qtDispo = null;
+        }
+        return qtDispo;
+    }
 
+    @Override
+    public Integer getQuantiteDispoM(Integer produitId) {
+        String sqlQuery = "SELECT dispoM FROM produit WHERE produit_id =?";
+        Integer qtDispo = 0;
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setString(1, String.valueOf(produitId));
+                System.out.println(statement);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        qtDispo = resultSet.getInt("dispoM");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            qtDispo = null;
+        }
+        return qtDispo;
+    }
 
     @Override
     public Produit getProduit(Integer id) {
