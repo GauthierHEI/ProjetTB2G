@@ -97,7 +97,16 @@ public class TshirtsServlet extends AbstractWebServlet {
         } else {
             Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
             PanierManager.getInstance().addP2P(newProduit);
-            req.getSession().setAttribute("messAddPanier", "On a bien ajouté l'item dans ton panier!!");
+            if (taille.equals("S")) {
+                ProduitStore.getInstance().updateDispoS(quantite, IdProduit);
+            }
+            if (taille.equals("M")) {
+                ProduitStore.getInstance().updateDispoM(quantite, IdProduit);
+            }
+            if (taille.equals("L")) {
+                ProduitStore.getInstance().updateDispoL(quantite, IdProduit);
+            }
+            req.getSession().setAttribute("messAddPanier", "On a bien ajouté l'item dans ton panier!! ");
         }
 
 

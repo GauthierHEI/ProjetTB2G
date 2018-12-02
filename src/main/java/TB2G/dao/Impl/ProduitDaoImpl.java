@@ -166,6 +166,57 @@ public class ProduitDaoImpl implements ProduitDao {
         }
     }
 
+    @Override
+    public void updateDispoS(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoS = dispoS - "+ quantiteAcheter +" WHERE produit_id = ?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error(" exception SQL");
+        }
+    }
+
+    @Override
+    public void updateDispoL(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoL = dispoL - "+ quantiteAcheter +" WHERE produit_id = ?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL ");
+        }
+    }
+
+    @Override
+    public void updateDispoM(Integer quantiteAcheter, Integer produitId) {
+
+        String sqlQuery = "UPDATE produit SET dispoM = dispoM - "+ quantiteAcheter +" WHERE produit_id =?";
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, produitId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("exception SQL");
+        }
+    }
+
     private Produit mapProduit(ResultSet resultSetRow) throws SQLException {
         return new Produit(
                 resultSetRow.getInt("produit_id"),

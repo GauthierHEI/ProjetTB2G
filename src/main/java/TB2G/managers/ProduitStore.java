@@ -23,7 +23,6 @@ public class ProduitStore  {
 
     static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
 
-
     private static class ProduitStoreHolder {
         private final static ProduitStore instance = new ProduitStore();
     }
@@ -81,5 +80,11 @@ public class ProduitStore  {
     public Integer getQuantiteDispoL(Integer produitId) {
         return produitdao.getQuantiteDispoL(produitId);
     }
+
+    public void updateDispoS(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoS(quantiteAcheter, produitId); }
+
+    public void updateDispoM(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoM(quantiteAcheter, produitId); }
+
+    public void updateDispoL(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoL(quantiteAcheter, produitId); }
 
 }
