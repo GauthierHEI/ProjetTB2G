@@ -39,7 +39,7 @@
 
                 <div class="separation-authentification"> </div>
 
-                <form method="post" action="authentification" class="creation-contenu" id="form-creation" >
+                <form method="post" action="authentification" id="form-creation" class="creation-contenu" >
                     <div>
                         <h1>Cr&eacute;er votre compte</h1>
 
@@ -58,7 +58,7 @@
                             <input type="text" name="nom"  placeholder="Nom" class="login" required>
                         <p>
                             <i class="far fa-calendar-alt"></i>
-                            <input type="date"  name="birth" value="aaaa-mm-dd" max="" placeholder="Date de naissance" class="login" required/>
+                            <input type="date"  name="birth" value="aaaa-mm-dd" max="9999-12-31" placeholder="Date de naissance" class="login"  id="authentification-date" required/>
                         </p>
                         <p>
                             <i class="fas fa-unlock-alt"></i>
