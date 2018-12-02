@@ -79,5 +79,18 @@ public class PanierDaoImpl implements PanierDao {
         return listOfPanier;
     }
 
+    @Override
+    public void AcheterPanier(Integer id){
+        String sqlQuery = "UPDATE panier SET vendu = 1 WHERE utilisateur_id = ?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

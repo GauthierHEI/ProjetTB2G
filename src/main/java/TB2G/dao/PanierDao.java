@@ -10,4 +10,6 @@ public interface PanierDao {
 
     List<Panier> listPanier(Integer id);
 
+    void AcheterPanier(Integer id);
+
 }

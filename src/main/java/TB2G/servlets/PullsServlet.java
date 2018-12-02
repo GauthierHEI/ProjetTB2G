@@ -114,7 +114,6 @@ public class PullsServlet extends AbstractWebServlet {
 
 
         try {
-            // REDIRECT TO DETAIL PRODUIT
             resp.sendRedirect("Pulls");
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("produit-error-message", e.getMessage());

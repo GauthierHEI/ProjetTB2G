@@ -35,4 +35,8 @@ public class PanierManager {
         return panierdao.listPanier(id);
     }
 
+    public void AcheterPanier(Integer id) {
+        panierdao.AcheterPanier(id);
+    }
+
 }

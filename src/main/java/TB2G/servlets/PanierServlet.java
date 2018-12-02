@@ -6,6 +6,8 @@ import TB2G.managers.PanierManager;
 import TB2G.utils.PropertiesUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,4 +54,17 @@ public class PanierServlet extends AbstractWebServlet {
     }
 
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
+
+        Integer IdUtil = utilCo.getId();
+
+
+        PanierManager.getInstance().AcheterPanier(IdUtil);
+        resp.sendRedirect("panier");
+
+    }
 }
