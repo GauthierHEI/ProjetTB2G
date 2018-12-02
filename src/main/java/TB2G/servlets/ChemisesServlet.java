@@ -61,7 +61,6 @@ public class ChemisesServlet extends AbstractWebServlet {
         }
 
 
-
         // CREATE PRODUIT
         Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
         try {

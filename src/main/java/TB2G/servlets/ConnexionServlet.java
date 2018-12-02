@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.Date;
 
 import static TB2G.utils.MotDePasseUtils.genererMotDePasse;
 import static TB2G.utils.MotDePasseUtils.validerMotDePasse;
+import static java.lang.System.out;
 
 @WebServlet("/authentification")
 public class ConnexionServlet extends AbstractWebServlet {
@@ -29,8 +31,8 @@ public class ConnexionServlet extends AbstractWebServlet {
         session.removeAttribute("errMDP");
         String errEmail = (String) session.getAttribute("errEmail");
         session.removeAttribute("errEmail");
-        String errEmailExist = (String) session.getAttribute("errEmailExist");
-        session.removeAttribute("errEmailExist");
+        String errEmailExist = (String) session.getAttribute("errUtilisateur");
+        session.removeAttribute("errUtilisateur");
         String errChamp = (String) session.getAttribute("errChamp");
         session.removeAttribute("errChamp");
 
@@ -45,7 +47,7 @@ public class ConnexionServlet extends AbstractWebServlet {
         if (utilisateurConnecte == null || "".equals(utilisateurConnecte.getNom())) {
             context.setVariable("errMDP", errMDP);
             context.setVariable("errEmail", errEmail);
-            context.setVariable("errEmailExist", errEmailExist);
+            context.setVariable("errUtilisateur", errEmailExist);
             context.setVariable("errChamp", errChamp);
             session.setAttribute("connecte", 0);
             String finalDocument = engine.process("authentification", context);
@@ -89,8 +91,7 @@ public class ConnexionServlet extends AbstractWebServlet {
                 Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                         birthDate, motDePasseHash, adresse, adresse, false);
                 //Create task
-                if (UtilisateurSource.getInstance().getUtilisateurByMail(utilisateur.getEmail())== null) {
-                    Utilisateur utilisateurRetour = UtilisateurSource.getInstance().addUtilisateur(utilisateur);
+                Utilisateur utilisateurRetour = UtilisateurSource.getInstance().addUtilisateur(utilisateur);
                     if (utilisateurRetour.getPrenom() == null) {
                         session.setAttribute("errChamp", "Champ mal rempli");
                         rsp.sendRedirect("authentification");
@@ -99,10 +100,6 @@ public class ConnexionServlet extends AbstractWebServlet {
                         session.setAttribute("utilisateurConnecte", utilisateur);
                         rsp.sendRedirect("authentification");
                         }
-                }else{
-                    session.setAttribute("errUtilisateur", "Cette email est d&eacute;j&agrave; utilis&eacute;");
-                    rsp.sendRedirect("authentification");
-                }
 
             } else {
                 String mail = rsq.getParameter("mail");
