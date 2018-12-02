@@ -2,6 +2,7 @@ package TB2G.servlets;
 
 import TB2G.entities.Utilisateur;
 import TB2G.managers.UtilisateurSource;
+import jdk.nashorn.internal.ir.SetSplitState;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -88,6 +89,9 @@ public class ProfilServlet extends AbstractWebServlet {
             try {
                 UtilisateurSource.getInstance().ModificationAdresse(utilisateurconnecte, newAdresse);
                 session.setAttribute("successAdresse", "L'adresse est mis a jour");
+                Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
+                utilisateurConnecte.setAdresseliv(newAdresse);
+                session.setAttribute("utilisateurConnecte", utilisateurConnecte);
                 rsp.sendRedirect("profil");
 
             } catch (IllegalArgumentException e) {
@@ -103,6 +107,9 @@ public class ProfilServlet extends AbstractWebServlet {
                 try {
                     UtilisateurSource.getInstance().ModificationEmail(utilisateurconnecte, newEmail);
                     session.setAttribute("successEmail", "L'email est mis a jour");
+                    Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
+                    utilisateurConnecte.setEmail(newEmail);
+                    session.setAttribute("utilisateurConnecte", utilisateurConnecte);
                     rsp.sendRedirect("profil");
 
                 } catch (IllegalArgumentException e) {

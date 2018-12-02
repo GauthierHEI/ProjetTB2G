@@ -120,6 +120,37 @@ function verificationEmailSubmit(champId) {
     }
 }
 
+function VerificationFromSubmit(){
+    console.log("IN THE SUBMIT VERIFICATION");
+    var adresse = document.getElementById("adresse");
+    var prenom = document.getElementById("prenom");
+    var nom = document.getElementById("nom");
+    var ville = document.getElementById("ville");
+    var code = document.getElementById("codepostal");
+    var date = document.getElementById("date");
+    var mdp = document.getElementById("password");
+    var SUBMIT= 0;
+
+    var tableau =  [prenom, nom, date, mdp, ville, adresse, code];
+
+    tableau.forEach(function(item,index,array) {
+        console.log(item);
+        if (item.value != "") {
+            item.style.border = "0.1vw solid green";
+            SUBMIT = SUBMIT + 1;
+        } else {
+            item.style.border = "0.1vw solid red";
+        }
+    });
+
+    if(SUBMIT === 7){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function VerificationEmailExist(champId, erreurId, formId){
     var form = document.getElementById(formId);
     var email = document.getElementById(champId).value;
@@ -139,7 +170,7 @@ function VerificationEmailExist(champId, erreurId, formId){
             erreur.innerText="Email deja utilise !";
             return false;
         }
-    }
+    };
     requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     requete.send("email="+email);
 
@@ -175,9 +206,9 @@ function InputImage(){
 
 function VerificationMdp(){
     var mdp1 = document.getElementById("profil-mdp1").value;
-    console.log(mdp1);
+    console.log("mdp& : "+mdp1);
     var mdp2 = document.getElementById("profil-mdp2").value;
-    console.log(mdp2);
+    console.log("mdp2 : "+mdp2);
 
     if(mdp1 === mdp2){
         console.log("c'est bon");
@@ -191,22 +222,19 @@ function VerificationMdp(){
 }
 
 window.onload= function () {
+
     document.getElementById("bouton-form-creation").onclick = function() {
         if(verificationEmailSubmit("mail-crea")){
-            if(VerificationEmailExist("mail-crea","erreur-email-connexion","form-creation")){
-                return true;
+            if(VerificationFromSubmit()) {
+                if (VerificationEmailExist("mail-crea", "erreur-email-connexion", "form-creation")) {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
         return false;
     };
-
-    document.getElementById("form-profil").onsubmit = function () {
-        console.log("j'ai échoué");
-        return false;
-    };
-
-    document.getElementById("authentification-date").max = new Date().toISOString().split("T")[0];
 
 };
 

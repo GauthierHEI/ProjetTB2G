@@ -55,7 +55,7 @@
                         </p>
                         <p>
                             <i class="far fa-user"></i>
-                            <input type="text" name="nom"  placeholder="Nom" class="login" required>
+                            <input type="text" name="nom"  id="nom" placeholder="Nom" class="login" required>
                         <p>
                             <i class="far fa-calendar-alt"></i>
                             <input type="date"  name="birth" value="aaaa-mm-dd" max="9999-12-31" placeholder="Date de naissance" class="login"  id="authentification-date" required/>
@@ -77,7 +77,7 @@
                             <input type="number" name="codepostal" id="codepostal" placeholder="Code Postal" class="login" required>
                         </p>
 
-                        <button class="login-submit" id="bouton-form-creation"> Cr&eacute;er </button>
+                        <input type="button" class="login-submit" id="bouton-form-creation" value="Cr&eacute;er">
 
                         <input type="hidden" value="creer" name="choix">
                         <div class="error" th:text="${errChamp}"></div>
