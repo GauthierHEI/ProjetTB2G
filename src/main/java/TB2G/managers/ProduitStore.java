@@ -82,4 +82,6 @@ public class ProduitStore  {
         return produitdao.getQuantiteDispoL(produitId);
     }
 
+    public List<Produit> getProduitByName(String nameProduit) { return produitdao.getProduitByName(nameProduit); }
+
 }
