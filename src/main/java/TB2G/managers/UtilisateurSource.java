@@ -22,6 +22,9 @@ public class UtilisateurSource {
 
     private UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
 
+    private UtilisateurSource() {
+    }
+
     public List<Utilisateur> listUtilisateur() {return utilisateurDao.listUtilisateur(); }
 
     public Utilisateur addUtilisateur(Utilisateur utilisateur) {
