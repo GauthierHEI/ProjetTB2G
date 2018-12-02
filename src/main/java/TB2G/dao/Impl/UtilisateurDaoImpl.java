@@ -2,7 +2,6 @@ package TB2G.dao.Impl;
 
 import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,9 +25,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 statement.setString(1, utilisateur.getEmail());
                 statement.setString(2, utilisateur.getPrenom());
                 statement.setString(3, utilisateur.getNom());
-                if (utilisateur.getNaissance() != null) {
-                    statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
-                }
+                statement.setDate(4, Date.valueOf(utilisateur.getNaissance()));
                 statement.setString(5, utilisateur.getMotdepasse());
                 statement.setString(6, utilisateur.getAdresseliv());
                 statement.setString(7, utilisateur.getAdressefac());
@@ -47,7 +44,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             // Manage Exception
             e.printStackTrace();
             LOG.error("exception SQL");
-            return new Utilisateur(null, null, null, null, null, null, null, null, null);
         }
         return null;
     }
@@ -117,13 +113,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     }
 
     @Override
-    public void editAdmin(Integer utilisateur_id, boolean role) {
+    public void editAdmin(Integer utilisateur_id, Boolean role) {
         String sqlQuerry = "UPDATE utilisateur SET admin=? WHERE utilisateur_id=?";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sqlQuerry)) {
+
                 statement.setBoolean(1, role);
                 statement.setInt(2, utilisateur_id);
                 statement.executeUpdate();
+
                 LOG.info("le rôle de l'utilisateur est modifié");
             }
         } catch (SQLException e) {
@@ -137,6 +135,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     public void ModificationMdp(Utilisateur utilisateur, String newMdp) {
 
         String SQLQuery = "UPDATE utilisateur SET motdepasse=? WHERE utilisateur_id=?";
+
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
                 statement.setString(1, newMdp);
@@ -153,14 +152,14 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public void ModificationAdresse(Utilisateur utilisateur, String newAdresse) {
         String SQLQuery = "UPDATE utilisateur SET adresseliv=? WHERE utilisateur_id=?";
+
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
                 statement.setString(1, newAdresse);
                 statement.setInt(2, utilisateur.getId());
                 statement.executeUpdate();
             }
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("L'adresse n'a pas pu etre modifiee, verifier que vous avez bien rempli le formulaire");
         }
@@ -169,14 +168,14 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public void ModificationEmail(Utilisateur utilisateur, String newEmail) {
         String SQLQuery = "UPDATE utilisateur SET email=? WHERE utilisateur_id=?";
+
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(SQLQuery)) {
                 statement.setString(1, newEmail);
                 statement.setInt(2, utilisateur.getId());
                 statement.executeUpdate();
             }
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("L'email n'a pas pu etre modifie, verifier que vous avez bien rempli le formulaire");
         }

@@ -27,6 +27,8 @@ public class ProfilServlet extends AbstractWebServlet {
         session.removeAttribute("successMdp");
         String errEmail= (String) session.getAttribute("errChampEmail");
         session.removeAttribute("errChampEmail");
+        String errEmailExist= (String) session.getAttribute("errEmailExist");
+        session.removeAttribute("errEmailExist");
         String SuccessEmail= (String) session.getAttribute("successEmail");
         session.removeAttribute("successEmail");
         String errAdresse= (String) session.getAttribute("errChampAdresse");
@@ -41,6 +43,7 @@ public class ProfilServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
+        context.setVariable("errEmailExist", errEmailExist);
         context.setVariable("connecte", connecte);
         context.setVariable("errChampMdp",errMdp);
         context.setVariable("successMdp",SuccessMdp);
@@ -96,15 +99,21 @@ public class ProfilServlet extends AbstractWebServlet {
 
             String newEmail = rsq.getParameter("newemail");
 
-            try {
-                UtilisateurSource.getInstance().ModificationEmail(utilisateurconnecte, newEmail);
-                session.setAttribute("successEmail", "L'email est mis a jour");
-                rsp.sendRedirect("profil");
+            if (UtilisateurSource.getInstance().getUtilisateurByMail(newEmail)== null) {
+                try {
+                    UtilisateurSource.getInstance().ModificationEmail(utilisateurconnecte, newEmail);
+                    session.setAttribute("successEmail", "L'email est mis a jour");
+                    rsp.sendRedirect("profil");
 
-            } catch (IllegalArgumentException e) {
-                session.setAttribute("errChampEmail", e.getMessage());
-                rsp.sendRedirect("profil");
+                } catch (IllegalArgumentException e) {
+                    session.setAttribute("errChampEmail", e.getMessage());
+                    rsp.sendRedirect("profil");
+                }
+            }else{
+                    session.setAttribute("errEmailExist","Un compte utilisant cet email existe!");
+                    rsp.sendRedirect("profil");
             }
+
         }
     }
 }

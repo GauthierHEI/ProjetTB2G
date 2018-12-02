@@ -90,16 +90,60 @@ function deleteUtilisateur(utilisateur_id){
 
 function verificationEmail(champId) {
     console.log("Fonction");
-    let email = document.getElementById(champId).value;
+    var email = document.getElementById(champId).value;
     var expressionReguliere = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
     if (expressionReguliere.test(email)) {
         console.log("Bon");
-        document.getElementById(champId).style.borderBottomColor="green";
+        document.getElementById(champId).style.borderColor="green";
     }
     else {
         console.log("Faux");
-        document.getElementById(champId).style.borderBottomColor="red";
+        document.getElementById(champId).style.borderColor="red";
     }
+}
+
+function verificationEmailSubmit(champId) {
+    console.log("Fonction");
+    var email = document.getElementById(champId).value;
+    var erreur = document.getElementById("erreur-email-connexion");
+    var expressionReguliere = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+    if (expressionReguliere.test(email)) {
+        console.log("Bon");
+        erreur.innerText="";
+        return true;
+    }
+    else {
+        console.log("Faux");
+        erreur.innerText="Email invalide";
+        document.getElementById(champId).style.border="0.1vw solid red";
+        return false;
+    }
+}
+
+function VerificationEmailExist(champId, erreurId, formId){
+    var form = document.getElementById(formId);
+    var email = document.getElementById(champId).value;
+    var erreur = document.getElementById(erreurId);
+    var requete=new XMLHttpRequest();
+    requete.open("POST","VerificationEmail", true);
+    requete.responseType="text";
+    requete.onload=function () {
+        var response = this.response;
+        console.log(response);
+        if (response === "OK"){
+            erreur.innerText="";
+            form.submit();
+            return true;
+        }
+        else{
+            erreur.innerText="Email deja utilise !";
+            return false;
+        }
+    }
+    requete.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    requete.send("email="+email);
+
+
 }
 
 function Connexion(){
@@ -131,13 +175,34 @@ function InputImage(){
 
 function VerificationMdp(){
     var mdp1 = document.getElementById("profil-mdp1").value;
+    console.log(mdp1);
     var mdp2 = document.getElementById("profil-mdp2").value;
+    console.log(mdp2);
 
-    if(mdp1 == mdp2){
+    if(mdp1 === mdp2){
+        console.log("c'est bon");
         return true;
     }
     else{
+        console.log("pas bon");
         alert("les mots de passes ne correspondent pas!");
+        return false;
+    }
+}
+
+window.onload= function () {
+    document.getElementById("bouton-form-creation").onclick = function() {
+        if(verificationEmailSubmit("mail-crea")){
+            if(VerificationEmailExist("mail-crea","erreur-email-connexion","form-creation")){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    document.getElementById("form-profil").onsubmit = function () {
+        console.log("j'ai échoué");
         return false;
     }
 }
