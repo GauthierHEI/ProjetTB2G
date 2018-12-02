@@ -32,4 +32,6 @@ public interface ProduitDao {
 
     Integer getQuantiteDispoM(Integer produitId);
 
+    List<Produit> getProduitByName(String nameProduit);
+
 }
