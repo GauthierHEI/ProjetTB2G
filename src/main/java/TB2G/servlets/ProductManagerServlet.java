@@ -44,6 +44,9 @@ public class ProductManagerServlet extends AbstractWebServlet {
         String messageAjout = (String) session.getAttribute("messageAjout");
         session.removeAttribute("messageAjout");
 
+        String itemRechercher = (String) session.getAttribute("errAjout");
+        session.removeAttribute("errAjout");
+
         //TemplateEngine&Resolver
         TemplateEngine engine = CreateTemplateEngine(rsq.getServletContext());
 
@@ -73,7 +76,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        //AJOUT OU MODIF
+        //AJOUT
         String action = req.getParameter("action");
 
 

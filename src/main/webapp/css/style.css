@@ -284,13 +284,6 @@ form.produit-achat input {
     margin: 0.5vw;
 }
 
-.error2{
-    font-size: 1vw;
-    color: darkred;
-    text-align: center;
-    margin: 0.5vw;
-}
-
 .success {
     font-size: 1vw;
     color: darkgreen;

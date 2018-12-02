@@ -17,7 +17,11 @@
 
         <div class="corps">
 
-                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|" >
+                <div class="error" th:text="${errConnexion}"></div>
+                <div class="error" th:text="${errAddPanier}"></div>
+                <div class="success" th:text="${messAddPanier}"></div>
+
+                <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|">
 
                     <img th:src=" '/images/' + ${Tshirt.getImage()}" onerror="this.src='/images/MannequinTshirt.jpg';">
                     <div th:text="${Tshirt.getNameproduit()}" class="produit-nom"> </div>
@@ -28,7 +32,7 @@
                         </div>
                         <div th:text="${Tshirt.getPrix()}+ '$'"> </div>
                     </div>
-                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" method="post">
+                    <form th:id="'form'+ ${Tshirt.getId()}" class="produit-achat" method="post" >
 
                         <input name="idObj" th:value="${Tshirt.getId()}" type="hidden">
 
@@ -40,7 +44,7 @@
                                 <option th:if="${Tshirt.getDispoL()>0}" > L</option>
                             </optgroup>
                         </select>
-                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" placeholder="Quantite" max="MaxQuantite" required>
+                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" placeholder="Quantite" min="0" max="MaxQuantite" required>
                         <input  type="submit" name="achat" value="Achat" class="input-achat"/>
                     </form>
                 </div>
