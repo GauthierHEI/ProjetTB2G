@@ -1,9 +1,35 @@
 stages:
  - test
  - package
+ - image
 
 test-job:
  stage: test
  image: maven:3.3-jdk-8
  script:
    - mvn test;
+
+package-war-job:
+ stage: package
+ image: maven:3.3-jdk-8
+ script:
+   - mvn package -DskipTests
+ artifacts:
+   paths:
+      - target/*.war
+   expire_in: 1 week
+
+package-image-job:
+  stage: image
+  services:
+    - docker:dind
+  variables:
+    CONTAINER_IMAGE: registry.gitlab.com/bapth_dej/projets7
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  image: docker:stable
+  script:
+    - docker build -t $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:latest

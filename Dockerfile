@@ -18,6 +18,6 @@ RUN unlink /etc/localtime
 RUN ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 RUN echo "${TIMEZONE}" > /etc/timezone
 
-COPY ./target/tb2g/ $WEBAPP_PATH
+COPY ./tb2g/ $WEBAPP_PATH
 
 CMD startup

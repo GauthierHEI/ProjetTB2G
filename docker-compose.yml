@@ -12,7 +12,7 @@ services:
    JDBC_USER: root
    JDBC_PASSWORD: 
   ports:
-   - "8585:8080"
+   - "8888:8080"
  database:
   image: mariadb:latest
   environment:
