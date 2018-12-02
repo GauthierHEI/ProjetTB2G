@@ -30,18 +30,20 @@
                     </div>
                     <div th:text="${Chemise.getPrix()}+ '$'"> </div>
                 </div>
-                <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" th:onmouseover="'javascript:Achat(\''+${Chemise.getId()}+'\');'">
+                <form th:id="'form'+ ${Chemise.getId()}" class="produit-achat" method="post">
 
-                    <input type="number" name="idObj" th:value="${Chemise.getId()}">
+                    <input name="idObj" th:value="${Chemise.getId()}" type="hidden">
 
-                    <select name="taille" class="selection-taille">
-                        <option th:if="${Chemise.getDispoS()>0}">S</option>
-                        <option th:if="${Chemise.getDispoM()>0}">M</option>
-                        <option th:if="${Chemise.getDispoL()>0}">L</option>
+                    <select name="taille" class="selection-taille" th:onchange="'PlaceHolder('+${Chemise.getDispoS()}+','+${Chemise.getDispoM()}+','
+                        +${Chemise.getDispoL()}+','+${Chemise.getId()}+')'" th:id="'selectTT'+${Chemise.getId()}">
+                        <optgroup label="Taille">
+                            <option th:if="${Chemise.getDispoS()>0}">S</option>
+                            <option th:if="${Chemise.getDispoM()>0}">M</option>
+                            <option th:if="${Chemise.getDispoL()>0}">L</option>
+                        </optgroup>
                     </select>
-
-                    <input type="number" name="quantite" id="quantite" value="1" required>
-                    <input type="submit" name="achat" value="+"/>
+                    <input type="number" name="quantite" th:id="'quantite'+${Chemise.getId()}" placeholder="Quantite" max="MaxQuantite" required>
+                    <input  type="submit" name="achat" value="Achat" class="input-achat"/>
                 </form>
 
 
