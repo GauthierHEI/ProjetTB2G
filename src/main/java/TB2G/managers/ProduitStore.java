@@ -69,4 +69,7 @@ public class ProduitStore  {
     public Produit getProduit(Integer id) {
         return produitdao.getProduit( id);
     }
+
+
+
 }

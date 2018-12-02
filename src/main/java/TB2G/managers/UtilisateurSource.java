@@ -22,46 +22,70 @@ public class UtilisateurSource {
 
     private UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
 
-    private UtilisateurSource() {
-    }
-
     public List<Utilisateur> listUtilisateur() {return utilisateurDao.listUtilisateur(); }
 
     public Utilisateur addUtilisateur(Utilisateur utilisateur) {
+        if (utilisateur.getNaissance() == null) {
+            throw new IllegalArgumentException("La date est absente.");
+        }
         return utilisateurDao.addUtilisateur(utilisateur);
     }
 
     public Utilisateur getUtilisateurByMail(String mail) {
-
-        return utilisateurDao.getUtilisateurByMail(mail);
+        if (mail != null && mail != "")
+            return utilisateurDao.getUtilisateurByMail(mail);
+        else {
+            throw new IllegalArgumentException("Mail is null or void");
+        }
     }
 
 
-    public void editAdmin(Integer utilisateur_id, boolean role){
+    public void editAdmin(Integer utilisateur_id, Boolean role){
+        if (role == null) {
+            throw new IllegalArgumentException("Le role est null.");
+        }
+        if (utilisateur_id == null) {
+            throw new IllegalArgumentException("L'Id est null.");
+        }
         utilisateurDao.editAdmin(utilisateur_id,role);
     }
     
-    public void ModificationMdp(Utilisateur util, String mdp){
-        if(mdp==null || "".equals(mdp)){
-            throw new IllegalArgumentException("Le mot de passe ne peut pas être nulle");
-        }else {
-            utilisateurDao.ModificationMdp(util, mdp);
+    public void ModificationMdp(Utilisateur utilisateur, String newMdp){
+        if ((utilisateur == null) || (utilisateur.getId() == null) || (newMdp == null)){
+            LOG.error("Un parametre ou plus est null");
+            throw new IllegalArgumentException("Un parametre ou plus est null");
+        }
+        else if ("".equals(newMdp)) {
+            throw new IllegalArgumentException("Le MDP est void");
+        }
+        else {
+            utilisateurDao.ModificationMdp(utilisateur, newMdp);
         }
     }
 
-    public void ModificationAdresse(Utilisateur util, String adresse){
-        if(adresse==null || "".equals(adresse)){
-            throw new IllegalArgumentException("L'adresse ne peut pas être nulle");
-        }else {
-            utilisateurDao.ModificationAdresse(util, adresse);
+    public void ModificationAdresse(Utilisateur utilisateur, String adresse){
+        if ((utilisateur == null) || (utilisateur.getId() == null) || (adresse == null)){
+            LOG.error("Un parametre ou plus est null");
+            throw new IllegalArgumentException("Un parametre ou plus est null");
+        }
+        else if ("".equals(adresse)){
+            throw new IllegalArgumentException("Adresse est void");
+        }
+        else {
+            utilisateurDao.ModificationAdresse(utilisateur, adresse);
         }
     }
 
-    public void ModificationEmail(Utilisateur util, String email){
-        if(email==null || "".equals(email)){
-            throw new IllegalArgumentException("L'email ne peut pas être nulle");
-        }else {
-            utilisateurDao.ModificationEmail(util, email);
+    public void ModificationEmail(Utilisateur utilisateur, String newEmail){
+        if ((utilisateur == null) || (utilisateur.getId() == null) || (newEmail == null)){
+            LOG.error("Un parametre ou plus est null");
+            throw new IllegalArgumentException("Un parametre ou plus est null");
+        }
+        else if("".equals(newEmail)) {
+            throw new IllegalArgumentException("L'email ne peut pas être void");
+        }
+        else {
+            utilisateurDao.ModificationEmail(utilisateur, newEmail);
         }
     }
 
