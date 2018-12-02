@@ -41,10 +41,13 @@ public class TshirtsServlet extends AbstractWebServlet {
         session.removeAttribute("errAddPanier");
         String messAddPanier = (String) session.getAttribute("messAddPanier");
         session.removeAttribute("messAddPanier");
+        String errAchatConnexion = (String) session.getAttribute("errAchatConnexion");
+        session.removeAttribute("errAchatConnexion");
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
         ListOfTshirts = ProduitStore.getInstance().listTshirt();
+        context.setVariable("errConnexion", errAchatConnexion);
         context.setVariable("tshirt", ListOfTshirts);
         context.setVariable("connecte",connecte);
         context.setVariable("chemin", PropertiesUtils.cheminPro());
@@ -64,33 +67,39 @@ public class TshirtsServlet extends AbstractWebServlet {
         HttpSession session = req.getSession();
         Utilisateur utilCo = (Utilisateur) session.getAttribute("utilisateurConnecte");
 
-        Integer IdUtil = utilCo.getId();
+        if (utilCo == null) {
 
-        Produit produit = ProduitStore.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
+            session.setAttribute("errAchatConnexion","Impossible d'acheter si vous n'etes pas connecte");
+            resp.sendRedirect("Tshirts");
+        } else {
 
-        String taille = req.getParameter("taille");
-        Integer quantite = null;
-        try {
-            quantite = Integer.parseInt(req.getParameter("quantite"));
-        } catch (NumberFormatException ignored) {
-        }
+            Integer IdUtil = utilCo.getId();
 
-        Integer IdProduit = null;
-        try {
-            IdProduit = Integer.parseInt(req.getParameter("idObj"));
-        } catch (NumberFormatException ignored) {
-        }
-        // CREATE PRODUIT
-        Integer disp = 0;
-        if (taille.equals("S")) {
-            disp = ProduitStore.getInstance().getQuantiteDispoS(IdProduit);
-        }
-        if (taille.equals("M")) {
-            disp = ProduitStore.getInstance().getQuantiteDispoM(IdProduit);
-        }
-        if (taille.equals("L")) {
-            disp = ProduitStore.getInstance().getQuantiteDispoL(IdProduit);
-        }
+            Produit produit = ProduitStore.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
+
+            String taille = req.getParameter("taille");
+            Integer quantite = null;
+            try {
+                quantite = Integer.parseInt(req.getParameter("quantite"));
+            } catch (NumberFormatException ignored) {
+            }
+
+            Integer IdProduit = null;
+            try {
+                IdProduit = Integer.parseInt(req.getParameter("idObj"));
+            } catch (NumberFormatException ignored) {
+            }
+            // CREATE PRODUIT
+            Integer disp = 0;
+            if (taille.equals("S")) {
+                disp = ProduitStore.getInstance().getQuantiteDispoS(IdProduit);
+            }
+            if (taille.equals("M")) {
+                disp = ProduitStore.getInstance().getQuantiteDispoM(IdProduit);
+            }
+            if (taille.equals("L")) {
+                disp = ProduitStore.getInstance().getQuantiteDispoL(IdProduit);
+            }
 
         if(quantite > disp) {
             req.getSession().setAttribute("errAddPanier", "Désolé ! On n'a pas assez de cet article en stock..");
@@ -110,12 +119,13 @@ public class TshirtsServlet extends AbstractWebServlet {
         }
 
 
-        try {
-            // REDIRECT TO DETAIL PRODUIT
-            resp.sendRedirect("Pulls");
-        } catch (IllegalArgumentException e) {
-            req.getSession().setAttribute("produit-error-message", e.getMessage());
-            resp.sendRedirect("Pulls");
+            try {
+                // REDIRECT TO DETAIL PRODUIT
+                resp.sendRedirect("Tshirts");
+            } catch (IllegalArgumentException e) {
+                req.getSession().setAttribute("produit-error-message", e.getMessage());
+                resp.sendRedirect("Tshirts");
+            }
         }
     }
 

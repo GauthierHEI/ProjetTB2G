@@ -38,5 +38,6 @@ public interface ProduitDao {
 
     void updateDispoL(Integer quantiteAcheter, Integer produitId);
 
+    List<Produit> getProduitByName(String nameProduit);
 
 }
