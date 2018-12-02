@@ -70,6 +70,13 @@ public class ProduitStore  {
         return produitdao.getProduit( id);
     }
 
-
+    public List<Produit> RechercheProduit(String recherche){
+        if(recherche.equals("")){
+            return produitdao.listProduit();
+        }
+        else {
+            return produitdao.RechercheProduit(recherche);
+        }
+    }
 
 }

@@ -85,13 +85,13 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
         Part filePart = req.getPart("image");
         String image;
+
         if (filePart.getSize() == 0) {
             image = "none";
         } else {
             File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
             image = newFile.getName();
         }
-
 
         String nameprod = req.getParameter("produit");
         Integer dispoS = null;
