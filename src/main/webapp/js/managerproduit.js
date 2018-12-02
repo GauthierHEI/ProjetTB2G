@@ -97,6 +97,25 @@ var deleteProduit = function (produitId) {
     };
 };
 
+
+var deleteProduitPanier = function (produitId) {
+    console.log("In delete");
+    var request = new XMLHttpRequest();
+    request.open("POST", "deleteProdPanier", true);
+
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("produitId="+produitId);
+
+    request.onload = function () {
+        var child = document.getElementById('tr'+ produitId);
+        var parent = child.parentNode;
+        var index = Array.prototype.indexOf.call(parent.children, child);
+        console.log("index = "+index);
+        document.getElementById("table-modif").deleteRow(index+2);
+        document.getElementById("table-modif").deleteRow(index+1);
+    };
+};
+
 function ModifHexColor (ProductId) {
     var couleur = document.getElementById("hexcouleur"+ProductId).value;
     console.log(couleur);
