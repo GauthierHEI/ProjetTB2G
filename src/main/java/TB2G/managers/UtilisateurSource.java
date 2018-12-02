@@ -32,9 +32,14 @@ public class UtilisateurSource {
     }
 
     public Utilisateur getUtilisateurByMail(String mail) {
-
-        return utilisateurDao.getUtilisateurByMail(mail);
+        if(mail.equals("")){
+            throw new IllegalArgumentException("Le champ est vide");
+        }
+        else {
+            return utilisateurDao.getUtilisateurByMail(mail);
+        }
     }
+
 
 
     public void editAdmin(Integer utilisateur_id, boolean role){

@@ -29,7 +29,7 @@
                         <h3>Modifier votre email : </h3>
                         <input type="text" class="login" id="profilnewEmail" name="newemail" placeholder="Nouveau email" onblur="verificationEmail('profilnewEmail')" required>
                         <br>
-                        <input type="submit" value="modifier" class="profil-modifmdp">
+                        <input type="submit" value="Modifier" class="profil-modifmdp">
                         <br>
                         <input type="hidden" name="choix" value="email">
                         <label class="error" th:text="${errChampEmail}"></label>
@@ -44,7 +44,7 @@
                         <h3>Modifier votre adresse: </h3>
                         <input type="text" class="login" name="newadresse" placeholder="Nouvelle adresse" required>
                         <br>
-                        <input type="submit" value="modifier" class="profil-modifmdp">
+                        <input type="submit" value="Modifier" class="profil-modifmdp">
                         <br>
                         <input type="hidden" name="choix" value="adresse">
                         <label class="error" th:text="${errChampAdresse}"></label>
@@ -53,7 +53,7 @@
 
                     <div class="separation-profil"></div>
 
-                    <form method="POST" action="profil" class="form-profil" id="form-profil">
+                    <form method="POST" action="profil" class="form-profil" id="form-profil" onsubmit="return VerificationMdp()">
                         <h3>Modifier votre mot de passe : </h3>
                         <i class="fas fa-unlock-alt"></i>
                         <input type="password" class="login" name="newmdp" placeholder="Nouveau mot de passe" id="profil-mdp1" required>
@@ -61,7 +61,7 @@
                         <i class="fas fa-unlock-alt"></i>
                         <input type="password" class="login" id="profil-mdp2" placeholder="Confirmation" required>
                         <br>
-                        <input type="submit" value="modifier" class="profil-modifmdp">
+                        <input type="submit" id="input-mdp-profil" value="Modifier" class="profil-modifmdp">
                         <br>
                         <input type="hidden" name="choix" value="mdp">
                         <label class="error" th:text="${errChampMdp}"></label>

@@ -14,16 +14,17 @@ public class VerificationEmailServlet extends AbstractWebServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
 
-        try{
-            Utilisateur UtilisateurRetour = UtilisateurSource.getInstance().getUtilisateurByMail(email);
-            if(UtilisateurRetour == null){
-                resp.getWriter().print("OK");
-            }
-            else{
+            try {
+                Utilisateur UtilisateurRetour = UtilisateurSource.getInstance().getUtilisateurByMail(email);
+                if (UtilisateurRetour == null) {
+                    resp.getWriter().print("OK");
+                } else {
+                    resp.getWriter().print("KO");
+                }
+            } catch (IllegalArgumentException e) {
                 resp.getWriter().print("KO");
             }
-        }
-        catch(IllegalArgumentException ignored){}
+
 
     }
 }
