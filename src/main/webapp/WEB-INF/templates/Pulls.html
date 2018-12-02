@@ -17,8 +17,10 @@
 
         <div class="corps">
 
-            <div class="error2" th:text="${errAddPanier}"></div>
-            <div class="success3" th:text="${messAddPanier}"></div>
+
+            <div class="error" th:text="${errAchatConnexion}"></div>
+            <div class="error" th:text="${errAddPanier}"></div>
+            <div class="success" th:text="${messAddPanier}"></div>
 
             <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|"
                  th:onmouseout="|Cache('${Pull.getId()}')|">
