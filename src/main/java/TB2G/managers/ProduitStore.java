@@ -70,6 +70,18 @@ public class ProduitStore  {
         return produitdao.getProduit( id);
     }
 
+    public Integer getQuantiteDispoS(Integer produitId) {
+        return produitdao.getQuantiteDispoS(produitId);
+    }
 
+    public Integer getQuantiteDispoM(Integer produitId) {
+        return produitdao.getQuantiteDispoM(produitId);
+    }
+
+    public Integer getQuantiteDispoL(Integer produitId) {
+        return produitdao.getQuantiteDispoL(produitId);
+    }
+
+    public List<Produit> getProduitByName(String nameProduit) { return produitdao.getProduitByName(nameProduit); }
 
 }
