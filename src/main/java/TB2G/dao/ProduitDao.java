@@ -26,6 +26,8 @@ public interface ProduitDao {
 
     Produit getProduit(Integer id);
 
+    List<Produit> RechercheProduit(String recherche);
+
     Integer getQuantiteDispoS(Integer produitId);
 
     Integer getQuantiteDispoL(Integer produitId);

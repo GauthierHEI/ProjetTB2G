@@ -492,5 +492,22 @@ public class ProduitDaoImpl implements ProduitDao {
         return null;
 
     }
+
+    public List<Produit> RechercheProduit (String recherche){
+        List<Produit> produits = new ArrayList<>();
+        try (Connection connection = getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM produit WHERE produit LIKE ?")) {
+                statement.setString(1, recherche+"%");
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        produits.add(mapProduit(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return produits;
+    }
 }
 

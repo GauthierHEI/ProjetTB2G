@@ -253,6 +253,98 @@ function PlaceHolder(DispoS, DispoM, DispoL, Id) {
     console.log(taille);
 }
 
+function RechercheProduit() {
+    var recherche = document.getElementById("recherche-produit").value;
+    console.log("recherche : "+recherche);
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "RechercheProduit", true);
+    request.responseType="json";
+
+    request.onload = function () {
+        var ProductTable = document.getElementById("table-modif");
+        var rowCount = ProductTable.rows.length; while(--rowCount) ProductTable.deleteRow(rowCount);
+
+        var response = this.response;
+        console.log(response);
+
+        response.forEach(function (item, index, array) {
+
+            var row = ProductTable.insertRow(-1);
+            row.setAttribute("id","tr"+item.id);
+            var ID = row.insertCell(0);
+            ID.innerText=item.id;
+            var Nom = row.insertCell(1);
+            Nom.innerText=item.nameproduit;
+            Nom.setAttribute("id","xproduit"+item.id);
+            var dispoS = row.insertCell(2);
+            dispoS.innerText=item.dispoS;
+            dispoS.setAttribute("id","xdispoS"+item.id);
+            var dispoM = row.insertCell(3);
+            dispoM.innerText=item.dispoM;
+            dispoM.setAttribute("id","xdispoM"+item.id);
+            var dispoL = row.insertCell(4);
+            dispoL.innerText=item.dispoL;
+            dispoL.setAttribute("id","xdispoL"+item.id);
+            var Prix = row.insertCell(5);
+            Prix.innerText=item.prix;
+            Prix.setAttribute("id","xprix"+item.id);
+            var Cat = row.insertCell(6);
+            Cat.innerText=item.cat;
+            Cat.setAttribute("id","xcat"+item.id);
+            var Couleur = row.insertCell(7);
+            Couleur.innerText=item.couleur;
+            Couleur.setAttribute("id","xcouleur"+item.id);
+            var HexColor = row.insertCell(8);
+            HexColor.innerText=item.hexcouleur;
+            HexColor.setAttribute("id","xhexcouleur"+item.id);
+            var Image = row.insertCell(9);
+            Image.innerText=item.image;
+            Image.setAttribute("id","ximage"+item.id);
+            var Modif = row.insertCell(10);
+            Modif.innerHTML="<i id=\"i"+item.id+"\" class=\"fas fa-edit\"></i>";
+            Modif.setAttribute("colspan","2");
+            Modif.setAttribute("onclick","Modif("+item.id+")");
+            Modif.setAttribute("class","td-fleche-modif");
+            Modif.setAttribute("id", "td"+item.id);
+
+            var row2 = ProductTable.insertRow(-1);
+            row2.setAttribute("class", "modification-produit");
+            row2.setAttribute("id", "trmodif"+item.id);
+            var ID2 = row2.insertCell(0);
+            ID2.innerText= item.id;
+            var InputNom = row2.insertCell(1);
+            InputNom.innerHTML="<input type=\"text\" name=\"produit1\" id=\"produit"+item.id+"\">";
+            var InputS = row2.insertCell(2);
+            InputS.innerHTML="<input type=\"number\" name=\"dispoS1\" id=\"dispoS"+item.id+"\">";
+            var InputM = row2.insertCell(3);
+            InputM.innerHTML="<input type=\"number\" name=\"dispoM1\" id=\"dispoM"+item.id+"\">";
+            var InputL = row2.insertCell(4);
+            InputL.innerHTML="<input type=\"number\" name=\"dispoL1\" id=\"dispoL"+item.id+"\">";
+            var InputPrix = row2.insertCell(5);
+            InputPrix.innerHTML="<input type=\"number\" step=\"0.01\" name=\"prix1\" id=\"prix"+item.id+"\">";
+            var InputCat = row2.insertCell(6);
+            InputCat.innerHTML="<input type=\"number\" name=\"cat1\" id=\"cat"+item.id+"\">";
+            var InputCouleur = row2.insertCell(7);
+            InputCouleur.innerHTML="<input type=\"text\" name=\"couleur1\" id=\"couleur"+item.id+"\">";
+            var InputHex = row2.insertCell(8);
+            InputHex.innerHTML="<label for=\"hexcouleur"+item.id+"\" class=\"input-file\"><i id=\"icone-hexcouleur"+item.id+"\" class=\"fas fa-palette\"></i></label><input onchange=\"ModifHexColor(item.id)\" type=\"color\"  name=\"hexcouleur1\" id=\"hexcouleur"+item.id+"\" class=\"inactive\">";
+            var InputImage = row2.insertCell(9);
+            InputImage.innerHTML="<label for=\"image"+item.id+"\" class=\"input-file\"><i id=\"icone-image"+item.id+"\" class=\"far fa-file-image\"></i></label><input onchange=\"ModifImage(item.id)\" type=\"file\" name=\"image1\" id=\"image"+item.id+"\" class=\"inactive\">";
+            var InputModif = row2.insertCell(10);
+            InputModif.innerHTML="<i class=\"fas fa-arrow-circle-right\"></i>";
+            InputModif.setAttribute("class", "icone-validation-modification");
+            InputModif.setAttribute("onclick","modifProduit("+item.id+")");
+            var InputSupprim = row2.insertCell(11);
+            InputSupprim.innerHTML="<i class=\"fas fa-trash\"></i>";
+            InputSupprim.setAttribute("class", "icone-validation-supprimer");
+            InputSupprim.setAttribute("onclick","deleteProduit("+item.id+")");
+        });
+    };
+
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("recherche="+recherche);
+};
 
 
 
