@@ -12,4 +12,6 @@ public interface PanierDao {
 
     void AcheterPanier(Integer id);
 
+    void deleteProduitPanier(Integer id);
+
 }

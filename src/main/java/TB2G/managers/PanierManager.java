@@ -39,4 +39,6 @@ public class PanierManager {
         panierdao.AcheterPanier(id);
     }
 
+    public void deleteProduitPanier(Integer id) { panierdao.deleteProduitPanier(id);}
+
 }
