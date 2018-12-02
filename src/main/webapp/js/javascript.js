@@ -240,6 +240,7 @@ window.onload= function () {
 
 function PlaceHolder(DispoS, DispoM, DispoL, Id) {
     var taille = document.getElementById("selectTT"+Id).value;
+
     if (taille == "S"){
         document.getElementById("quantite"+Id).placeholder = "Max : " + DispoS;
     }
@@ -344,4 +345,11 @@ function RechercheProduit() {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send("recherche="+recherche);
 };
+
+
+
+
+
+
+
 
