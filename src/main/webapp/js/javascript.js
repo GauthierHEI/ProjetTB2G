@@ -199,13 +199,16 @@ window.onload= function () {
             return false;
         }
         return false;
-    }
+    };
 
     document.getElementById("form-profil").onsubmit = function () {
         console.log("j'ai échoué");
         return false;
-    }
-}
+    };
+
+    document.getElementById("authentification-date").max = new Date().toISOString().split("T")[0];
+
+};
 
 function PlaceHolder(DispoS, DispoM, DispoL, Id) {
     var taille = document.getElementById("selectTT"+Id).value;
