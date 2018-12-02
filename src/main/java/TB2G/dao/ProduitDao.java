@@ -26,4 +26,10 @@ public interface ProduitDao {
 
     Produit getProduit(Integer id);
 
+    Integer getQuantiteDispoS(Integer produitId);
+
+    Integer getQuantiteDispoL(Integer produitId);
+
+    Integer getQuantiteDispoM(Integer produitId);
+
 }
