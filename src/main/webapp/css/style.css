@@ -399,6 +399,22 @@ div.footer-contact a{
     border: 0.1vw solid #3b5998;
 }
 
+.input-panier{
+    width: 10vw;
+    font-size: 1.5vw;
+    padding: 0.2vw;
+    margin: 0.2vw;
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 1em;
+}
+
+.input-panier:hover{
+    cursor: pointer;
+    background-color: #004d66;
+}
+
 /* MANAGER PRODUIT */
 
 .container-search{

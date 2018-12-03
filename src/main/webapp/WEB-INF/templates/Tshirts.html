@@ -15,9 +15,9 @@
     <div class="page">
         <header th:replace="~{fragments :: header(${connecte})}"></header>
 
-        <div th:if="${errAchatConnexion}" class="info-container" id="info-container1">
+        <div th:if="${errConnexion}" class="info-container" id="info-container1">
             <i class="fas fa-exclamation-circle i-info-erreur"></i>
-            <div class="error" th:text="${errAchatConnexion}"></div>
+            <div class="error" th:text="${errConnexion}"></div>
             <i class="fas fa-times i-info-close" onclick="CloseInfo('info-container1')"></i>
         </div>
 
