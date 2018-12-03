@@ -36,8 +36,7 @@
         <div class="corps">
 
 
-            <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|"
-                 th:onmouseout="|Cache('${Pull.getId()}')|">
+            <div th:each=" Pull : ${pull}" class="produit-informations" th:onmouseover="|Achat('${Pull.getId()}')|">
 
                 <img th:src=" '/images/' + ${Pull.getImage()}" onerror="this.src='/images/MannequinPull.jpg';">
                 <div th:text="${Pull.getNameproduit()}" class="produit-nom"> </div>
@@ -60,7 +59,7 @@
                             <option th:if="${Pull.getDispoL()>0}">L</option>
                         </optgroup>
                     </select>
-                    <input type="number" name="quantite" th:id="'quantite'+${Pull.getId()}" placeholder="Quantite" max="MaxQuantite" required>
+                    <input type="number" name="quantite" th:id="'quantite'+${Pull.getId()}" th:placeholder="'Max : '+${Pull.getDispoS()}" max="MaxQuantite" required>
                     <input  type="submit" name="achat" value="Achat" class="input-achat"/>
                 </form>
             </div>

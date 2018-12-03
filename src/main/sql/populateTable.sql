@@ -1,8 +1,8 @@
 DELETE FROM utilisateur;
 DELETE FROM produit;
 
-INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Tshirt Gris',10,10,10,9.99,1,'Gris','MannequinTshirt.jpg','#eeeeee');
-INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Pull Gris',10,10,10,19.99,2,'Gris','MannequinPull.jpg','#eeeeee');
+INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Tshirt Gris',10,0,18,9.99,1,'Gris','MannequinTshirt.jpg','#eeeeee');
+INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Pull Gris',18,78,98,19.99,2,'Gris','MannequinPull.jpg','#eeeeee');
 INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Chemise Blanche',10,10,10,14.99,3,'Blanc','MannequinChemise.jpg','#ffffff');
 INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Tshirt Blanc',10,10,10,9.99,1,'Blanc','MannequinTshirt.jpg','#ffffff');
 INSERT INTO `produit` (`produit`,`dispoS`,`dispoM`,`dispoL`,`prix`,`cat`,`couleur`,`image`,`Hexcouleur`) VALUES ('Tshirt Rouge',10,10,10,9.99,1,'Rouge','MannequinTshirt.jpg','#ff4444');

@@ -58,7 +58,7 @@
                                 <option th:if="${Tshirt.getDispoL()>0}" > L</option>
                             </optgroup>
                         </select>
-                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" placeholder="Quantite" min="0" max="MaxQuantite" required>
+                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" th:placeholder="'Max : '+${Tshirt.getDispoS()}" min="0" max="MaxQuantite" required>
                         <input  type="submit" name="achat" value="Achat" class="input-achat"/>
                     </form>
                 </div>
