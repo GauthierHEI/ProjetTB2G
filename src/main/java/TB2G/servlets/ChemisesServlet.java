@@ -64,7 +64,7 @@ public class ChemisesServlet extends AbstractWebServlet {
         if (utilCo == null) {
 
             session.setAttribute("errAchatConnexion", "Impossible d'acheter si vous n'etes pas connecte");
-            resp.sendRedirect("Tshirts");
+            resp.sendRedirect("Chemises");
         } else {
 
             Integer IdUtil = utilCo.getId();

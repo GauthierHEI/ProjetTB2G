@@ -24,7 +24,7 @@ public class EditAdminServlet extends AbstractWebServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String id = req.getParameter("id");
-        System.out.println(id);
+
         Integer utilisateur_id = null;
         try {
             utilisateur_id = Integer.parseInt(id);

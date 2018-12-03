@@ -346,6 +346,12 @@ function RechercheProduit() {
     request.send("recherche="+recherche);
 };
 
+var CloseInfo = function (Id) {
+    var info = document.getElementById(Id);
+    console.log(info);
+    info.style.display="none";
+};
+
 
 
 

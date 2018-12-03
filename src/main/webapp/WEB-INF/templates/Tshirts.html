@@ -15,11 +15,25 @@
     <div class="page">
         <header th:replace="~{fragments :: header(${connecte})}"></header>
 
-        <div class="corps">
+        <div th:if="${errAchatConnexion}" class="info-container" id="info-container1">
+            <i class="fas fa-exclamation-circle i-info-erreur"></i>
+            <div class="error" th:text="${errAchatConnexion}"></div>
+            <i class="fas fa-times i-info-close" onclick="CloseInfo('info-container1')"></i>
+        </div>
 
-                <div class="error" th:text="${errConnexion}"></div>
-                <div class="error" th:text="${errAddPanier}"></div>
-                <div class="success" th:text="${messAddPanier}"></div>
+        <div th:if="${errAddPanier}" class="info-container" id="info-container2">
+            <i class="fas fa-exclamation-circle i-info-erreur"></i>
+            <div class="error" th:text="${errAddPanier}"></div>
+            <i class="fas fa-times i-info-close" onclick="CloseInfo('info-container2')"></i>
+        </div>
+
+        <div th:if="${messAddPanier}" class="info-container-success" id="info-container3">
+            <i class="fas fa-exclamation-circle i-info-erreur"></i>
+            <div class="success" th:text="${messAddPanier}"></div>
+            <i class="fas fa-times i-info-close" onclick="CloseInfo('info-container3')"></i>
+        </div>
+
+        <div class="corps">
 
                 <div th:each=" Tshirt : ${tshirt}" class="produit-informations" th:onmouseover="|Achat('${Tshirt.getId()}')|">
 

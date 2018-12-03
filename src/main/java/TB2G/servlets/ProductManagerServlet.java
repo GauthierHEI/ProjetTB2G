@@ -131,9 +131,9 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
             if (createProd == null) {
-                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
+                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu etre ajoute, verifiez les champs.");
             } else {
-                req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
+                req.getSession().setAttribute("messageAjout", "Le produit a ete ajoute.");
             }
 
             // REDIRECT TO DETAIL PRODUIT

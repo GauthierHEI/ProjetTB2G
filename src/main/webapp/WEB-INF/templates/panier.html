@@ -29,6 +29,9 @@
         </div>
 
         <div th:class="${connecte==1 || connecte==2} ?'active':'inactive'">
+
+            <div class="container-panier">
+                <h1>Mon Panier</h1>
             <table id="table-modif">
 
                 <thead>
@@ -62,9 +65,10 @@
 
             <div th:text="'Total : '+${total}"></div>
 
-            <form method="post">
-                <input type="submit" value="Acheter">
+            <form method="post" onsubmit="alert('Merci d\'avoir achete chez nous !')">
+                <input class="profil-modifmdp" type="submit" value="Acheter">
             </form>
+            </div>
         </div>
 
 

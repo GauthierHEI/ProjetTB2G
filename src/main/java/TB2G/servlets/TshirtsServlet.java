@@ -102,7 +102,7 @@ public class TshirtsServlet extends AbstractWebServlet {
             }
 
         if(quantite > disp) {
-            req.getSession().setAttribute("errAddPanier", "Désolé ! On n'a pas assez de cet article en stock..");
+            req.getSession().setAttribute("errAddPanier", "Desole ! On n'a pas assez de cet article en stock..");
         } else {
             Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
             PanierManager.getInstance().addP2P(newProduit);
@@ -115,7 +115,7 @@ public class TshirtsServlet extends AbstractWebServlet {
             if (taille.equals("L")) {
                 ProduitStore.getInstance().updateDispoL(quantite, IdProduit);
             }
-            req.getSession().setAttribute("messAddPanier", "On a bien ajouté l'item dans ton panier!! ");
+            req.getSession().setAttribute("messAddPanier", "On a bien ajoute l'item dans ton panier!! ");
         }
 
 
