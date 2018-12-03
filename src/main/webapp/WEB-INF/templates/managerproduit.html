@@ -62,9 +62,16 @@
             </div>
 
             <div class="container-produitmanager">
-            <form method="post"enctype="multipart/form-data">
+
 
                 <h1>Index des produits</h1>
+
+                <div class="container-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="recherche-produit"  class="input-search" placeholder="Recherche par nom" name="recherche-produit" style="width: 15vw;" onkeydown="RechercheProduit()">
+                </div>
+
+                <form method="post"enctype="multipart/form-data">
 
                 <table id="table-modif">
 
@@ -85,6 +92,7 @@
                     </tr>
                     </thead>
 
+                    <tbody>
                     <th:block  th:each=" Produit : ${produit}">
 
                         <tr th:id="'tr'+${Produit.getId()}">
@@ -119,6 +127,7 @@
                         </tr>
 
                     </th:block>
+                    </tbody>
 
                 </table>
             </form>

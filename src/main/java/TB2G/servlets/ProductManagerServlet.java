@@ -88,13 +88,13 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
         Part filePart = req.getPart("image");
         String image;
+
         if (filePart.getSize() == 0) {
             image = "none";
         } else {
             File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
             image = newFile.getName();
         }
-
 
         String nameprod = req.getParameter("produit");
         Integer dispoS = null;
@@ -131,9 +131,9 @@ public class ProductManagerServlet extends AbstractWebServlet {
 
             Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
             if (createProd == null) {
-                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu être ajouté, vérifiez les champs.");
+                req.getSession().setAttribute("errAjout", "Le produit n'a pas pu etre ajoute, verifiez les champs.");
             } else {
-                req.getSession().setAttribute("messageAjout", "Le produit a été ajouté.");
+                req.getSession().setAttribute("messageAjout", "Le produit a ete ajoute.");
             }
 
             // REDIRECT TO DETAIL PRODUIT

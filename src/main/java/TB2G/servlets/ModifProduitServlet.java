@@ -84,9 +84,9 @@ public class ModifProduitServlet extends AbstractWebServlet{
 
                 Produit createProd = ProduitStore.getInstance().modifProduit(newProduit1);
                 if (createProd == null) {
-                    resp.getWriter().print("Le produit n'a pas pu être modifié, vérifiez les champs.");
+                    resp.getWriter().print("Le produit n'a pas pu etre modifie, verifiez les champs.");
                 } else {
-                    resp.getWriter().print("Le produit a été modifié.");
+                    resp.getWriter().print("Le produit a ete modifie.");
                 }
 
             } catch (IllegalArgumentException e) {
@@ -94,7 +94,7 @@ public class ModifProduitServlet extends AbstractWebServlet{
             }
         }
         else {
-            resp.getWriter().print("Impossible de récupérer l'Id produit.");
+            resp.getWriter().print("Impossible de recuperer l'Id produit.");
         }
     }
 

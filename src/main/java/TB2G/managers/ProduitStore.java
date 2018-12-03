@@ -114,6 +114,15 @@ public class ProduitStore  {
         return produitdao.getProduit( produitId);
     }
 
+    public List<Produit> RechercheProduit(String recherche){
+        if(recherche.equals("")){
+            return produitdao.listProduit();
+        }
+        else {
+            return produitdao.RechercheProduit(recherche);
+        }
+    }
+
     public Integer getQuantiteDispoS(Integer produitId) {
         return produitdao.getQuantiteDispoS(produitId);
     }
@@ -133,5 +142,6 @@ public class ProduitStore  {
     public void updateDispoL(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoL(quantiteAcheter, produitId); }
 
     public List<Produit> getProduitByName(String nameProduit) { return produitdao.getProduitByName(nameProduit); }
+    
 
 }
