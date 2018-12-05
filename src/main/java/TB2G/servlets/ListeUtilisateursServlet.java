@@ -1,20 +1,14 @@
 package TB2G.servlets;
-import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
-import TB2G.managers.ProduitStore;
 import TB2G.managers.UtilisateurSource;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 

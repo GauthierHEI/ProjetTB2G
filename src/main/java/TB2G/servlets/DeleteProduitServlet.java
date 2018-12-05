@@ -1,14 +1,11 @@
 package TB2G.servlets;
 
-import TB2G.entities.Produit;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 
 @WebServlet("/deleteProduit")
@@ -27,7 +24,7 @@ public class DeleteProduitServlet extends AbstractWebServlet {
 
             produitId2 = Integer.parseInt(req.getParameter("produitId"));
             try {
-                ProduitStore.getInstance().deleteProduit(produitId2);
+                ProduitManager.getInstance().deleteProduit(produitId2);
 
                     resp.getWriter().print("Le produit a été supprimé.");
 

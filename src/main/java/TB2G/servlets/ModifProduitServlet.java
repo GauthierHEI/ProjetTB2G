@@ -1,14 +1,12 @@
 package TB2G.servlets;
 
 import TB2G.entities.Produit;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 
 @WebServlet("/modifProduit")
@@ -82,7 +80,7 @@ public class ModifProduitServlet extends AbstractWebServlet{
             // MODIFY PRODUIT
             try {
 
-                Produit createProd = ProduitStore.getInstance().modifProduit(newProduit1);
+                Produit createProd = ProduitManager.getInstance().modifProduit(newProduit1);
                 if (createProd == null) {
                     resp.getWriter().print("Le produit n'a pas pu etre modifie, verifiez les champs.");
                 } else {

@@ -1,7 +1,6 @@
 package TB2G.servlets;
 
 import TB2G.managers.PanierManager;
-import TB2G.managers.ProduitStore;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

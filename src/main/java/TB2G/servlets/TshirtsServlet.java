@@ -4,20 +4,17 @@ import TB2G.entities.Panier;
 import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.managers.PanierManager;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 import TB2G.utils.PropertiesUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +43,7 @@ public class TshirtsServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
-        ListOfTshirts = ProduitStore.getInstance().listTshirt();
+        ListOfTshirts = ProduitManager.getInstance().listTshirt();
         context.setVariable("errConnexion", errAchatConnexion);
         context.setVariable("tshirt", ListOfTshirts);
         context.setVariable("connecte",connecte);
@@ -75,7 +72,7 @@ public class TshirtsServlet extends AbstractWebServlet {
 
             Integer IdUtil = utilCo.getId();
 
-            Produit produit = ProduitStore.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
+            Produit produit = ProduitManager.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
 
             String taille = req.getParameter("taille");
             Integer quantite = null;
@@ -92,13 +89,13 @@ public class TshirtsServlet extends AbstractWebServlet {
             // CREATE PRODUIT
             Integer disp = 0;
             if (taille.equals("S")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoS(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoS(IdProduit);
             }
             if (taille.equals("M")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoM(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoM(IdProduit);
             }
             if (taille.equals("L")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoL(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoL(IdProduit);
             }
 
         if(quantite > disp) {
@@ -107,13 +104,13 @@ public class TshirtsServlet extends AbstractWebServlet {
             Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite,false);
             PanierManager.getInstance().addP2P(newProduit);
             if (taille.equals("S")) {
-                ProduitStore.getInstance().updateDispoS(quantite, IdProduit);
+                ProduitManager.getInstance().updateDispoS(quantite, IdProduit);
             }
             if (taille.equals("M")) {
-                ProduitStore.getInstance().updateDispoM(quantite, IdProduit);
+                ProduitManager.getInstance().updateDispoM(quantite, IdProduit);
             }
             if (taille.equals("L")) {
-                ProduitStore.getInstance().updateDispoL(quantite, IdProduit);
+                ProduitManager.getInstance().updateDispoL(quantite, IdProduit);
             }
             req.getSession().setAttribute("messAddPanier", "On a bien ajoute l'item dans ton panier!! ");
         }

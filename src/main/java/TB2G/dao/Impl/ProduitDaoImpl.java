@@ -3,24 +3,12 @@ package TB2G.dao.Impl;
 import TB2G.dao.ProduitDao;
 import TB2G.entities.Produit;
 
-import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
-import static TB2G.dao.Impl.UtilisateurDaoImpl.LOG;
-import static jdk.nashorn.internal.runtime.GlobalFunctions.parseFloat;
 
-import TB2G.managers.ProduitStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

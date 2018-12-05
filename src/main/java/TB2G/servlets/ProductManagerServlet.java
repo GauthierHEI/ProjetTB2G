@@ -2,8 +2,8 @@ package TB2G.servlets;
 
 import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
-import TB2G.managers.ProduitStore;
 
+import TB2G.managers.ProduitManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,10 +17,6 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +56,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         }
         else if(utilisateurConnecte.getAdmin()){
             List<Produit> ListOfProduits = new ArrayList<>();
-            ListOfProduits = ProduitStore.getInstance().listProduit();
+            ListOfProduits = ProduitManager.getInstance().listProduit();
             context.setVariable("produit", ListOfProduits);
             context.setVariable("connecte", connecte);
             context.setVariable("errAjout", errAjout);
@@ -131,7 +127,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         Produit newProduit = new Produit(null, nameprod, dispoS, dispoM, dispoL, prix, cat, couleur, image, hexcouleur);
         try {
 
-            Produit createProd = ProduitStore.getInstance().addProduit(newProduit);
+            Produit createProd = ProduitManager.getInstance().addProduit(newProduit);
             if (createProd == null) {
                 req.getSession().setAttribute("errAjout", "Le produit n'a pas pu etre ajoute, verifiez les champs.");
             } else {

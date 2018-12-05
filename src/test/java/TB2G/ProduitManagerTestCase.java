@@ -3,7 +3,7 @@ package TB2G;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.ProduitDao;
 import TB2G.entities.Produit;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -16,13 +16,13 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
-public class ProduitDaoTestCase {
+public class ProduitManagerTestCase {
 
     @Mock
     private ProduitDao produitDaoMock = new ProduitDaoImpl();
 
     @InjectMocks
-    private ProduitStore produitStore = new ProduitStore();
+    private ProduitManager produitManager = new ProduitManager();
 
     @Before
     public void init(){
@@ -50,7 +50,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getProduitById(Mockito.anyInt())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.getProduitById(produitId);
+        Produit produit1 = produitManager.getProduitById(produitId);
 
         //THEN
         assertEquals(produit1, produit);
@@ -76,7 +76,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getProduitById(Mockito.anyInt())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.getProduitById(produitId);
+        Produit produit1 = produitManager.getProduitById(produitId);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -120,7 +120,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.listProduit()).thenReturn(produits);
 
         //WHEN
-        List<Produit> result = produitStore.listProduit();
+        List<Produit> result = produitManager.listProduit();
 
         //THEN
         assertEquals(result, produits);
@@ -163,7 +163,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.listTshirt()).thenReturn(produits);
 
         //WHEN
-        List<Produit> result = produitStore.listTshirt();
+        List<Produit> result = produitManager.listTshirt();
 
         //THEN
         assertEquals(result, produits);
@@ -205,7 +205,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.listPull()).thenReturn(produits);
 
         //WHEN
-        List<Produit> result = produitStore.listPull();
+        List<Produit> result = produitManager.listPull();
 
         //THEN
         assertEquals(result, produits);
@@ -247,7 +247,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.listChemise()).thenReturn(produits);
 
         //WHEN
-        List<Produit> result = produitStore.listChemise();
+        List<Produit> result = produitManager.listChemise();
 
         //THEN
         assertEquals(result, produits);
@@ -268,7 +268,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getProduit(Mockito.anyInt())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.getProduit(produitId);
+        Produit produit1 = produitManager.getProduit(produitId);
 
         //THEN
         assertEquals(produit1, produit);
@@ -289,7 +289,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getProduit(Mockito.anyInt())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.getProduit(produitId);
+        Produit produit1 = produitManager.getProduit(produitId);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -315,7 +315,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         assertEquals(produit1, produit);
@@ -341,7 +341,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         assertEquals(produit1, produit);
@@ -356,7 +356,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -382,7 +382,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -408,7 +408,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -434,7 +434,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -460,7 +460,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get Illegal Argument Exception.");
@@ -486,7 +486,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -512,7 +512,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -538,7 +538,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -564,7 +564,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.addProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.addProduit(produit);
+        Produit produit1 = produitManager.addProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException.");
@@ -579,7 +579,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).deleteProduit(Mockito.anyInt());
 
         //WHEN
-        produitStore.deleteProduit(produitId);
+        produitManager.deleteProduit(produitId);
 
         //THEN
         Mockito.verify(produitDaoMock, Mockito.times(1)).deleteProduit(Mockito.anyInt());
@@ -594,7 +594,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).deleteProduit(Mockito.anyInt());
 
         //WHEN
-        produitStore.deleteProduit(produitId);
+        produitManager.deleteProduit(produitId);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -620,7 +620,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.modifProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.modifProduit(produit);
+        Produit produit1 = produitManager.modifProduit(produit);
 
         //THEN
         assertEquals(produit1, produit);
@@ -635,7 +635,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.modifProduit(Mockito.anyObject())).thenReturn(produit);
 
         //WHEN
-        Produit produit1 = produitStore.modifProduit(produit);
+        Produit produit1 = produitManager.modifProduit(produit);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -680,7 +680,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.listProduit()).thenReturn(produits);
 
         //WHEN
-        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+        List<Produit> produitsRecherche = produitManager.RechercheProduit(recherche);
 
         //THEN
         assertEquals(produits, produitsRecherche);
@@ -725,7 +725,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.RechercheProduit(Mockito.anyString())).thenReturn(produits);
 
         //WHEN
-        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+        List<Produit> produitsRecherche = produitManager.RechercheProduit(recherche);
 
         //THEN
         assertEquals(produits, produitsRecherche);
@@ -738,7 +738,7 @@ public class ProduitDaoTestCase {
         String recherche = null;
 
         //WHEN
-        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+        List<Produit> produitsRecherche = produitManager.RechercheProduit(recherche);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -755,7 +755,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getQuantiteDispoS(Mockito.anyInt())).thenReturn(10);
 
         //WHEN
-        Integer dispoS = produitStore.getQuantiteDispoS(produit_id);
+        Integer dispoS = produitManager.getQuantiteDispoS(produit_id);
 
         //THEN
         assertEquals(dispoSOri, dispoS);
@@ -768,7 +768,7 @@ public class ProduitDaoTestCase {
         Integer produit_id = null;
 
         //WHEN
-        Integer dispoS = produitStore.getQuantiteDispoS(produit_id);
+        Integer dispoS = produitManager.getQuantiteDispoS(produit_id);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -784,7 +784,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getQuantiteDispoM(Mockito.anyInt())).thenReturn(10);
 
         //WHEN
-        Integer dispoM = produitStore.getQuantiteDispoM(produit_id);
+        Integer dispoM = produitManager.getQuantiteDispoM(produit_id);
 
         //THEN
         assertEquals(dispoMOri, dispoM);
@@ -797,7 +797,7 @@ public class ProduitDaoTestCase {
         Integer produit_id = null;
 
         //WHEN
-        Integer dispoM = produitStore.getQuantiteDispoM(produit_id);
+        Integer dispoM = produitManager.getQuantiteDispoM(produit_id);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -813,7 +813,7 @@ public class ProduitDaoTestCase {
         Mockito.when(produitDaoMock.getQuantiteDispoL(Mockito.anyInt())).thenReturn(10);
 
         //WHEN
-        Integer dispoL = produitStore.getQuantiteDispoL(produit_id);
+        Integer dispoL = produitManager.getQuantiteDispoL(produit_id);
 
         //THEN
         assertEquals(dispoLOri, dispoL);
@@ -826,7 +826,7 @@ public class ProduitDaoTestCase {
         Integer produit_id = null;
 
         //WHEN
-        Integer dispoL = produitStore.getQuantiteDispoL(produit_id);
+        Integer dispoL = produitManager.getQuantiteDispoL(produit_id);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -842,7 +842,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoS(produitId, quantiteAcheter);
+        produitManager.updateDispoS(produitId, quantiteAcheter);
 
         //THEN
         Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
@@ -858,7 +858,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoS(produitId, quantiteAcheter);
+        produitManager.updateDispoS(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -874,7 +874,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoS(produitId, quantiteAcheter);
+        produitManager.updateDispoS(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -890,7 +890,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoM(produitId, quantiteAcheter);
+        produitManager.updateDispoM(produitId, quantiteAcheter);
 
         //THEN
         Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
@@ -906,7 +906,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoM(produitId, quantiteAcheter);
+        produitManager.updateDispoM(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -922,7 +922,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoM(produitId, quantiteAcheter);
+        produitManager.updateDispoM(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -938,7 +938,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoL(produitId, quantiteAcheter);
+        produitManager.updateDispoL(produitId, quantiteAcheter);
 
         //THEN
         Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
@@ -954,7 +954,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoL(produitId, quantiteAcheter);
+        produitManager.updateDispoL(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -970,7 +970,7 @@ public class ProduitDaoTestCase {
         Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
 
         //WHEN
-        produitStore.updateDispoL(produitId, quantiteAcheter);
+        produitManager.updateDispoL(produitId, quantiteAcheter);
 
         //THEN
         fail("Should get IllegalArgumentException");

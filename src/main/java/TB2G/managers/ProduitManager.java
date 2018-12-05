@@ -19,23 +19,23 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Properties;
 
-public class ProduitStore  {
+public class ProduitManager  {
 
-    static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
+    static final Logger LOG = LoggerFactory.getLogger(ProduitManager.class);
 
 
-    private static class ProduitStoreHolder {
-        private final static ProduitStore instance = new ProduitStore();
+    private static class ProduitManagerHolder {
+        private final static ProduitManager instance = new ProduitManager();
     }
 
-    public static ProduitStore getInstance(){
-        return ProduitStoreHolder.instance;
+    public static ProduitManager getInstance(){
+        return ProduitManagerHolder.instance;
     }
 
     private ProduitDao produitdao = new ProduitDaoImpl();
 
     public List<Produit> listTshirt() {
-      return produitdao.listTshirt();
+        return produitdao.listTshirt();
     }
 
     public List<Produit> listPull() { return produitdao.listPull(); }

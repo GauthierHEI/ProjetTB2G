@@ -4,7 +4,7 @@ import TB2G.entities.Panier;
 import TB2G.entities.Produit;
 import TB2G.entities.Utilisateur;
 import TB2G.managers.PanierManager;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 import TB2G.utils.PropertiesUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -41,7 +41,7 @@ public class ChemisesServlet extends AbstractWebServlet {
 
         //WebContext
         WebContext context = new WebContext(rsq, rsp, rsq.getServletContext());
-        ListOfChemises = ProduitStore.getInstance().listChemise();
+        ListOfChemises = ProduitManager.getInstance().listChemise();
         context.setVariable("connecte", connecte);
         context.setVariable("chemise", ListOfChemises);
         context.setVariable("errAchatConnexion", errAchatConnexion);
@@ -69,7 +69,7 @@ public class ChemisesServlet extends AbstractWebServlet {
 
             Integer IdUtil = utilCo.getId();
 
-            Produit produit = ProduitStore.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
+            Produit produit = ProduitManager.getInstance().getProduit(Integer.parseInt(req.getParameter("idObj")));
 
             String taille = req.getParameter("taille");
             Integer quantite = null;
@@ -87,13 +87,13 @@ public class ChemisesServlet extends AbstractWebServlet {
             // CREATE PRODUIT
             Integer disp = 0;
             if (taille.equals("S")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoS(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoS(IdProduit);
             }
             if (taille.equals("M")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoM(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoM(IdProduit);
             }
             if (taille.equals("L")) {
-                disp = ProduitStore.getInstance().getQuantiteDispoL(IdProduit);
+                disp = ProduitManager.getInstance().getQuantiteDispoL(IdProduit);
             }
 
             if (quantite > disp) {
@@ -102,13 +102,13 @@ public class ChemisesServlet extends AbstractWebServlet {
                 Panier newProduit = new Panier(null, IdUtil, produit, taille, quantite, false);
                 PanierManager.getInstance().addP2P(newProduit);
                 if (taille.equals("S")) {
-                    ProduitStore.getInstance().updateDispoS(quantite, IdProduit);
+                    ProduitManager.getInstance().updateDispoS(quantite, IdProduit);
                 }
                 if (taille.equals("M")) {
-                    ProduitStore.getInstance().updateDispoM(quantite, IdProduit);
+                    ProduitManager.getInstance().updateDispoM(quantite, IdProduit);
                 }
                 if (taille.equals("L")) {
-                    ProduitStore.getInstance().updateDispoL(quantite, IdProduit);
+                    ProduitManager.getInstance().updateDispoL(quantite, IdProduit);
                 }
                 req.getSession().setAttribute("messAddPanier", "On a bien ajouté l'item dans ton panier!!  ");
             }

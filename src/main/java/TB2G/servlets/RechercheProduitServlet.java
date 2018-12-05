@@ -1,7 +1,7 @@
 package TB2G.servlets;
 
 import TB2G.entities.Produit;
-import TB2G.managers.ProduitStore;
+import TB2G.managers.ProduitManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class RechercheProduitServlet extends AbstractWebServlet{
         List<Produit> ListedProducts = new ArrayList<>();
 
         try{
-            ListedProducts = ProduitStore.getInstance().RechercheProduit(recherche);
+            ListedProducts = ProduitManager.getInstance().RechercheProduit(recherche);
             System.out.println(ListedProducts);
             String ProductsJSON = MAPPER.writeValueAsString(ListedProducts);
             System.out.println(ProductsJSON);
