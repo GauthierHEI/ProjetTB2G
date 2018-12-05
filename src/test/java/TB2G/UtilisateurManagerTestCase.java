@@ -3,7 +3,7 @@ package TB2G;
 import TB2G.dao.Impl.UtilisateurDaoImpl;
 import TB2G.dao.UtilisateurDao;
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -18,13 +18,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertEquals;
 
-public class UtilisateurDaoTestCase {
+public class UtilisateurManagerTestCase {
 
     @Mock
     private UtilisateurDao utilisateurDaoMock = new UtilisateurDaoImpl();
 
     @InjectMocks
-    private UtilisateurSource utilisateurSource = new UtilisateurSource();
+    private UtilisateurManager utilisateurManager = new UtilisateurManager();
 
     @Before
     public void init(){
@@ -61,7 +61,7 @@ public class UtilisateurDaoTestCase {
 
         //WHEN
 
-        Utilisateur result = utilisateurSource.getUtilisateurByMail("alex@alex.fr");
+        Utilisateur result = utilisateurManager.getUtilisateurByMail("alex@alex.fr");
 
         //THEN
         assertEquals(result, utilisateur);
@@ -96,7 +96,7 @@ public class UtilisateurDaoTestCase {
 
         //WHEN
 
-        Utilisateur result = utilisateurSource.getUtilisateurByMail("");
+        Utilisateur result = utilisateurManager.getUtilisateurByMail("");
 
         //THEN
         fail("Should get mail not found.");
@@ -130,7 +130,7 @@ public class UtilisateurDaoTestCase {
 
         //WHEN
 
-        Utilisateur result = utilisateurSource.getUtilisateurByMail(null);
+        Utilisateur result = utilisateurManager.getUtilisateurByMail(null);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -190,7 +190,7 @@ public class UtilisateurDaoTestCase {
 
         //WHEN
 
-        List<Utilisateur> result = utilisateurSource.listUtilisateur();
+        List<Utilisateur> result = utilisateurManager.listUtilisateur();
 
         //THEN
         assertEquals(result, utilisateurs);
@@ -209,7 +209,7 @@ public class UtilisateurDaoTestCase {
         Mockito.when(utilisateurDaoMock.addUtilisateur(Mockito.anyObject())).thenReturn(utilisateurToCreate);
 
         //WHEN
-        Utilisateur result = utilisateurSource.addUtilisateur(utilisateurToCreate);
+        Utilisateur result = utilisateurManager.addUtilisateur(utilisateurToCreate);
 
         //THEN
         assertEquals(result, utilisateurToCreate);
@@ -223,10 +223,10 @@ public class UtilisateurDaoTestCase {
                 "1 rue de Test 1000 Ville","1 rue de Test 1000 Ville",false);
 
         //WHEN
-        Utilisateur result = utilisateurSource.addUtilisateur(utilisateurToCreate);
+        Utilisateur result = utilisateurManager.addUtilisateur(utilisateurToCreate);
 
         //THEN
-       fail("Should get Illegal ArgumentException");
+        fail("Should get Illegal ArgumentException");
     }
 
 
@@ -241,7 +241,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).editAdmin(Mockito.anyInt(), Mockito.anyBoolean());
 
         //WHEN
-        utilisateurSource.editAdmin(utilisateurId, role);
+        utilisateurManager.editAdmin(utilisateurId, role);
 
         //THEN
         Mockito.verify(utilisateurDaoMock, Mockito.times(1)).editAdmin(Mockito.anyInt(), Mockito.anyBoolean());
@@ -258,7 +258,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).editAdmin(Mockito.anyInt(), Mockito.anyBoolean());
 
         //WHEN
-        utilisateurSource.editAdmin(utilisateurId, role);
+        utilisateurManager.editAdmin(utilisateurId, role);
 
         //THEN
         fail("l'id est null");
@@ -275,7 +275,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).editAdmin(Mockito.anyInt(), Mockito.anyBoolean());
 
         //WHEN
-        utilisateurSource.editAdmin(utilisateurId, role);
+        utilisateurManager.editAdmin(utilisateurId, role);
 
         //THEN
         fail("l'id est null");
@@ -292,7 +292,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationMdp(utilisateur, newMdp);
+        utilisateurManager.ModificationMdp(utilisateur, newMdp);
 
         //THEN
         Mockito.verify(utilisateurDaoMock, Mockito.times(1)).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
@@ -307,7 +307,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationMdp(utilisateur, newMdp);
+        utilisateurManager.ModificationMdp(utilisateur, newMdp);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -324,7 +324,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationMdp(utilisateur, newMdp);
+        utilisateurManager.ModificationMdp(utilisateur, newMdp);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -341,7 +341,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationMdp(utilisateur, newMdp);
+        utilisateurManager.ModificationMdp(utilisateur, newMdp);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -358,7 +358,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationMdp(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationMdp(utilisateur, newMdp);
+        utilisateurManager.ModificationMdp(utilisateur, newMdp);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -375,7 +375,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationEmail(utilisateur, newEmail);
+        utilisateurManager.ModificationEmail(utilisateur, newEmail);
 
         //THEN
         Mockito.verify(utilisateurDaoMock, Mockito.times(1)).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
@@ -390,7 +390,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationEmail(utilisateur, newEmail);
+        utilisateurManager.ModificationEmail(utilisateur, newEmail);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -407,7 +407,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationEmail(utilisateur, newEmail);
+        utilisateurManager.ModificationEmail(utilisateur, newEmail);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -424,7 +424,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationEmail(utilisateur, newEmail);
+        utilisateurManager.ModificationEmail(utilisateur, newEmail);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -441,7 +441,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationEmail(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationEmail(utilisateur, newEmail);
+        utilisateurManager.ModificationEmail(utilisateur, newEmail);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -458,7 +458,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationAdresse(utilisateur, newAdresse);
+        utilisateurManager.ModificationAdresse(utilisateur, newAdresse);
 
         //THEN
         Mockito.verify(utilisateurDaoMock, Mockito.times(1)).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
@@ -473,7 +473,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationAdresse(utilisateur, newAdresse);
+        utilisateurManager.ModificationAdresse(utilisateur, newAdresse);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -490,7 +490,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationAdresse(utilisateur, newAdresse);
+        utilisateurManager.ModificationAdresse(utilisateur, newAdresse);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -507,7 +507,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationAdresse(utilisateur, newAdresse);
+        utilisateurManager.ModificationAdresse(utilisateur, newAdresse);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -524,7 +524,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).ModificationAdresse(Mockito.anyObject(), Mockito.anyString());
 
         //WHEN
-        utilisateurSource.ModificationAdresse(utilisateur, newAdresse);
+        utilisateurManager.ModificationAdresse(utilisateur, newAdresse);
 
         //THEN
         fail("Should get IllegalArgumentException");
@@ -538,7 +538,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).deleteUtilisateur(Mockito.anyInt());
 
         //WHEN
-        utilisateurSource.deleteUtilisateur(utilisateur_id);
+        utilisateurManager.deleteUtilisateur(utilisateur_id);
 
         //THEN
         Mockito.verify(utilisateurDaoMock, Mockito.times(1)).deleteUtilisateur(Mockito.anyObject());
@@ -553,7 +553,7 @@ public class UtilisateurDaoTestCase {
         Mockito.doNothing().when(utilisateurDaoMock).deleteUtilisateur(Mockito.anyInt());
 
         //WHEN
-        utilisateurSource.deleteUtilisateur(utilisateur_id);
+        utilisateurManager.deleteUtilisateur(utilisateur_id);
 
         //THEN
         fail("Should get IllegalArgumentException");

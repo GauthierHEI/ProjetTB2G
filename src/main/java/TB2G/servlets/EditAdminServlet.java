@@ -1,5 +1,5 @@
 package TB2G.servlets;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ public class EditAdminServlet extends AbstractWebServlet {
         Boolean role=Boolean.parseBoolean(req.getParameter("admin"));
 
         try{
-            UtilisateurSource.getInstance().editAdmin(utilisateur_id,role);
+            UtilisateurManager.getInstance().editAdmin(utilisateur_id,role);
             resp.getWriter().print("OK");
         }
             catch(IllegalArgumentException e){

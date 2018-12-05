@@ -1,6 +1,6 @@
 package TB2G.servlets;
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -31,7 +31,7 @@ public class ListeUtilisateursServlet extends AbstractWebServlet{
         }
         else if(utilisateurConnecte.getAdmin()){
             List<Utilisateur> ListOfUtilisateurs = new ArrayList<>();
-            ListOfUtilisateurs = UtilisateurSource.getInstance().listUtilisateur();
+            ListOfUtilisateurs = UtilisateurManager.getInstance().listUtilisateur();
             context.setVariable("utilisateur", ListOfUtilisateurs);
             context.setVariable("connecte", connecte);
             context.setVariable("utilisateurCourant",utilisateurConnecte.getId());

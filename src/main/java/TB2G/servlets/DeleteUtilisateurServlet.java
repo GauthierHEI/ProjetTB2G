@@ -1,6 +1,6 @@
 package TB2G.servlets;
 
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ public class DeleteUtilisateurServlet extends AbstractWebServlet {
             Integer utilisateur_id = Integer.parseInt(req.getParameter("id"));
 
         try {
-            UtilisateurSource.getInstance().deleteUtilisateur(utilisateur_id);
+            UtilisateurManager.getInstance().deleteUtilisateur(utilisateur_id);
             resp.getWriter().print("l'utilisateur est delete");
         }catch(IllegalArgumentException e){
             resp.getWriter().print(e);

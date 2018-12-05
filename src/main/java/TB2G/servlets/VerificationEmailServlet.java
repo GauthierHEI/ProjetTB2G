@@ -1,7 +1,7 @@
 package TB2G.servlets;
 
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ public class VerificationEmailServlet extends AbstractWebServlet {
         String email = req.getParameter("email");
 
             try {
-                Utilisateur UtilisateurRetour = UtilisateurSource.getInstance().getUtilisateurByMail(email);
+                Utilisateur UtilisateurRetour = UtilisateurManager.getInstance().getUtilisateurByMail(email);
                 if (UtilisateurRetour == null) {
                     resp.getWriter().print("OK");
                 } else {

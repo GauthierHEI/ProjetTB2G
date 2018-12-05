@@ -8,16 +8,16 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class UtilisateurSource {
-    static final Logger LOG = LoggerFactory.getLogger(UtilisateurSource.class);
+public class UtilisateurManager {
+    static final Logger LOG = LoggerFactory.getLogger(UtilisateurManager.class);
 
 
-    private static class UtilisateurSourceHolder {
-        private final static UtilisateurSource instance = new UtilisateurSource();
+    private static class UtilisateurManagerHolder {
+        private final static UtilisateurManager instance = new UtilisateurManager();
     }
 
-    public static UtilisateurSource getInstance(){
-        return UtilisateurSourceHolder.instance;
+    public static UtilisateurManager getInstance(){
+        return UtilisateurManagerHolder.instance;
     }
 
     private UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
@@ -49,7 +49,7 @@ public class UtilisateurSource {
         }
         utilisateurDao.editAdmin(utilisateur_id,role);
     }
-    
+
     public void ModificationMdp(Utilisateur utilisateur, String newMdp){
         if ((utilisateur == null) || (utilisateur.getId() == null) || (newMdp == null)){
             LOG.error("Un parametre ou plus est null");

@@ -1,7 +1,7 @@
 package TB2G.servlets;
 
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 import jdk.nashorn.internal.ir.SetSplitState;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -73,7 +73,7 @@ public class ProfilServlet extends AbstractWebServlet {
             String newMdp = genererMotDePasse(rsq.getParameter("newmdp"));
 
             try {
-                UtilisateurSource.getInstance().ModificationMdp(utilisateurconnecte, newMdp);
+                UtilisateurManager.getInstance().ModificationMdp(utilisateurconnecte, newMdp);
                 session.setAttribute("successMdp", "Le mot de passe est mis a jour");
                 rsp.sendRedirect("profil");
 
@@ -87,7 +87,7 @@ public class ProfilServlet extends AbstractWebServlet {
             String newAdresse = rsq.getParameter("newadresse");
 
             try {
-                UtilisateurSource.getInstance().ModificationAdresse(utilisateurconnecte, newAdresse);
+                UtilisateurManager.getInstance().ModificationAdresse(utilisateurconnecte, newAdresse);
                 session.setAttribute("successAdresse", "L'adresse est mis a jour");
                 Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
                 utilisateurConnecte.setAdresseliv(newAdresse);
@@ -103,9 +103,9 @@ public class ProfilServlet extends AbstractWebServlet {
 
             String newEmail = rsq.getParameter("newemail");
 
-            if (UtilisateurSource.getInstance().getUtilisateurByMail(newEmail)== null) {
+            if (UtilisateurManager.getInstance().getUtilisateurByMail(newEmail)== null) {
                 try {
-                    UtilisateurSource.getInstance().ModificationEmail(utilisateurconnecte, newEmail);
+                    UtilisateurManager.getInstance().ModificationEmail(utilisateurconnecte, newEmail);
                     session.setAttribute("successEmail", "L'email est mis a jour");
                     Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
                     utilisateurConnecte.setEmail(newEmail);

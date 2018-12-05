@@ -1,24 +1,20 @@
 package TB2G.servlets;
 
 import TB2G.entities.Utilisateur;
-import TB2G.managers.UtilisateurSource;
+import TB2G.managers.UtilisateurManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 import static TB2G.utils.MotDePasseUtils.genererMotDePasse;
 import static TB2G.utils.MotDePasseUtils.validerMotDePasse;
-import static java.lang.System.out;
 
 @WebServlet("/authentification")
 public class ConnexionServlet extends AbstractWebServlet {
@@ -91,7 +87,7 @@ public class ConnexionServlet extends AbstractWebServlet {
                 Utilisateur utilisateur = new Utilisateur(null, mail, prenom, nom,
                         birthDate, motDePasseHash, adresse, adresse, false);
                 //Create task
-                Utilisateur utilisateurRetour = UtilisateurSource.getInstance().addUtilisateur(utilisateur);
+                Utilisateur utilisateurRetour = UtilisateurManager.getInstance().addUtilisateur(utilisateur);
                     if (utilisateurRetour.getPrenom() == null) {
                         session.setAttribute("errChamp", "Champ mal rempli");
                         rsp.sendRedirect("authentification");
@@ -104,7 +100,7 @@ public class ConnexionServlet extends AbstractWebServlet {
             } else {
                 String mail = rsq.getParameter("mail");
                 Utilisateur utilisateur;
-                utilisateur = UtilisateurSource.getInstance().getUtilisateurByMail(mail);
+                utilisateur = UtilisateurManager.getInstance().getUtilisateurByMail(mail);
                 if (utilisateur == null) {
                     session.setAttribute("errEmail", "Email n'existe pas");
                     rsp.sendRedirect("authentification");
