@@ -15,9 +15,9 @@
     <div class="page">
         <header th:replace="~{fragments :: header(${connecte})}"></header>
 
-        <div th:if="${errAchatConnexion}" class="info-container" id="info-container1">
+        <div th:if="${errConnexion}" class="info-container" id="info-container1">
             <i class="fas fa-exclamation-circle i-info-erreur"></i>
-            <div class="error" th:text="${errAchatConnexion}"></div>
+            <div class="error" th:text="${errConnexion}"></div>
             <i class="fas fa-times i-info-close" onclick="CloseInfo('info-container1')"></i>
         </div>
 
@@ -58,7 +58,7 @@
                                 <option th:if="${Tshirt.getDispoL()>0}" > L</option>
                             </optgroup>
                         </select>
-                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" placeholder="Quantite" min="0" max="MaxQuantite" required>
+                        <input type="number" name="quantite" th:id="'quantite'+${Tshirt.getId()}" th:placeholder="'Max : '+${Tshirt.getDispoS()}" min="0" max="MaxQuantite" required>
                         <input  type="submit" name="achat" value="Achat" class="input-achat"/>
                     </form>
                 </div>
