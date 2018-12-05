@@ -115,7 +115,10 @@ public class ProduitStore  {
     }
 
     public List<Produit> RechercheProduit(String recherche){
-        if(recherche.equals("")){
+        if (recherche == null) {
+            throw new IllegalArgumentException("Recherche cannot be null");
+        }
+        else if(recherche.equals("")){
             return produitdao.listProduit();
         }
         else {
@@ -124,24 +127,56 @@ public class ProduitStore  {
     }
 
     public Integer getQuantiteDispoS(Integer produitId) {
-        return produitdao.getQuantiteDispoS(produitId);
+        if (produitId != null) {
+            return produitdao.getQuantiteDispoS(produitId);
+        }
+        else {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
     }
 
     public Integer getQuantiteDispoM(Integer produitId) {
-        return produitdao.getQuantiteDispoM(produitId);
+        if (produitId != null) {
+            return produitdao.getQuantiteDispoM(produitId);
+        }
+        else {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
     }
 
     public Integer getQuantiteDispoL(Integer produitId) {
-        return produitdao.getQuantiteDispoL(produitId);
+        if (produitId != null) {
+            return produitdao.getQuantiteDispoL(produitId);
+        }
+        else {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
     }
 
-    public void updateDispoS(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoS(quantiteAcheter, produitId); }
+    public void updateDispoS(Integer quantiteAcheter, Integer produitId) {
+        if (quantiteAcheter != null && produitId != null) {
+            produitdao.updateDispoS(quantiteAcheter, produitId);
+        }
+        else {
+            throw new IllegalArgumentException("Parameter is null");
+        }
+    }
 
-    public void updateDispoM(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoM(quantiteAcheter, produitId); }
+    public void updateDispoM(Integer quantiteAcheter, Integer produitId) {
+        if (quantiteAcheter != null && produitId != null) {
+            produitdao.updateDispoM(quantiteAcheter, produitId);
+        }
+        else {
+            throw new IllegalArgumentException("Parameter is null");
+        }
+    }
 
-    public void updateDispoL(Integer quantiteAcheter, Integer produitId) { produitdao.updateDispoL(quantiteAcheter, produitId); }
-
-    public List<Produit> getProduitByName(String nameProduit) { return produitdao.getProduitByName(nameProduit); }
-    
-
+    public void updateDispoL(Integer quantiteAcheter, Integer produitId) {
+        if (quantiteAcheter != null && produitId != null) {
+            produitdao.updateDispoL(quantiteAcheter, produitId);
+        }
+        else {
+            throw new IllegalArgumentException("Parameter is null");
+        }
+    }
 }

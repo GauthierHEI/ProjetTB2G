@@ -529,4 +529,34 @@ public class UtilisateurDaoTestCase {
         //THEN
         fail("Should get IllegalArgumentException");
     }
+
+    @Test
+    public void shouldDeleteUtilisateur() {
+
+        //GIVEN
+        Integer utilisateur_id = 1;
+        Mockito.doNothing().when(utilisateurDaoMock).deleteUtilisateur(Mockito.anyInt());
+
+        //WHEN
+        utilisateurSource.deleteUtilisateur(utilisateur_id);
+
+        //THEN
+        Mockito.verify(utilisateurDaoMock, Mockito.times(1)).deleteUtilisateur(Mockito.anyObject());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldDeleteUtilisateurButIdIsNull() {
+
+        //GIVEN
+        Integer utilisateur_id = null;
+        Mockito.doNothing().when(utilisateurDaoMock).deleteUtilisateur(Mockito.anyInt());
+
+        //WHEN
+        utilisateurSource.deleteUtilisateur(utilisateur_id);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+
+    }
 }

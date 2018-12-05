@@ -90,8 +90,13 @@ public class UtilisateurSource {
     }
 
     public void deleteUtilisateur(Integer utilisateur_id){
+        if(utilisateur_id != null) {
             utilisateurDao.deleteUtilisateur(utilisateur_id);
-            LOG.info("l'utilisateur a été supprimé");
+        }
+        else {
+            throw new IllegalArgumentException("ID cannot be null.");
+        }
+        LOG.info("l'utilisateur a été supprimé");
     }
 
 }

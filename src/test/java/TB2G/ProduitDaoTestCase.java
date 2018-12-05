@@ -1,6 +1,5 @@
 package TB2G;
 
-import TB2G.dao.Impl.DataSourceProvider;
 import TB2G.dao.Impl.ProduitDaoImpl;
 import TB2G.dao.ProduitDao;
 import TB2G.entities.Produit;
@@ -11,19 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProduitDaoTestCase {
 
@@ -649,4 +640,196 @@ public class ProduitDaoTestCase {
         //THEN
         fail("Should get IllegalArgumentException");
     }
+
+    @Test
+    public void shouldRechercheAll() {
+
+        //GIVEN
+        List<Produit> produits = new ArrayList<>();
+
+        Produit produit1 = new Produit(
+                1,
+                "Tshirt Gris",
+                10,
+                10,
+                10,
+                9.99f,
+                1,
+                "Gris",
+                "",
+                "#000000"
+        );
+        Produit produit2 = new Produit(
+                2,
+                "Tshirt Blanc",
+                10,
+                10,
+                10,
+                9.99f,
+                1,
+                "Gris",
+                "",
+                "#000000"
+        );
+
+        produits.add(produit1);
+        produits.add(produit2);
+
+        String recherche = "";
+
+        Mockito.when(produitDaoMock.listProduit()).thenReturn(produits);
+
+        //WHEN
+        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+
+        //THEN
+        assertEquals(produits, produitsRecherche);
+    }
+
+    @Test
+    public void shouldRechercheTshirt() {
+
+        //GIVEN
+        List<Produit> produits = new ArrayList<>();
+
+        Produit produit1 = new Produit(
+                1,
+                "Tshirt Gris",
+                10,
+                10,
+                10,
+                9.99f,
+                1,
+                "Gris",
+                "",
+                "#000000"
+        );
+        Produit produit2 = new Produit(
+                2,
+                "Tshirt Blanc",
+                10,
+                10,
+                10,
+                9.99f,
+                1,
+                "Gris",
+                "",
+                "#000000"
+        );
+
+        produits.add(produit1);
+        produits.add(produit2);
+
+        String recherche = "T-shirt";
+
+        Mockito.when(produitDaoMock.RechercheProduit(Mockito.anyString())).thenReturn(produits);
+
+        //WHEN
+        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+
+        //THEN
+        assertEquals(produits, produitsRecherche);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRechercheButRechercheIsNull(){
+
+        //GIVEN
+        String recherche = null;
+
+        //WHEN
+        List<Produit> produitsRecherche = produitStore.RechercheProduit(recherche);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+
+    }
+
+    @Test
+    public void shouldGetDispoS() {
+
+        //GIVEN
+        Integer produit_id = 1;
+        Integer dispoSOri = 10;
+
+        Mockito.when(produitDaoMock.getQuantiteDispoS(Mockito.anyInt())).thenReturn(10);
+
+        //WHEN
+        Integer dispoS = produitStore.getQuantiteDispoS(produit_id);
+
+        //THEN
+        assertEquals(dispoSOri, dispoS);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldGetDispoSButProduiIdIsNull() {
+
+        //GIVEN
+        Integer produit_id = null;
+
+        //WHEN
+        Integer dispoS = produitStore.getQuantiteDispoS(produit_id);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test
+    public void shouldGetDispoM() {
+
+        //GIVEN
+        Integer produit_id = 1;
+        Integer dispoMOri = 10;
+
+        Mockito.when(produitDaoMock.getQuantiteDispoM(Mockito.anyInt())).thenReturn(10);
+
+        //WHEN
+        Integer dispoM = produitStore.getQuantiteDispoM(produit_id);
+
+        //THEN
+        assertEquals(dispoMOri, dispoM);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldGetDispoMButProduiIdIsNull() {
+
+        //GIVEN
+        Integer produit_id = null;
+
+        //WHEN
+        Integer dispoM = produitStore.getQuantiteDispoM(produit_id);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test
+    public void shouldGetDispoL() {
+
+        //GIVEN
+        Integer produit_id = 1;
+        Integer dispoLOri = 10;
+
+        Mockito.when(produitDaoMock.getQuantiteDispoL(Mockito.anyInt())).thenReturn(10);
+
+        //WHEN
+        Integer dispoL = produitStore.getQuantiteDispoL(produit_id);
+
+        //THEN
+        assertEquals(dispoLOri, dispoL);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldGetDispoLButProduiIdIsNull() {
+
+        //GIVEN
+        Integer produit_id = null;
+
+        //WHEN
+        Integer dispoL = produitStore.getQuantiteDispoL(produit_id);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
 }
