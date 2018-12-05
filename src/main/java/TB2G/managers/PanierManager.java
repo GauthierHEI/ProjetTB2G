@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PanierManager {
 
-    static final Logger LOG = LoggerFactory.getLogger(ProduitStore.class);
+    static final Logger LOG = LoggerFactory.getLogger(ProduitManager.class);
 
 
     private static class PanierManagerHolder {

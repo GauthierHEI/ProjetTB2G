@@ -9,6 +9,7 @@ import java.util.List;
 
 import static TB2G.dao.Impl.DataSourceProvider.getDataSource;
 
+import TB2G.managers.ProduitManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +61,7 @@ public class ProduitDaoImpl implements ProduitDao {
         Produit newProduit1 = produit;
         int produitId1 = newProduit1.getId();
 
-        Produit produitExist = ProduitStore.getInstance().getProduitById(produitId1);
+        Produit produitExist = ProduitManager.getInstance().getProduitById(produitId1);
 
         if (newProduit1.getNameproduit() == null || "".equals(newProduit1.getNameproduit())) {
             newProduit1.setNameproduit(produitExist.getNameproduit());
