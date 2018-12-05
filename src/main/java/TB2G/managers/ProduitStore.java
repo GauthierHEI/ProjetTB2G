@@ -96,17 +96,6 @@ public class ProduitStore  {
         return produitdao.addProduit(produit);
     }
 
-    public File imageDansFichier (Part filePart) throws IOException {
-
-        File uploads = new File(PropertiesUtils.cheminPro());
-        File file = File.createTempFile("img", ".jpg", uploads);
-
-        try (InputStream fileContent = filePart.getInputStream()) {
-            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        }
-        return file;
-    }
-
     public Produit getProduit(Integer produitId) {
         if (produitId == null) {
             throw new IllegalArgumentException("ID cannot be null");

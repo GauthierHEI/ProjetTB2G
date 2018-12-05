@@ -24,6 +24,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import static TB2G.utils.FichierUtils.imageDansFichier;
+
 
 @WebServlet("/managerproduit")
 @MultipartConfig
@@ -92,7 +94,7 @@ public class ProductManagerServlet extends AbstractWebServlet {
         if (filePart.getSize() == 0) {
             image = "none";
         } else {
-            File newFile = ProduitStore.getInstance().imageDansFichier(filePart);
+            File newFile = imageDansFichier(filePart);
             image = newFile.getName();
         }
 

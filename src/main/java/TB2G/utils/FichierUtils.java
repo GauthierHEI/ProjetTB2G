@@ -9,7 +9,7 @@ import java.nio.file.StandardCopyOption;
 
 public class FichierUtils {
 
-    public File imageDansFichier (Part filePart) throws IOException {
+    public static File imageDansFichier (Part filePart) throws IOException {
 
         File uploads = new File(PropertiesUtils.cheminPro());
         File file = File.createTempFile("img", ".jpg", uploads);

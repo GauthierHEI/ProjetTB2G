@@ -832,4 +832,147 @@ public class ProduitDaoTestCase {
         fail("Should get IllegalArgumentException");
     }
 
+    @Test
+    public void shouldModifyDispoS() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoS(produitId, quantiteAcheter);
+
+        //THEN
+        Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoSButIdIsNull() {
+
+        //GIVEN
+        Integer produitId = null;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoS(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoSButQuantiteIsNull() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = null;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoS(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoS(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test
+    public void shouldModifyDispoM() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoM(produitId, quantiteAcheter);
+
+        //THEN
+        Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoMButIdIsNull() {
+
+        //GIVEN
+        Integer produitId = null;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoM(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoMButQuantiteIsNull() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = null;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoM(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoM(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test
+    public void shouldModifyDispoL() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoL(produitId, quantiteAcheter);
+
+        //THEN
+        Mockito.verify(produitDaoMock, Mockito.times(1)).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoLButIdIsNull() {
+
+        //GIVEN
+        Integer produitId = null;
+        Integer quantiteAcheter = 1;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoL(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldModifyDispoLButQuantiteIsNull() {
+
+        //GIVEN
+        Integer produitId = 1;
+        Integer quantiteAcheter = null;
+
+        Mockito.doNothing().when(produitDaoMock).updateDispoL(Mockito.anyInt(), Mockito.anyInt());
+
+        //WHEN
+        produitStore.updateDispoL(produitId, quantiteAcheter);
+
+        //THEN
+        fail("Should get IllegalArgumentException");
+    }
 }
