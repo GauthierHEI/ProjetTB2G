@@ -48,9 +48,10 @@
                 <th:block  th:each=" ProduitPan : ${panierList}">
 
                     <tr th:id="'tr'+${ProduitPan.getIdCo()}">
+                        <td th:text="${ProduitPan.getProduit().getId()}" th:id="'produitSupp'+${ProduitPan.getIdCo()}"></td>
                         <td th:text="${ProduitPan.getProduit().getNameproduit()}"></td>
-                        <td th:text="${ProduitPan.getTaille()}"></td>
-                        <td th:text="${ProduitPan.getQuantite()}"></td>
+                        <td th:text="${ProduitPan.getTaille()}" th:id="'taille'+${ProduitPan.getIdCo()}"></td>
+                        <td th:text="${ProduitPan.getQuantite()}" th:id="'quantite'+${ProduitPan.getIdCo()}"></td>
                         <td th:text="${ProduitPan.getProduit().getPrix()}"></td>
                         <td> <img th:src=" '/images/' + ${ProduitPan.getProduit().getImage()}" class="imagePanier"> </td>
                         <td th:onclick="'deleteProduitPanier('+${ProduitPan.getIdCo()}+')'" class="icone-validation-supprimer"><i class="fas fa-trash"></i></td>

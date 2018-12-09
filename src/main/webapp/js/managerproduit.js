@@ -40,6 +40,7 @@ var modifProduit = function (produitId) {
 
     request.send("produitId="+produitId+"&produit="+produit+"&dispoS="+dispoS+"&dispoM="
         +dispoM+"&dispoL="+dispoL+"&prix="+prix+"&cat="+cat+"&couleur="+couleur+"&hexcouleur="+hexcouleur);
+
     CacheProduit(produitId);
     request.onload = function () {
         let response = this.response;
@@ -81,6 +82,7 @@ var modifProduit = function (produitId) {
 
 var deleteProduit = function (produitId) {
     console.log("In delete");
+
     var request = new XMLHttpRequest();
     request.open("POST", "deleteProduit", true);
 
@@ -100,11 +102,26 @@ var deleteProduit = function (produitId) {
 
 var deleteProduitPanier = function (produitId) {
     console.log("In delete");
+
+    var produitSupp = "";
+    if (document.getElementById("produitSupp" + produitId) != null) {
+        produitSupp = document.getElementById("produitSupp" + produitId).innerText;
+    }
+    var taille = "";
+    if (document.getElementById("taille" + produitId) != null) {
+        taille = document.getElementById("taille" + produitId).innerText;
+    }
+    var quantite = "";
+    if (document.getElementById("quantite" + produitId) != null) {
+        quantite = document.getElementById("quantite" + produitId).innerText;
+        quantite = -quantite;
+    }
+
     var request = new XMLHttpRequest();
     request.open("POST", "deleteProdPanier", true);
-
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send("produitId="+produitId);
+
+    request.send("produitId="+produitId+"&produitSupp="+produitSupp+"&taille="+taille+"&quantite="+quantite);
 
     request.onload = function () {
         var child = document.getElementById('tr'+ produitId);
